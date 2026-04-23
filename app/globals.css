@@ -18,6 +18,10 @@
   --shadow: rgba(0, 0, 0, 0.35);
 
   --container: 1240px;
+
+  /* Alternative section colors */
+  --alt-bg: #0d0d0d; /* Alternative background */
+  --alt-text: #e7ddcf; /* Alternative text/foreground */
 }
 
 [data-theme="light"] {
@@ -33,6 +37,10 @@
 
   --border: rgba(0, 0, 0, 0.08);
   --shadow: rgba(0, 0, 0, 0.08);
+
+  /* Alternative section colors for light theme */
+  --alt-bg: #ede9e2;
+  --alt-text: #2d2925;
 }
 
 [data-theme="sunset"] {
@@ -48,6 +56,10 @@
 
   --border: rgba(255, 220, 210, 0.14);
   --shadow: rgba(0, 0, 0, 0.32);
+
+  /* Alternative section colors for sunset theme */
+  --alt-bg: #22152d;
+  --alt-text: #ffb38a;
 }
 
 [data-theme="ocean"] {
@@ -63,16 +75,10 @@
 
   --border: rgba(185, 231, 255, 0.14);
   --shadow: rgba(0, 0, 0, 0.3);
-}
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
+  /* Alternative section colors for ocean theme */
+  --alt-bg: #0d1e2b;
+  --alt-text: #b9e7ff;
 }
 
 html {
@@ -141,6 +147,16 @@ a {
   * {
     @apply border-border;
   }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }  
 
   body {
     @apply bg-background text-foreground;
