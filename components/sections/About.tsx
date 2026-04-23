@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Button } from "../ui/button";
 
 const skillGroups = [
   {
@@ -72,14 +73,13 @@ export default function About() {
             className="max-w-[32rem]"
           >
             <p className="font-mono text-[0.72rem] uppercase tracking-[0.26em] text-muted-foreground">
-              About
+              [About]
             </p>
 
             <h2 className="mt-4 text-[clamp(2.4rem,5vw,5.5rem)] font-medium leading-[0.95] text-foreground">
-              Building thoughtful
-              <span className="font-serif italic"> digital experiences</span>
-              <br />
-              with creativity and precision.
+              Get to
+              <span className="font-serif italic"> know </span>
+               me.
             </h2>
           </motion.div>
 
@@ -91,34 +91,36 @@ export default function About() {
             className="max-w-[46rem]"
           >
             <div className="space-y-6 text-base leading-8 text-muted-foreground sm:text-[1.05rem]">
-              <p>
-                Hi, I’m Leona — a developer and designer with a strong interest
-                in creating digital products that feel visually refined,
-                intuitive, and alive. I’ve always been fascinated by technology,
-                but just as much by aesthetics, composition, and creative work.
-              </p>
-
-              <p>
-                I enjoy learning continuously, exploring new tools, and building
-                projects that combine function with atmosphere. While my stack
-                keeps evolving, the core of my work stays the same: thoughtful
-                interfaces, strong visual language, and attention to detail.
-              </p>
+                <p>
+                Hi, I’m Leona — a developer and designer passionate about creating refined, intuitive, 
+                and dynamic digital products. 
+                I love blending technology with aesthetics, focusing on 
+                thoughtful interfaces, strong visuals, and attention to detail.
+                </p>
             </div>
+            <Button
+              variant="secondary"
+              size="lg"
+              className="mt-8"
+            >
+              Download CV
+            </Button>
+
           </motion.div>
         </div>
 
+        {/* Skill Groups */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.7, delay: 0.05 }}
-          className="mt-14 grid gap-4 sm:mt-16 lg:mt-20 lg:grid-cols-2"
+          className="mt-14 grid gap-6 sm:mt-16 lg:mt-20 lg:grid-cols-2"
         >
           {skillGroups.map((group) => (
             <div
               key={group.title}
-              className="rounded-[1.75rem] border border-border bg-card/70 p-6 backdrop-blur-sm sm:p-7"
+              className="rounded-[1.75rem] border border-border bg-card/70 p-6 backdrop-blur-md shadow-lg transition-transform hover:scale-[1.02] sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <h3 className="text-lg font-medium text-foreground">
@@ -129,11 +131,11 @@ export default function About() {
                 </span>
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-2.5">
+              <div className="mt-5 flex flex-wrap gap-3">
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="inline-flex items-center rounded-full border border-border bg-background/70 px-3.5 py-2 text-sm text-foreground/90"
+                    className="inline-flex items-center rounded-full border border-border bg-background/70 px-3.5 py-2 text-sm text-foreground/90 shadow-sm transition hover:bg-accent hover:text-background"
                   >
                     {item}
                   </span>

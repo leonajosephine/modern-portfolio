@@ -9,7 +9,14 @@ export default function Portfolio() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="portfolio" className="px-5 py-20 sm:px-6 sm:py-24 lg:py-32">
+    <section 
+        id="portfolio" 
+        className="px-5 py-20 sm:px-6 sm:py-24 lg:py-32"
+        style={{
+            backgroundColor: "var(--alt-bg)",
+            color: "var(--alt-text)",
+          }}
+        >
       <div className="container">
         <div className="max-w-[52rem]">
           <p className="font-mono text-[0.72rem] uppercase tracking-[0.26em] text-muted-foreground">

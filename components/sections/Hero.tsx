@@ -37,11 +37,11 @@ export default function Hero() {
       />
 
       <div className="container relative z-10 flex flex-col items-center text-center">
-        <p className="mb-20 text-[0.7rem] uppercase tracking-[0.28em] text-muted-foreground sm:text-xs">
+        <p className="mb-6 text-[0.7rem] uppercase tracking-[0.28em] text-muted-foreground sm:text-xs">
           Creative Developer · UI / UX · Frontend
         </p>
 
-        <div className="w-screen max-w-none mt-6 mb-6">
+        <div className="w-screen max-w-none ">
           <ScrollVelocity
             texts={["Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann", "Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann"]}
             velocity={90}
@@ -51,7 +51,7 @@ export default function Hero() {
 
     
 
-        <div className="mt-20 flex flex-wrap items-center justify-center gap-3 sm:mt-12">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12">
           <a href="#portfolio">
             <Button variant="primary" size="lg">
               View Projects
