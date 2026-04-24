@@ -19,23 +19,27 @@ export type Block =
   | { type: "metrics"; title?: string; items: { label: string; value: string }[] }
   | { type: "gallery"; title?: string; items: Media[] };
 
-export type Project = {
-  slug: string;
-  title: string;
-  short: string;     // Text für die Karte
-  cover: string;     // Bild fürs Grid
-  hero: Media;       // Hauptmedia im Modal
-  tags?: string[];
-  meta?: {
-    role?: string;
-    year?: string;
-    duration?: string;
-    team?: string;
+  export type ProjectCategory = "coding" | "design" | "3d";
+
+  export type Project = {
+    slug: string;
+    title: string;
+    short: string;
+    cover: string;
+    hero: Media;
+    category: ProjectCategory;
+    gradient?: "sunset" | "aurora" | "forest" | "ice";
+    tags?: string[];
+    meta?: {
+      role?: string;
+      year?: string;
+      duration?: string;
+      team?: string;
+    };
+    links?: ProjectLink[];
+    blocks: Block[];
+    size?: "normal" | "wide" | "tall" | "big";
   };
-  links?: ProjectLink[];
-  blocks: Block[];
-  size?: "normal" | "wide" | "tall" | "big"; // optional: für unregelmäßiges Grid
-};
 
 export const projects: Project[] = [
   {
@@ -44,6 +48,7 @@ export const projects: Project[] = [
     short: "Netflix-inspired UI with search, trailers & a personal list.",
     cover: "/images/netflix.jpg",
     hero: { type: "video", src: "/media/netflix-video.mp4", poster: "/images/netflix.jpg" },
+    category: "coding",
     tags: ["Next.js", "React", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
     links: [
@@ -75,6 +80,7 @@ export const projects: Project[] = [
     short: "Ultra clean product/brand website with editorial visuals.",
     cover: "/images/lunara-creme.png", 
     hero: { type: "image", src: "/images/lunara-stage-details.png", alt: "Skincare hero" },
+    category: "design",
     tags: ["Design", "React", "UI", "Brand", "Responsive", "Mobile-First"],
     meta: { role: "UI/Frontend", year: "2025", duration: "1 week", team: "Solo" },
     links: [
@@ -104,6 +110,7 @@ export const projects: Project[] = [
     short: "Description for project three.",
     cover: "/images/todo_overview.png",
     hero: { type: "image", src: "/images/todo_boards.png", alt: "Project three hero" },
+    category: "coding",
     tags: ["Tag1", "Tag2"],
     meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
     links: [
@@ -132,6 +139,7 @@ export const projects: Project[] = [
     short: "Description for project four.",
     cover: "/images/websiteshop.jpeg",
     hero: { type: "image", src: "/images/websiteshop.jpeg", alt: "Project four hero" },
+    category: "coding",
     tags: ["TagA", "TagB"],
     meta: { role: "Role", year: "2023", duration: "4 weeks", team: "Team Alpha" },
     links: [
@@ -159,6 +167,7 @@ export const projects: Project[] = [
     short: "Description for project four.",
     cover: "/images/collage.jpg",
     hero: { type: "image", src: "/images/collage.jpg", alt: "Project four hero" },
+    category: "coding",
     tags: ["TagA", "TagB"],
     meta: { role: "Role", year: "2023", duration: "4 weeks", team: "Team Alpha" },
     links: [
@@ -186,6 +195,7 @@ export const projects: Project[] = [
     short: "Description for project three.",
     cover: "/images/metallic.png",
     hero: { type: "image", src: "/images/metallic.png", alt: "Project three hero" },
+    category: "3d",
     tags: ["Tag1", "Tag2"],
     meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
     links: [
@@ -213,6 +223,7 @@ export const projects: Project[] = [
     short: "Netflix-inspired UI with search, trailers & a personal list.",
     cover: "/images/netflix.jpg",
     hero: { type: "video", src: "/media/netflix_rebuild_video.mov", poster: "/images/netflix-poster.jpg" },
+    category: "design",
     tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
     links: [
@@ -243,6 +254,7 @@ export const projects: Project[] = [
     short: "Netflix-inspired UI with search, trailers & a personal list.",
     cover: "/images/collage.jpg",
     hero: { type: "image", src: "/images/collage.jpg", alt: "Project four hero" },
+    category: "design",
     tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
     links: [
