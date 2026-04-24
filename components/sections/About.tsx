@@ -144,6 +144,10 @@ export default function About() {
             </div>
           ))}
         </motion.div>
+
+        {/* Divider */}
+        <div className="mt-16 h-[1px] w-full bg-border" /> 
+        
       </div>
     </section>
   );
