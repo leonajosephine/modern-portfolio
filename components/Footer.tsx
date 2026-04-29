@@ -1,32 +1,62 @@
+"use client";
+
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+
 export default function Footer() {
-    return (
-      <footer className="px-5 pb-10 pt-12 sm:px-6">
-        <div className="container">
-          <div className="flex flex-col items-center justify-between gap-6 border-t border-border pt-6 text-center sm:flex-row sm:text-left">
-            
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground sm:justify-start">
+  return (
+    <footer className="px-5 pb-12 pt-16 sm:px-6">
+      <div className="container">
+        <div className="border-t border-border pt-8">
+
+          {/* Top Row */}
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+
+            {/* Name / Brand */}
+            <p className="text-sm text-muted-foreground">
+              LJR 🐬
+            </p>
+
+            {/* Icon Links */}
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card transition hover:scale-105 hover:bg-muted"
+                aria-label="GitHub"
+              >
+                <FaGithub size={18} className="text-muted-foreground transition group-hover:text-foreground" />
+              </a>
+
+              <a
+                href="https://linkedin.com/in/yourprofile"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card transition hover:scale-105 hover:bg-muted"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn size={18} className="text-muted-foreground transition group-hover:text-foreground" />
+              </a>
+
               <a
                 href="mailto:leona.redmann@gmx.net"
-                className="transition hover:text-foreground"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card transition hover:scale-105 hover:bg-muted"
+                aria-label="Email"
               >
-                leona.redmann@gmx.net
-              </a>
-  
-              <span className="hidden sm:inline">·</span>
-  
-              <a
-                href="tel:+491731583246"
-                className="transition hover:text-foreground"
-              >
-                +49 173 158 3246
+                <Mail size={18} className="text-muted-foreground transition group-hover:text-foreground" />
               </a>
             </div>
-  
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Leona Josephine
+          </div>
+
+          {/* Optional: secondary contact */}
+          <div className="mt-6 text-center text-xs text-muted-foreground">
+            <p>
+              © {new Date().getFullYear()} Leona Josephine Redmann. All rights reserved.
             </p>
           </div>
         </div>
-      </footer>
-    );
-  }
+      </div>
+    </footer>
+  );
+}
