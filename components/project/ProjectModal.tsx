@@ -54,6 +54,41 @@ function ProjectMeta({ project }: { project: Project }) {
   );
 }
 
+function ProjectProgress({
+  currentIndex,
+  total,
+  onSelect,
+}: {
+  currentIndex: number;
+  total: number;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <div className="fixed bottom-6 left-1/2 z-[80] -translate-x-1/2 rounded-full border border-border bg-background/70 px-4 py-3 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
+      <div className="flex items-center gap-2">
+        {Array.from({ length: total }).map((_, index) => {
+          const isActive = index === currentIndex;
+
+          return (
+            <button
+              key={index}
+              type="button"
+              onClick={() => onSelect(index)}
+              aria-label={`Open project ${index + 1}`}
+              className={[
+                "h-2 rounded-full transition-all duration-300",
+                isActive
+                  ? "w-8 bg-foreground"
+                  : "w-2 bg-foreground/35 hover:bg-foreground/60",
+              ].join(" ")}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function splitBlocks(blocks: Block[]) {
   const galleryBlocks = blocks.filter((block) => block.type === "gallery");
   const contentBlocks = blocks.filter((block) => block.type !== "gallery");
@@ -149,7 +184,7 @@ export default function ProjectModal({
             className="fixed left-4 top-1/2 z-[70] -translate-y-1/2 rounded-full border border-border bg-background/60 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-background/80 disabled:opacity-20"
           >
             <span className="flex h-12 w-12 items-center justify-center">
-              <ChevronLeft size={20} strokeWidth={1.6} />
+              <ChevronLeft size={22} strokeWidth={1.7} />
             </span>
           </button>
 
@@ -160,9 +195,15 @@ export default function ProjectModal({
             className="fixed right-4 top-1/2 z-[70] -translate-y-1/2 rounded-full border border-border bg-background/60 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-background/80 disabled:opacity-20"
           >
             <span className="flex h-12 w-12 items-center justify-center">
-              <ChevronRight size={20} strokeWidth={1.6} />
+              <ChevronRight size={22} strokeWidth={1.7} />
             </span>
           </button>
+
+          <ProjectProgress
+            currentIndex={openIndex as number}
+            total={projects.length}
+            onSelect={setOpenIndex}
+          />
 
           <motion.div
             role="dialog"
@@ -172,7 +213,7 @@ export default function ProjectModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.985, y: 18 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-3 top-3 bottom-3 z-[60] overflow-hidden rounded-[2rem] border border-border bg-background shadow-[0_30px_100px_rgba(0,0,0,0.45)] sm:inset-x-6 sm:top-6 sm:bottom-6 lg:inset-x-14"
+            className="fixed inset-x-3 top-3 bottom-16 z-[60] overflow-hidden rounded-[2rem] border border-border bg-background shadow-[0_30px_100px_rgba(0,0,0,0.45)] sm:inset-x-6 sm:top-6 sm:bottom-18 lg:inset-x-14"
           >
             <motion.div
               key={current.slug}
