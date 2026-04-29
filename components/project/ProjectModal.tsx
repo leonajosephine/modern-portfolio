@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import type { Project } from "@/lib/projects";
+import { useEffect, useMemo, useRef } from "react";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
+import type { Block, Project } from "@/lib/projects";
 import MediaRenderer from "./MediaRenderer";
 import BlockRenderer from "./BlockRenderer";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 function LinkBadge({ kind }: { kind?: string }) {
   const label =
@@ -23,10 +24,41 @@ function LinkBadge({ kind }: { kind?: string }) {
       : "LINK";
 
   return (
-    <span className="rounded-full border border-border bg-background/60 px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground">
+    <span className="rounded-full border border-border bg-card px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted-foreground">
       {label}
     </span>
   );
+}
+
+function ProjectMeta({ project }: { project: Project }) {
+  const items = [
+    ["Role", project.meta?.role],
+    ["Year", project.meta?.year],
+    ["Duration", project.meta?.duration],
+    ["Team", project.meta?.team],
+  ].filter(([, value]) => Boolean(value));
+
+  if (!items.length) return null;
+
+  return (
+    <div className="grid grid-cols-2 gap-x-6 gap-y-5 border-y border-border py-6">
+      {items.map(([label, value]) => (
+        <div key={label}>
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.22em] text-muted-foreground">
+            {label}
+          </p>
+          <p className="mt-1.5 text-sm text-foreground">{value}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function splitBlocks(blocks: Block[]) {
+  const galleryBlocks = blocks.filter((block) => block.type === "gallery");
+  const contentBlocks = blocks.filter((block) => block.type !== "gallery");
+
+  return { galleryBlocks, contentBlocks };
 }
 
 export default function ProjectModal({
@@ -44,6 +76,23 @@ export default function ProjectModal({
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
   const current = isOpen ? projects[openIndex as number] : null;
+  const canGoPrev = isOpen && (openIndex as number) > 0;
+  const canGoNext = isOpen && (openIndex as number) < projects.length - 1;
+
+  const goPrev = () => {
+    if (!canGoPrev) return;
+    setOpenIndex((openIndex as number) - 1);
+  };
+
+  const goNext = () => {
+    if (!canGoNext) return;
+    setOpenIndex((openIndex as number) + 1);
+  };
+
+  const { galleryBlocks, contentBlocks } = useMemo(() => {
+    if (!current) return { galleryBlocks: [], contentBlocks: [] };
+    return splitBlocks(current.blocks);
+  }, [current]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -54,15 +103,9 @@ export default function ProjectModal({
     document.body.style.overflow = "hidden";
 
     const onKey = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") {
-        setOpenIndex(Math.min(projects.length - 1, (openIndex as number) + 1));
-      }
-      if (e.key === "ArrowLeft") {
-        setOpenIndex(Math.max(0, (openIndex as number) - 1));
-      }
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
     };
 
     window.addEventListener("keydown", onKey);
@@ -71,185 +114,203 @@ export default function ProjectModal({
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = oldOverflow;
     };
-  }, [isOpen, onClose, openIndex, projects.length, setOpenIndex]);
+  }, [isOpen, onClose, openIndex, projects.length]);
+
+  const handleSwipe = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeDistance = info.offset.x;
+    const swipeVelocity = info.velocity.x;
+
+    if (swipeDistance < -90 || swipeVelocity < -600) {
+      goNext();
+    }
+
+    if (swipeDistance > 90 || swipeVelocity > 600) {
+      goPrev();
+    }
+  };
 
   return (
     <AnimatePresence>
       {isOpen && current ? (
         <>
           <motion.div
-            className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/65 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
 
+          {/* Floating navigation */}
+          <button
+            onClick={goPrev}
+            disabled={!canGoPrev}
+            aria-label="Previous project"
+            className="fixed left-4 top-1/2 z-[70] -translate-y-1/2 rounded-full border border-border bg-background/60 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-background/80 disabled:opacity-20"
+          >
+            <span className="flex h-12 w-12 items-center justify-center">
+              <ChevronLeft size={20} strokeWidth={1.6} />
+            </span>
+          </button>
+
+          <button
+            onClick={goNext}
+            disabled={!canGoNext}
+            aria-label="Next project"
+            className="fixed right-4 top-1/2 z-[70] -translate-y-1/2 rounded-full border border-border bg-background/60 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-background/80 disabled:opacity-20"
+          >
+            <span className="flex h-12 w-12 items-center justify-center">
+              <ChevronRight size={20} strokeWidth={1.6} />
+            </span>
+          </button>
+
           <motion.div
             role="dialog"
             aria-modal="true"
             aria-label={`${current.title} project details`}
-            initial={{ opacity: 0, scale: 0.985, y: 8 }}
+            initial={{ opacity: 0, scale: 0.985, y: 18 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.985, y: 8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-4 bottom-4 z-[60] overflow-hidden rounded-[1.75rem] border border-border bg-background shadow-[0_25px_80px_rgba(0,0,0,0.35)] sm:inset-x-6 lg:inset-x-10"
+            exit={{ opacity: 0, scale: 0.985, y: 18 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-x-3 top-3 bottom-3 z-[60] overflow-hidden rounded-[2rem] border border-border bg-background shadow-[0_30px_100px_rgba(0,0,0,0.45)] sm:inset-x-6 sm:top-6 sm:bottom-6 lg:inset-x-14"
           >
-            <div className="flex h-full flex-col">
-              <header className="flex items-start justify-between gap-4 border-b border-border px-5 py-4 sm:px-6">
-                <div className="min-w-0">
-                  <h3 className="text-xl font-medium leading-tight text-foreground sm:text-2xl">
-                    {current.title}
-                  </h3>
-
-                  {current.tags?.length ? (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {current.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
+            <motion.div
+              key={current.slug}
+              className="flex h-full flex-col"
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -28 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.08}
+              onDragEnd={handleSwipe}
+            >
+              <header className="sticky top-0 z-20 border-b border-border bg-background/82 px-5 py-4 backdrop-blur-xl sm:px-7">
+                <div className="flex items-start justify-between gap-5">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground">
+                        {String((openIndex as number) + 1).padStart(2, "0")} /{" "}
+                        {String(projects.length).padStart(2, "0")}
+                      </p>
+                      <span className="text-muted-foreground/40">·</span>
+                      <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground">
+                        {current.meta?.year ?? "Project"} ·{" "}
+                        {current.meta?.role ?? "Selected Work"}
+                      </p>
                     </div>
-                  ) : null}
-                </div>
 
-                <button
-                  ref={closeBtnRef}
-                  onClick={onClose}
-                  aria-label="Close project"
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-lg text-foreground transition hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                >
-                  ×
-                </button>
+                    <h3 className="mt-2 max-w-[58rem] text-[clamp(1.7rem,3vw,3.6rem)] font-medium leading-[0.95] tracking-[-0.055em] text-foreground">
+                      {current.title}
+                    </h3>
+
+                    {current.tags?.length ? (
+                      <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5">
+                        {current.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="font-mono text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground/75"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <button
+                    ref={closeBtnRef}
+                    onClick={onClose}
+                    aria-label="Close project"
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-card text-xl text-foreground transition hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    ×
+                  </button>
+                </div>
               </header>
 
               <div className="flex-1 overflow-y-auto">
-                <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6">
-                  <div className="space-y-4">
+                <div className="grid gap-8 px-5 py-6 sm:px-7 sm:py-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)] lg:gap-10">
+                  {/* Visual story */}
+                  <div className="space-y-5">
                     <MediaRenderer
                       key={`${current.slug}-${current.hero.type === "video" ? current.hero.src : current.hero.type}`}
                       media={current.hero}
                       priority
-                      className="overflow-hidden rounded-[1.5rem]"
+                      className="ring-1 ring-border/70 shadow-[0_18px_60px_rgba(0,0,0,0.32)]"
                     />
 
-                    <div className="hidden gap-3 lg:flex">
-                      <button
-                        className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-border bg-card px-5 text-sm font-medium text-foreground transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
-                        onClick={() =>
-                          setOpenIndex(Math.max(0, (openIndex as number) - 1))
-                        }
-                        disabled={(openIndex as number) <= 0}
-                        aria-label="Previous project"
-                      >
-                        ← Prev
-                      </button>
+                    {galleryBlocks.map((block, blockIndex) =>
+                      block.type === "gallery" ? (
+                        <section key={blockIndex} className="space-y-4">
+                          {block.title ? (
+                            <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-muted-foreground">
+                              {block.title}
+                            </p>
+                          ) : null}
 
-                      <button
-                        className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-border bg-card px-5 text-sm font-medium text-foreground transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
-                        onClick={() =>
-                          setOpenIndex(
-                            Math.min(projects.length - 1, (openIndex as number) + 1)
-                          )
-                        }
-                        disabled={(openIndex as number) >= projects.length - 1}
-                        aria-label="Next project"
-                      >
-                        Next →
-                      </button>
-                    </div>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            {block.items.map((media, mediaIndex) => (
+                              <MediaRenderer key={mediaIndex} media={media} />
+                            ))}
+                          </div>
+                        </section>
+                      ) : null
+                    )}
                   </div>
 
-                  <aside className="rounded-[1.5rem] border border-border bg-card/50 p-5 sm:p-6">
-                    <p className="text-[0.98rem] leading-8 text-muted-foreground">
-                      {current.short}
-                    </p>
+                  {/* Context */}
+                  <aside className="lg:sticky lg:top-[8.5rem] lg:self-start">
+                    <div className="space-y-7">
+                      <p className="text-[1.05rem] leading-8 text-muted-foreground sm:text-[1.12rem] sm:leading-9">
+                        {current.short}
+                      </p>
 
-                    {current.meta?.role ||
-                    current.meta?.year ||
-                    current.meta?.duration ||
-                    current.meta?.team ? (
-                      <div className="mt-6 grid gap-3 border-y border-border py-5 text-sm text-muted-foreground">
-                        {current.meta?.role ? (
-                          <div>
-                            <span className="font-medium text-foreground">Role:</span>{" "}
-                            {current.meta.role}
+                      <ProjectMeta project={current} />
+
+                      {current.links?.length ? (
+                        <div className="space-y-3">
+                          <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground">
+                            Links
+                          </p>
+
+                          <div className="flex flex-col gap-3">
+                            {current.links.map((link, i) => (
+                              <a
+                                key={i}
+                                href={link.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group flex items-center justify-between gap-4 rounded-2xl border border-border bg-card/55 px-4 py-3 text-foreground transition hover:border-foreground/20 hover:bg-muted"
+                              >
+                                <span className="flex items-center gap-3">
+                                  <LinkBadge kind={link.kind} />
+                                  <span className="text-sm sm:text-base">
+                                    {link.label}
+                                  </span>
+                                </span>
+                                <span className="text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-foreground">
+                                  ↗
+                                </span>
+                              </a>
+                            ))}
                           </div>
-                        ) : null}
-                        {current.meta?.year ? (
-                          <div>
-                            <span className="font-medium text-foreground">Year:</span>{" "}
-                            {current.meta.year}
-                          </div>
-                        ) : null}
-                        {current.meta?.duration ? (
-                          <div>
-                            <span className="font-medium text-foreground">Duration:</span>{" "}
-                            {current.meta.duration}
-                          </div>
-                        ) : null}
-                        {current.meta?.team ? (
-                          <div>
-                            <span className="font-medium text-foreground">Team:</span>{" "}
-                            {current.meta.team}
-                          </div>
-                        ) : null}
+                        </div>
+                      ) : null}
+
+                      <div className="border-t border-border pt-7">
+                        <BlockRenderer blocks={contentBlocks} />
                       </div>
-                    ) : null}
 
-                    {current.links?.length ? (
-                      <div className="mt-6 flex flex-col gap-3">
-                        {current.links.map((link, i) => (
-                          <a
-                            key={i}
-                            href={link.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-3 rounded-2xl border border-border bg-background/60 px-4 py-3 text-foreground transition hover:bg-muted"
-                          >
-                            <LinkBadge kind={link.kind} />
-                            <span className="text-sm sm:text-base">{link.label}</span>
-                          </a>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    <div className="mt-8">
-                      <BlockRenderer blocks={current.blocks} />
+                      <p className="hidden font-mono text-[0.62rem] uppercase tracking-[0.22em] text-muted-foreground/60 sm:block">
+                        Use ← / → keys or swipe on mobile
+                      </p>
                     </div>
                   </aside>
                 </div>
               </div>
-
-              <div className="flex gap-3 border-t border-border bg-background/90 px-5 py-4 backdrop-blur lg:hidden">
-                <button
-                  className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-border bg-card px-5 text-sm font-medium text-foreground transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
-                  onClick={() =>
-                    setOpenIndex(Math.max(0, (openIndex as number) - 1))
-                  }
-                  disabled={(openIndex as number) <= 0}
-                  aria-label="Previous project"
-                >
-                  ← Prev
-                </button>
-
-                <button
-                  className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-border bg-card px-5 text-sm font-medium text-foreground transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
-                  onClick={() =>
-                    setOpenIndex(
-                      Math.min(projects.length - 1, (openIndex as number) + 1)
-                    )
-                  }
-                  disabled={(openIndex as number) >= projects.length - 1}
-                  aria-label="Next project"
-                >
-                  Next →
-                </button>
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
         </>
       ) : null}
