@@ -72,10 +72,10 @@ export default function About() {
           </p>
 
           <h2 className="mt-6 max-w-[1050px] text-[clamp(3rem,7vw,8rem)] font-medium leading-[0.88] tracking-[-0.07em] text-foreground">
-            Developer with an
-            <span className="font-serif italic"> editorial eye</span>
+            Developer with a
+            <span className="font-serif italic"> creative eye</span>
             <br />
-            and a love for digital detail.
+            and a love for design.
           </h2>
         </motion.div>
 
