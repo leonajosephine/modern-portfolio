@@ -20,7 +20,7 @@ export default function Footer() {
             {/* Icon Links */}
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/leonajosephine"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card transition hover:scale-105 hover:bg-muted"
@@ -30,7 +30,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/in/leona-redmann-388900233?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card transition hover:scale-105 hover:bg-muted"
