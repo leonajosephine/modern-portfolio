@@ -4,24 +4,23 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --bg-primary: #050505;
-  --bg-secondary: #0d0d0d;
-  --bg-tertiary: #151515;
+  --bg-primary: #0b0b0d;
+--bg-secondary: #141417;
+--bg-tertiary: #1c1c20;
 
-  --text-primary: #f5f1ea;
-  --text-secondary: #a6a09a;
+  --text-primary: #f4f1ec;      /* minimal weicher */
+  --text-secondary: #a8a29e;    /* leicht wärmer */
 
   --accent: #e7ddcf;
   --accent-strong: #fff6e8;
 
-  --border: rgba(255, 255, 255, 0.1);
-  --shadow: rgba(0, 0, 0, 0.35);
+  --border: rgba(255, 255, 255, 0.06); 
+  --shadow: rgba(0, 0, 0, 0.45);
 
   --container: 1240px;
 
-  /* Alternative section colors */
-  --alt-bg: #0d0d0d; /* Alternative background */
-  --alt-text: #e7ddcf; /* Alternative text/foreground */
+  --alt-bg: #121214;
+  --alt-text: #e7ddcf;
 }
 
 [data-theme="light"] {
