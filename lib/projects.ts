@@ -135,25 +135,26 @@ export const projects: Project[] = [
   },
   {
     slug: "book / reading list app",
-    title: "book / reading list app Test",
-    short: "Description for project four.",
+    title: "Reading List App",
+    short: "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
     cover: "/images/websiteshop.jpeg",
     hero: { type: "image", src: "/images/websiteshop.jpeg", alt: "Project four hero" },
     category: "coding",
     tags: ["TagA", "TagB"],
-    meta: { role: "Role", year: "2023", duration: "4 weeks", team: "Team Alpha" },
+    meta: { role: "Role", year: "2023", duration: "3 months", team: "Team Alpha" },
     links: [
-      { label: "Live Demo", href: "https://example.com", kind: "live" },
+      { label: "Live App", href: "https://example.com", kind: "live" },
       { label: "GitHub", href: "https://example.com", kind: "repo" },
     ],
     blocks: [
       { type: "text", title: "Introduction", body: "Detailed introduction of project four." },
       { type: "bullets", title: "Main Features", items: [
-        "Feature A",
-        "Feature B",
-        "Feature C"
+        "Save all your books in one place",
+        "Make Lists to organize your reading",
+        "Switch Theme to your liking (6 different themes)",
+        "Connect with friends to see their reading lists and share recommendations"
       ]},
-      { type: "stack", title: "Used Technologies", items: ["TechA", "TechB", "TechC"] },
+      { type: "stack", title: "Used Technologies", items: ["React Native", "XCode", "Supabase", "GoogleBooksAPI"] },
       { type: "gallery", title: "Project Images", items: [
         { type: "image", src: "/images/websiteshop.jpeg", alt: "Image one" },
         { type: "image", src: "/images/websiteshop.jpeg", alt: "Image two" }
@@ -218,8 +219,8 @@ export const projects: Project[] = [
     size: "normal"
   },
   {
-    slug: "coffee-and-cookies-website",
-    title: "Coffee and cookies website",
+    slug: "wedding",
+    title: "Wedding Website",
     short: "Netflix-inspired UI with search, trailers & a personal list.",
     cover: "/images/netflix.jpg",
     hero: { type: "video", src: "/media/netflix_rebuild_video.mov", poster: "/images/netflix-poster.jpg" },
@@ -249,9 +250,9 @@ export const projects: Project[] = [
     size: "tall"
   },
   {
-    slug: "testnew",
-    title: "website",
-    short: "Netflix-inspired UI with search, trailers & a personal list.",
+    slug: "eightsquared",
+    title: "Eightsquared Website",
+    short: "Modern responsive website for an AI Company, showcasing their portfolio and services with a clean, minimalist but also techy aesthetic.",
     cover: "/images/collage.jpg",
     hero: { type: "image", src: "/images/collage.jpg", alt: "Project four hero" },
     category: "design",
