@@ -21,6 +21,7 @@
 
   --alt-bg: #121214;
   --alt-text: #e7ddcf;
+  --alt-text-muted: #a8a29e; 
 }
 
 [data-theme="light"] {
@@ -40,44 +41,45 @@
   /* Alternative section colors for light theme */
   --alt-bg: #ede9e2;
   --alt-text: #2d2925;
+  --alt-text-muted: rgba(45, 41, 37, 0.6); 
 }
 
 [data-theme="sunset"] {
-  --bg-primary: #160f1d;
-  --bg-secondary: #22152d;
-  --bg-tertiary: #2d1c3b;
+  --bg-primary: #1f0507;
+  --bg-secondary: #321012;
+  --bg-tertiary: #4a1619;    /* muted burgundy */
 
-  --text-primary: #f8dfd4;
-  --text-secondary: #c8a8b8;
+  --text-primary: #fff4f5;    /* blush white */
+  --text-secondary: #e8b8c2;  /* muted peony */
 
-  --accent: #ffb38a;
-  --accent-strong: #ffd4b8;
+  --accent: #e0a4b0;          /* hibiscus tonic */
+  --accent-strong: #f4c9d6;   /* peony */
 
-  --border: rgba(255, 220, 210, 0.14);
-  --shadow: rgba(0, 0, 0, 0.32);
+  --border: rgba(255, 244, 245, 0.11);
+  --shadow: rgba(42, 7, 9, 0.48);
 
-  /* Alternative section colors for sunset theme */
-  --alt-bg: #22152d;
-  --alt-text: #ffb38a;
+  --alt-bg: #f4c9d6;          /* peony */
+  --alt-text: #3e1113;
+  --alt-text-muted: rgba(62, 17, 19, 0.62);
 }
 
 [data-theme="ocean"] {
-  --bg-primary: #08141d;
-  --bg-secondary: #0d1e2b;
-  --bg-tertiary: #132b3f;
+  --bg-primary: #001f27;      /* ink black */
+  --bg-secondary: #003a35;    /* evergreen */
+  --bg-tertiary: #719a73;     /* sage green */
 
-  --text-primary: #e8f4fb;
-  --text-secondary: #92b8cc;
+  --text-primary: #f0e7d5;    /* vanilla cream */
+  --text-secondary: #a8c3a8;  /* muted sage */
 
-  --accent: #b9e7ff;
-  --accent-strong: #e9f8ff;
+  --accent: #1f73c2;          /* bright marine */
+  --accent-strong: #8fc7ff;   /* soft marine highlight */
 
-  --border: rgba(185, 231, 255, 0.14);
-  --shadow: rgba(0, 0, 0, 0.3);
+  --border: rgba(240, 231, 213, 0.12);
+  --shadow: rgba(0, 31, 39, 0.42);
 
-  /* Alternative section colors for ocean theme */
-  --alt-bg: #0d1e2b;
-  --alt-text: #b9e7ff;
+  --alt-bg: #003A35;
+  --alt-text: #f0e7d5;
+  --alt-text-muted: #a8c3a8; 
 }
 
 html {

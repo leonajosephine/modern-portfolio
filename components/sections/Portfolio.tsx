@@ -56,16 +56,16 @@ export default function Portfolio() {
       <div className="container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[52rem]">
-            <p className="font-mono text-[0.72rem] uppercase tracking-[0.26em] text-muted-foreground">
+            <p className="font-mono text-[0.72rem] uppercase tracking-[0.26em] text-[var(--alt-text-muted)]">
               Portfolio
             </p>
 
-            <h2 className="mt-4 text-[clamp(2.8rem,5.2vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-foreground">
+            <h2 className="mt-4 text-[clamp(2.8rem,5.2vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-[var(--alt-text)]">
               Selected work and
               <span className="font-serif italic"> visual experiments</span>
             </h2>
 
-            <p className="mt-6 max-w-[42rem] text-[0.98rem] leading-8 text-muted-foreground sm:text-[1.04rem]">
+            <p className="mt-6 max-w-[42rem] text-[0.98rem] leading-8 text-[var(--alt-text-muted)] sm:text-[1.04rem]">
               A selection of projects across frontend development, interface
               design, and interactive concepts — built to explore ideas, refine
               craft, and create memorable digital experiences.
