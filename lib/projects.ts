@@ -138,7 +138,7 @@ export const projects: Project[] = [
     title: "Reading List App",
     short: "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
     cover: "/images/websiteshop.jpeg",
-    hero: { type: "image", src: "/images/websiteshop.jpeg", alt: "Project four hero" },
+    hero: { type: "image", src: "/images/readingList/4.png", alt: "Project four hero" },
     category: "coding",
     tags: ["TagA", "TagB"],
     meta: { role: "Role", year: "2023", duration: "3 months", team: "Team Alpha" },
@@ -156,8 +156,17 @@ export const projects: Project[] = [
       ]},
       { type: "stack", title: "Used Technologies", items: ["React Native", "XCode", "Supabase", "GoogleBooksAPI"] },
       { type: "gallery", title: "Project Images", items: [
-        { type: "image", src: "/images/websiteshop.jpeg", alt: "Image one" },
-        { type: "image", src: "/images/websiteshop.jpeg", alt: "Image two" }
+        { type: "image", src: "/images/readingList/2.png", alt: "Image one" },
+        { type: "image", src: "/images/readingList/3.png", alt: "Image two" },
+        { type: "image", src: "/images/readingList/4.png", alt: "Image three" },
+        { type: "image", src: "/images/readingList/5.png", alt: "Image four" },
+        { type: "image", src: "/images/readingList/6.png", alt: "Image five" },
+        { type: "image", src: "/images/readingList/7.png", alt: "Image six" },
+        { type: "image", src: "/images/readingList/8.png", alt: "Image seven" },
+        { type: "image", src: "/images/readingList/9.png", alt: "Image eight" },
+        { type: "image", src: "/images/readingList/10.png", alt: "Image nine" },
+        { type: "image", src: "/images/readingList/11.png", alt: "Image ten" },
+        { type: "image", src: "/images/readingList/12.png", alt: "Image eleven" },
       ]}
     ],
     size: "big"
@@ -259,7 +268,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
     links: [
-      { label: "Live Demo", href: "https://your-demo-url.com", kind: "live" },
+      { label: "Live Demo", href: "https://eightsquared.vercel.app", kind: "live" },
       { label: "GitHub Repo", href: "https://github.com/leonajosephine/netflix-inspired", kind: "repo" },
     ],
     blocks: [
