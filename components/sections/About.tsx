@@ -7,6 +7,7 @@ const focusItems = [
   ["01", "Frontend", "React, Next.js, TypeScript and accessible UI."],
   ["02", "Design", "Editorial layouts, visual systems and UI direction."],
   ["03", "Creative Tech", "Motion, spatial interfaces, AR / VR and experiments."],
+  ["04", "App Development", "iOS development with Swift, and hybrid apps with ReactNative."],
 ];
 
 const skills = [
@@ -93,6 +94,7 @@ export default function About() {
               frontend logic with visual atmosphere: thoughtful interfaces,
               strong composition and small details that make a product feel
               crafted.
+              I have a background in frontend development, UI/UX design, App development and also with backend logic — and I’m always looking for new challenges.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -112,21 +114,33 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65 }}
-            className="grid gap-4"
+            className="grid gap-4 sm:grid-cols-2"
           >
-            {focusItems.map(([number, title, text]) => (
+            {focusItems.map(([number, title, text], index) => (
               <div
                 key={title}
-                className="grid gap-4 rounded-[1.5rem] border border-border bg-card/55 p-5 sm:grid-cols-[72px_1fr] sm:p-6"
+                className={`group relative overflow-hidden rounded-[1.75rem] border border-border bg-card/55 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-card/80 ${
+                  index === 0 ? "sm:col-span-2 min-h-[220px]" : "min-h-[180px]"
+                }`}
               >
-                <span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-muted-foreground">
-                  {number}
-                </span>
-                <div>
-                  <h3 className="text-xl font-medium tracking-[-0.03em] text-foreground">
+                <div className="flex items-start justify-between gap-6">
+                  <span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-muted-foreground">
+                    {number}
+                  </span>
+
+                  <span className="h-2 w-2 rounded-full bg-foreground/30 transition-all duration-300 group-hover:bg-foreground" />
+                </div>
+
+                <div className={index === 0 ? "mt-14" : "mt-10"}>
+                  <h3
+                    className={`font-medium tracking-[-0.05em] text-foreground ${
+                      index === 0 ? "text-[clamp(2rem,4vw,4rem)] leading-none" : "text-2xl"
+                    }`}
+                  >
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground sm:text-[0.98rem]">
+
+                  <p className="mt-3 max-w-[28rem] text-sm leading-6 text-muted-foreground sm:text-[0.98rem]">
                     {text}
                   </p>
                 </div>
