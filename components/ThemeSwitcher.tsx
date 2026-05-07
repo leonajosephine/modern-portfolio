@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Moon, Sun, Sunset, Waves } from "lucide-react";
+import { Moon, Sun, Martini, Flower2, IceCreamCone } from "lucide-react";
 
 type ThemeId = "dark" | "light" | "sunset" | "ocean";
 
@@ -12,8 +12,8 @@ const themes: {
 }[] = [
   { id: "dark", icon: <Moon size={16} />, label: "Dark theme" },
   { id: "light", icon: <Sun size={16} />, label: "Light theme" },
-  { id: "sunset", icon: <Sunset size={16} />, label: "Sunset theme" },
-  { id: "ocean", icon: <Waves size={16} />, label: "Ocean theme" },
+  { id: "sunset", icon: <Martini size={16} />, label: "Espresso Martini Theme" },
+  { id: "ocean", icon: <Flower2 size={16} />, label: "Tennis court theme" },
 ];
 
 export default function ThemeSwitcher() {
