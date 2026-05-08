@@ -2,29 +2,40 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Code, Layout, Globe, Smartphone } from "lucide-react"; // Import icons
 
 const focusItems = [
-  ["01", "Frontend", "React, Next.js, TypeScript and accessible UI."],
-  ["02", "Design", "Editorial layouts, visual systems and UI direction."],
-  ["03", "Creative Tech", "Motion, spatial interfaces, AR / VR and experiments."],
-  ["04", "App Development", "iOS development with Swift, and hybrid apps with ReactNative."],
+  ["01", "Frontend", "React, Next.js, TypeScript and accessible UI.", <Code key="frontend-icon" size={24} />],
+  ["02", "Design", "Editorial layouts, visual systems and UI direction.", <Layout key="design-icon" size={24} />],
+  ["03", "Creative Tech", "Motion, spatial interfaces, AR / VR and experiments.", <Globe key="creative-tech-icon" size={24} />],
+  ["04", "App Development", "iOS development with Swift, and hybrid apps with ReactNative.", <Smartphone key="app-icon" size={24} />],
 ];
 
 const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
+  "React", "•",
+  "Next.js", "•",
+  "TypeScript", "•",
   "JavaScript",
-  "HTML",
-  "CSS",
+  "•",
+  "HTML|CSS",
+  "•",
   "Git",
+  "•",
   "Figma",
+  "•",
   "Storybook",
+  "•",
   "Sitecore",
+  "•",
   "Swift",
+  "•",
   "VR / AR",
+  "•",
   "Responsive Design",
+  "•",
   "UI / UX",
+  "•",
+  "Tailwind CSS",
 ];
 
 function StackTicker() {
@@ -72,7 +83,8 @@ export default function About() {
             [About]
           </p>
 
-          <h2 className="mt-6 max-w-[920px] text-[clamp(2.8rem,6vw,6.8rem)] font-medium leading-[0.9] tracking-[-0.065em] text-foreground">            Developer with a
+          <h2 className="mt-6 max-w-[920px] text-[clamp(2.8rem,6vw,6.8rem)] font-medium leading-[0.9] tracking-[-0.065em] text-foreground">
+            Developer with a
             <span className="font-serif italic"> creative eye</span>
             <br />
             and a love for design.
@@ -88,14 +100,13 @@ export default function About() {
             className="max-w-[42rem]"
           >
             <p className="text-[1.05rem] leading-8 text-muted-foreground sm:text-[1.15rem] sm:leading-9">
-              Hi, I’m Leona — a developer and designer passionate about creating
-              refined, intuitive and dynamic digital products. I like combining
-              frontend logic with visual atmosphere: thoughtful interfaces,
-              strong composition and small details that make a product feel
-              crafted. 
+              Hi, I’m Leona - a creative developer passionate about crafting beautiful digital experiences. 
+              With expertise in modern web technologies and a keen eye for design, 
+              I bridge the gap between aesthetics and functionality.
               <br />
               <br />
-              I have a background in frontend development, UI/UX design, App development and also with backend logic — and I’m always looking for new challenges.
+              My work focuses on building intuitive interfaces, establishing design systems, 
+              and creating engaging user experiences that leave a lasting impression.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -103,7 +114,7 @@ export default function About() {
                 Download CV
               </Button>
               <a href="#portfolio">
-                <Button variant="ghost" size="lg">
+                <Button variant="accent" size="lg">
                   View Projects
                 </Button>
               </a>
@@ -117,9 +128,9 @@ export default function About() {
             transition={{ duration: 0.65 }}
             className="grid gap-4 sm:grid-cols-2"
           >
-            {focusItems.map(([number, title, text]) => (
+            {focusItems.map(([number, title, text, icon]) => (
               <div
-                key={title}
+                key={typeof title === "string" ? title : String(title)}
                 className="group relative flex min-h-[180px] flex-col justify-between rounded-[1.5rem] border border-border bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-card/80 sm:min-h-[195px] sm:p-6"
               >
                 <div className="flex items-start justify-between gap-6">
@@ -127,7 +138,10 @@ export default function About() {
                     {number}
                   </span>
 
-                  <span className="h-2 w-2 rounded-full bg-foreground/25 transition-colors duration-300 group-hover:bg-foreground" />
+                  {/* Replace circle with icon */}
+                  <div className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+                    {icon}
+                  </div>
                 </div>
 
                 <div>

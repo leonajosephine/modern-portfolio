@@ -20,6 +20,20 @@ const config: Config = {
         accent: "var(--accent)",
         border: "var(--border)",
       },
+      screens: {
+        '2xl': '1536px',
+      },
+      container: {
+        center: true,
+        padding: "1rem",
+        screens: {
+          sm: "100%",
+          md: "100%",
+          lg: "100%",
+          xl: "1280px",
+          '2xl': '1440px',
+        },
+      },
     },
   },
 };
