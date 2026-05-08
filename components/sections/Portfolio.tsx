@@ -57,7 +57,7 @@ export default function Portfolio() {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[52rem]">
             <p className="font-mono text-[0.72rem] uppercase tracking-[0.26em] text-[var(--alt-text-muted)]">
-              Portfolio
+              [Portfolio]
             </p>
 
             <h2 className="mt-4 text-[clamp(2.8rem,5.2vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-[var(--alt-text)]">

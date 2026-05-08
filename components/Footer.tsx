@@ -12,7 +12,7 @@ export default function Footer() {
             </p>
 
             <p className="text-sm text-muted-foreground">
-              Crafted with 💛 and lots of coffee. Leona 🐬
+              Crafted with 💛 and lots of coffee. -Leona 🐬
             </p>
           </div>
 

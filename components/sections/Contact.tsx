@@ -38,7 +38,7 @@ export default function Contact() {
             Contact
           </p>
 
-          <h2 className="mx-auto mt-4 max-w-[760px] text-[clamp(2.8rem,6vw,6.8rem)] font-medium leading-[0.9] tracking-[-0.065em] text-foreground">
+          <h2 className="mx-auto mt-4 text-[clamp(2.8rem,6vw,6.8rem)] font-medium leading-[0.9] tracking-[-0.065em] text-foreground">
             Let’s create something
             <span className="font-serif italic"> meaningful</span>
           </h2>
