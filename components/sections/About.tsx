@@ -72,8 +72,7 @@ export default function About() {
             [About]
           </p>
 
-          <h2 className="mt-6 max-w-[1050px] text-[clamp(3rem,7vw,8rem)] font-medium leading-[0.88] tracking-[-0.07em] text-foreground">
-            Developer with a
+          <h2 className="mt-6 max-w-[920px] text-[clamp(2.8rem,6vw,6.8rem)] font-medium leading-[0.9] tracking-[-0.065em] text-foreground">            Developer with a
             <span className="font-serif italic"> creative eye</span>
             <br />
             and a love for design.
@@ -93,7 +92,9 @@ export default function About() {
               refined, intuitive and dynamic digital products. I like combining
               frontend logic with visual atmosphere: thoughtful interfaces,
               strong composition and small details that make a product feel
-              crafted.
+              crafted. 
+              <br />
+              <br />
               I have a background in frontend development, UI/UX design, App development and also with backend logic — and I’m always looking for new challenges.
             </p>
 
@@ -116,31 +117,25 @@ export default function About() {
             transition={{ duration: 0.65 }}
             className="grid gap-4 sm:grid-cols-2"
           >
-            {focusItems.map(([number, title, text], index) => (
+            {focusItems.map(([number, title, text]) => (
               <div
                 key={title}
-                className={`group relative overflow-hidden rounded-[1.75rem] border border-border bg-card/55 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-card/80 ${
-                  index === 0 ? "sm:col-span-2 min-h-[220px]" : "min-h-[180px]"
-                }`}
+                className="group relative flex min-h-[180px] flex-col justify-between rounded-[1.5rem] border border-border bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-card/80 sm:min-h-[195px] sm:p-6"
               >
                 <div className="flex items-start justify-between gap-6">
-                  <span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-muted-foreground">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
                     {number}
                   </span>
 
-                  <span className="h-2 w-2 rounded-full bg-foreground/30 transition-all duration-300 group-hover:bg-foreground" />
+                  <span className="h-2 w-2 rounded-full bg-foreground/25 transition-colors duration-300 group-hover:bg-foreground" />
                 </div>
 
-                <div className={index === 0 ? "mt-14" : "mt-10"}>
-                  <h3
-                    className={`font-medium tracking-[-0.05em] text-foreground ${
-                      index === 0 ? "text-[clamp(2rem,4vw,4rem)] leading-none" : "text-2xl"
-                    }`}
-                  >
+                <div>
+                  <h3 className="text-xl font-medium tracking-[-0.04em] text-foreground">
                     {title}
                   </h3>
 
-                  <p className="mt-3 max-w-[28rem] text-sm leading-6 text-muted-foreground sm:text-[0.98rem]">
+                  <p className="mt-2 max-w-[24rem] text-sm leading-6 text-muted-foreground">
                     {text}
                   </p>
                 </div>
