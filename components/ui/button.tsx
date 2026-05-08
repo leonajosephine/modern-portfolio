@@ -27,6 +27,10 @@ const buttonVariants = cva(
           "bg-transparent text-foreground border-transparent",
           "hover:bg-white/5",
         ],
+        accent: [
+          "bg-secondary text-secondary-foreground border-secondary",
+          "hover:-translate-y-0.5 hover:opacity-95",
+        ],
       },
       size: {
         sm: "min-h-10 px-4 text-sm",
