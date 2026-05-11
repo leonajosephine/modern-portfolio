@@ -80,8 +80,8 @@ export const projects: Project[] = [
     slug: "skincare-brand-site",
     title: "Skincare Brand Website",
     short: "Ultra clean product/brand website with editorial visuals.",
-    cover: "/images/lunara-creme.png", 
-    hero: { type: "image", src: "/images/lunara-stage-details.png", alt: "Skincare hero" },
+    cover: "/images/lunara/lunara_title.png", 
+    hero: { type: "image", src: "/images/lunara/lunara_hero.png", alt: "Skincare hero" },
     category: "design",
     tags: ["Design", "React", "UI", "Brand", "Responsive", "Mobile-First"],
     meta: { role: "UI/Frontend", year: "2025", duration: "1 week", team: "Solo" },
@@ -97,11 +97,14 @@ export const projects: Project[] = [
         { label: "Structure", value: "Component-based sections" }
       ]},
       { type: "gallery", title: "Mockups", items: [
+        { type: "image", src: "/images/lunara/lunara_mobile1.png" },
+        { type: "image", src: "/images/lunara/lunara_packages.png" },
+        { type: "image", src: "/images/lunara/lunara_single.png" },
         { type: "image", src: "/images/lunara-overview.png" },
         { type: "image", src: "/images/lunara-divider.png" },
         { type: "image", src: "/images/lunara-teaser.png" },
-        { type: "image", src: "/images/lunara-stage-details.png" },
-        { type: "image", src: "/images/lunara-mobile.png" }
+        { type: "image", src: "/images/lunara/lunara_magazine.png" },
+        { type: "image", src: "/images/lunara/lunara_brandIdentity.png" },
       ]}
     ],
     size: "tall"
@@ -110,8 +113,8 @@ export const projects: Project[] = [
     slug: "to-do-list",
     title: "To do List App",
     short: "Description for project three.",
-    cover: "/images/todo_overview.png",
-    hero: { type: "image", src: "/images/todo_boards.png", alt: "Project three hero" },
+    cover: "/images/toDo/cover.png",
+    hero: { type: "image", src: "/images/toDo/overview.png", alt: "Project three hero" },
     category: "coding",
     tags: ["Tag1", "Tag2"],
     meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
@@ -128,9 +131,12 @@ export const projects: Project[] = [
       ]},
       { type: "stack", title: "Technologies Used", items: ["Tech1", "Tech2", "Tech3"] },
       { type: "gallery", title: "Project Screenshots", items: [
-        { type: "image", src: "/images/todo_bg.png", alt: "Screenshot one" },
-        { type: "image", src: "/images/todo_overview.png", alt: "Screenshot one" },
-        { type: "image", src: "/images/todo-details.png", alt: "Screenshot two" }
+        { type: "image", src: "/images/toDo/macBook.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/Board.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/addBoard.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/bg.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/filter.png", alt: "Screenshot two" }
+
       ]}
     ],
     size: "normal"
@@ -139,8 +145,8 @@ export const projects: Project[] = [
     slug: "book / reading list app",
     title: "Reading List App",
     short: "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
-    cover: "/images/websiteshop.jpeg",
-    hero: { type: "image", src: "/images/readingList/4.png", alt: "Project four hero" },
+    cover: "/images/readingList/hero.png",
+    hero: { type: "image", src: "/images/readingList/read_features.png", alt: "Project four hero" },
     category: "coding",
     tags: ["TagA", "TagB"],
     meta: { role: "Role", year: "2023", duration: "3 months", team: "Team Alpha" },
@@ -158,17 +164,13 @@ export const projects: Project[] = [
       ]},
       { type: "stack", title: "Used Technologies", items: ["React Native", "XCode", "Supabase", "GoogleBooksAPI"] },
       { type: "gallery", title: "Project Images", items: [
-        { type: "image", src: "/images/readingList/2.png", alt: "Image one" },
-        { type: "image", src: "/images/readingList/3.png", alt: "Image two" },
-        { type: "image", src: "/images/readingList/4.png", alt: "Image three" },
-        { type: "image", src: "/images/readingList/5.png", alt: "Image four" },
-        { type: "image", src: "/images/readingList/6.png", alt: "Image five" },
-        { type: "image", src: "/images/readingList/7.png", alt: "Image six" },
-        { type: "image", src: "/images/readingList/8.png", alt: "Image seven" },
-        { type: "image", src: "/images/readingList/9.png", alt: "Image eight" },
-        { type: "image", src: "/images/readingList/10.png", alt: "Image nine" },
-        { type: "image", src: "/images/readingList/11.png", alt: "Image ten" },
-        { type: "image", src: "/images/readingList/12.png", alt: "Image eleven" },
+        { type: "image", src: "/images/readingList/read_themes.png", alt: "Image one" },
+        { type: "image", src: "/images/readingList/read_dark.png", alt: "Image two" },
+        //{ type: "image", src: "/images/readingList/read_home.png", alt: "Image four" },
+        //{ type: "image", src: "/images/readingList/read_themes1.png", alt: "Image five" },
+        { type: "image", src: "/images/readingList/read_themes2.png", alt: "Image six" },
+        { type: "image", src: "/images/readingList/read_dark2.png", alt: "Image three" },
+        
       ]}
     ],
     size: "big"
@@ -233,8 +235,8 @@ export const projects: Project[] = [
     slug: "wedding",
     title: "Wedding Website",
     short: "Netflix-inspired UI with search, trailers & a personal list.",
-    cover: "/images/netflix.jpg",
-    hero: { type: "video", src: "/media/netflix_rebuild_video.mov", poster: "/images/netflix-poster.jpg" },
+    cover: "/images/m&l/cover.png",
+    hero: { type: "image", src: "/images/m&l/cover.png", alt: "Homepage" },
     category: "design",
     tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
@@ -264,8 +266,8 @@ export const projects: Project[] = [
     slug: "eightsquared",
     title: "Eightsquared Website",
     short: "Modern responsive website for an AI Company, showcasing their portfolio and services with a clean, minimalist but also techy aesthetic.",
-    cover: "/images/collage.jpg",
-    hero: { type: "image", src: "/images/collage.jpg", alt: "Project four hero" },
+    cover: "/images/e2/e2_hero.png",
+    hero: { type: "image", src: "/images/e2/e2_hero.png", alt: "Project four hero" },
     category: "design",
     tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
@@ -283,10 +285,12 @@ export const projects: Project[] = [
       ]},
       { type: "stack", title: "Tech Stack", items: ["Next.js (App Router)", "TypeScript", "Framer Motion", "TMDB API"] },
       { type: "gallery", title: "Screens / Interactions", items: [
-        { type: "image", src: "/images/netflix_overview.png", alt: "Homepage" },
-        { type: "image", src: "/images/netflix_movierow_trends.png", alt: "Trends row design" },
-        { type: "image", src: "/images/netflix_moviemodal.png", alt: "Movie detail page" },
-        //{ type: "gif", src: "/images/netflix-scroll.gif", alt: "Scroll interaction" }
+        { type: "image", src: "/images/e2/e2_components.png", alt: "Movie detail page" },
+        { type: "image", src: "/images/e2/e2_lightanddark.png", alt: "Trends row design" },
+        { type: "image", src: "/images/e2/e2_desktop_dark.png", alt: "Movie detail page" },
+        { type: "image", src: "/images/e2/e2_responsive.png", alt: "Homepage" },
+        { type: "image", src: "/images/e2/e2_brandIdentity.png", alt: "Movie detail page" },
+        { type: "image", src: "/images/e2/e2_showcase.png", alt: "Movie detail page" },
       ]}
     ],
     size: "big"
