@@ -83,7 +83,7 @@ export default function Portfolio() {
                       type="button"
                       onClick={() => setActiveFilter(filter.id)}
                       className={[
-                        "px-5 py-2 text-sm font-medium transition-all rounded-full",
+                        "px-5 py-2 sm:text-sm font-medium transition-all rounded-full text-sm",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                         isActive
                           ? "bg-primary text-primary-foreground shadow-md"

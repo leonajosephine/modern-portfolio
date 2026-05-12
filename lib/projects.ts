@@ -235,7 +235,7 @@ export const projects: Project[] = [
     slug: "wedding",
     title: "Wedding Website",
     short: "Netflix-inspired UI with search, trailers & a personal list.",
-    cover: "/images/m&l/cover.png",
+    cover: "/images/m&l/invitations.jpg",
     hero: { type: "image", src: "/images/m&l/cover.png", alt: "Homepage" },
     category: "design",
     tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
