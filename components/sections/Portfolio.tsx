@@ -43,7 +43,7 @@ export default function Portfolio() {
   return (
     <motion.section
       id="portfolio"
-      className="px-5 py-20 sm:px-6 sm:py-24 lg:py-32"
+      className="relative overflow-hidden px-5 py-20 sm:px-6 sm:py-24 lg:py-32"
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
@@ -53,6 +53,18 @@ export default function Portfolio() {
           color: "var(--alt-text)",
         }}
     >
+      <motion.div
+        aria-hidden="true"
+        initial={{ opacity: 0, x: 80 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="pointer-events-none absolute right-0 top-0 hidden h-full w-[clamp(7rem,12vw,14rem)] overflow-hidden select-none lg:block"
+      >
+        <p className="absolute right-0 top-1/2 origin-center -translate-y-1/2 translate-x-[48%] rotate-270 whitespace-nowrap text-[clamp(7rem,14vw,16rem)] font-semibold uppercase leading-none tracking-[-0.09em] text-[var(--alt-text)]/10">
+          Portfolio
+        </p>
+      </motion.div>
       <div className="container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[52rem]">

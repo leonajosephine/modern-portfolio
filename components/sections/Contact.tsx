@@ -81,7 +81,11 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mt-20 select-none text-center sm:mt-24 lg:mt-28"
+        className="mt-20 h-[clamp(4rem,9vw,8rem)] overflow-hidden select-none text-center sm:mt-24 lg:mt-28"
+        style={{ //fade maske "schrift verschwindet nach unten hin"
+          WebkitMaskImage: "linear-gradient(to bottom, black 45%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, black 45%, transparent 100%)",
+        }}
       >
         <p className="whitespace-nowrap text-[clamp(4.8rem,18vw,18rem)] font-semibold uppercase leading-[0.75] tracking-[-0.09em] text-foreground/10">
           Contact
