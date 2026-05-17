@@ -167,7 +167,7 @@ export default function DesignHighlights() {
           className="max-w-[52rem]"
         >
           <p className="font-mono text-[0.72rem] uppercase tracking-[0.26em] text-muted-foreground">
-            Design Direction
+            Art Direction
           </p>
 
           <h2 className="mt-4 text-[clamp(2.8rem,5.2vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-foreground">

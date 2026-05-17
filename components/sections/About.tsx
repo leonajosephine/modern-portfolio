@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Code, Layout, Globe, Smartphone } from "lucide-react";
 
@@ -36,6 +36,50 @@ const focusItems = [
   },
 ];
 
+const headerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 32,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const cardContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.14,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+    scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function About() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
@@ -46,14 +90,14 @@ export default function About() {
     >
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={headerVariants}
           className="mx-auto max-w-[980px] text-center"
         >
           <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.28em] text-muted-foreground">
-            [About me]
+            About me
           </p>
 
           <h2 className="mx-auto mt-5 max-w-[820px] text-[clamp(3rem,7vw,8rem)] font-medium uppercase leading-[0.86] tracking-[-0.075em] text-foreground">
@@ -79,23 +123,28 @@ export default function About() {
           </div>
         </motion.div>
 
+        <div className="mx-auto mt-14 flex max-w-[1120px] items-center justify-between">
+            <p className="font-sans text-[0.72rem] uppercase tracking-[0.26em] text-muted-foreground">
+              {"// Skills"}
+            </p>
+        </div>
+
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.65 }}
-          className="mx-auto mt-14 grid max-w-[1120px] gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={cardContainerVariants}
+          className="mx-auto mt-1 ml-0.5 grid max-w-[1120px] gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {focusItems.map(({ number, title, text, tools, icon: Icon }, index) => {
             const isActive = activeCard === index;
 
             return (
-              <button
+              <motion.button
                 key={title}
                 type="button"
-                onClick={() =>
-                  setActiveCard(isActive ? null : index)
-                }
+                onClick={() => setActiveCard(isActive ? null : index)}
+                variants={cardVariants}
                 className="group relative min-h-[230px] overflow-hidden rounded-[1.5rem] border border-border bg-card/45 p-5 text-left transition-all duration-500 hover:-translate-y-1 hover:bg-card/80 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-6">
@@ -133,7 +182,7 @@ export default function About() {
                     </span>
                   ))}
                 </div>
-              </button>
+              </motion.button>
             );
           })}
         </motion.div>
