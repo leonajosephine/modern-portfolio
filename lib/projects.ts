@@ -47,7 +47,7 @@ export const projects: Project[] = [
     title: "Netflix Rebuild",
     short: "Netflix-inspired UI with search, trailers & a personal list.",
     cover: "/images/netflix.jpg",
-    hero: { type: "image", src: "/images/netflix/Netflix_mockup_main.png", alt: "Homepage" },
+    hero: { type: "image", src: "/images/netflix/Netflix_mockup_responsive.png", alt: "Homepage" },
     category: "coding",
     tags: ["Next.js", "React", "TypeScript", "Framer Motion", "TMDB"],
     meta: { role: "Frontend", year: "2026", duration: "2 weeks", team: "Solo" },
@@ -66,7 +66,7 @@ export const projects: Project[] = [
       { type: "stack", title: "Tech Stack", items: ["Next.js (App Router)", "TypeScript", "Framer Motion", "TMDB API"] },
       { type: "gallery", title: "Screens / Interactions", items: [
         { type: "video", src: "/media/netflix-video.mp4", poster: "/images/netflix.jpg" },
-        { type: "image", src: "/images/netflix/Netflix_mockup_responsive.png", alt: "Responsivness ofWebsite" },
+        { type: "image", src: "/images/netflix/Netflix_mockup_main.png", alt: "Responsivness ofWebsite" },
         { type: "image", src: "/images/netflix_overview.png", alt: "Homepage" },
         { type: "image", src: "/images/netflix_movierow_trends.png", alt: "Trends row design" },
         { type: "image", src: "/images/netflix_moviemodal.png", alt: "Movie detail page" },
@@ -96,6 +96,7 @@ export const projects: Project[] = [
         { label: "Focus", value: "Premium, clean aesthetic" },
         { label: "Structure", value: "Component-based sections" }
       ]},
+      { type: "stack", title: "Technologies Used", items: ["React", "TypeScript", "Tailwind CSS"] },
       { type: "gallery", title: "Mockups", items: [
         { type: "image", src: "/images/lunara/lunara_mobile1.png" },
         { type: "image", src: "/images/lunara/lunara_packages.png" },
@@ -129,7 +130,7 @@ export const projects: Project[] = [
         "Feature two",
         "Feature three"
       ]},
-      { type: "stack", title: "Technologies Used", items: ["Tech1", "Tech2", "Tech3"] },
+      { type: "stack", title: "Technologies Used", items: ["React", "TypeScript", "Tailwind CSS"] },
       { type: "gallery", title: "Project Screenshots", items: [
         { type: "image", src: "/images/toDo/macBook.png", alt: "Screenshot one" },
         { type: "image", src: "/images/toDo/Board.png", alt: "Screenshot one" },
@@ -146,7 +147,7 @@ export const projects: Project[] = [
     title: "Reading List App",
     short: "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
     cover: "/images/readingList/hero.png",
-    hero: { type: "image", src: "/images/readingList/read_features.png", alt: "Project four hero" },
+    hero: { type: "image", src: "/images/readingList/read_dark.png", alt: "Project four hero" },
     category: "coding",
     tags: ["TagA", "TagB"],
     meta: { role: "Role", year: "2023", duration: "3 months", team: "Team Alpha" },
@@ -162,11 +163,11 @@ export const projects: Project[] = [
         "Switch Theme to your liking (6 different themes)",
         "Connect with friends to see their reading lists and share recommendations"
       ]},
-      { type: "stack", title: "Used Technologies", items: ["React Native", "XCode", "Supabase", "GoogleBooksAPI"] },
+      { type: "stack", title: "Used Technologies", items: ["React Native", "iOS", "Android", "XCode", "Supabase", "GoogleBooksAPI"] },
       { type: "gallery", title: "Project Images", items: [
         { type: "image", src: "/images/readingList/read_themes.png", alt: "Image one" },
-        { type: "image", src: "/images/readingList/read_dark.png", alt: "Image two" },
-        //{ type: "image", src: "/images/readingList/read_home.png", alt: "Image four" },
+        { type: "image", src: "/images/readingList/read_home.png ", alt: "Image two" },
+        { type: "image", src: "/images/readingList/read_features.png", alt: "Image four" },
         //{ type: "image", src: "/images/readingList/read_themes1.png", alt: "Image five" },
         { type: "image", src: "/images/readingList/read_themes2.png", alt: "Image six" },
         { type: "image", src: "/images/readingList/read_dark2.png", alt: "Image three" },
@@ -294,5 +295,102 @@ export const projects: Project[] = [
       ]}
     ],
     size: "big"
-  }
+  },/*
+  {
+    slug: "new",
+    title: "Design Website & art direction",
+    short: "Description for project three.",
+    cover: "/images/toDo/cover.png",
+    hero: { type: "image", src: "/images/toDo/overview.png", alt: "Project three hero" },
+    category: "coding",
+    tags: ["Tag1", "Tag2"],
+    meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
+    links: [
+      { label: "Live Site", href: "https://example.com", kind: "live" },
+      { label: "Repository", href: "https://example.com", kind: "repo" },
+    ],
+    blocks: [
+      { type: "text", title: "Overview", body: "Detailed overview of project three." },
+      { type: "bullets", title: "Key Features", items: [
+        "Feature one",
+        "Feature two",
+        "Feature three"
+      ]},
+      { type: "stack", title: "Technologies Used", items: ["React", "TypeScript", "Tailwind CSS"] },
+      { type: "gallery", title: "Project Screenshots", items: [
+        { type: "image", src: "/images/toDo/macBook.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/Board.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/addBoard.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/bg.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/filter.png", alt: "Screenshot two" }
+
+      ]}
+    ],
+    size: "normal"
+  },
+  {
+    slug: "new 2",
+    title: "Website for Brand X /art portfolio",
+    short: "Description for project three.",
+    cover: "/images/websiteshop.jpeg",
+    hero: { type: "image", src: "/images/toDo/overview.png", alt: "Project three hero" },
+    category: "coding",
+    tags: ["Tag1", "Tag2"],
+    meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
+    links: [
+      { label: "Live Site", href: "https://example.com", kind: "live" },
+      { label: "Repository", href: "https://example.com", kind: "repo" },
+    ],
+    blocks: [
+      { type: "text", title: "Overview", body: "Detailed overview of project three." },
+      { type: "bullets", title: "Key Features", items: [
+        "Feature one",
+        "Feature two",
+        "Feature three"
+      ]},
+      { type: "stack", title: "Technologies Used", items: ["React", "TypeScript", "Tailwind CSS"] },
+      { type: "gallery", title: "Project Screenshots", items: [
+        { type: "image", src: "/images/toDo/macBook.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/Board.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/addBoard.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/bg.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/filter.png", alt: "Screenshot two" }
+
+      ]}
+    ],
+    size: "normal"
+  },
+  {
+    slug: "new 3",
+    title: "Tech Website for Company Y",
+    short: "Description for project three.",
+    cover: "/images/websiteshop.jpeg",
+    hero: { type: "image", src: "/images/toDo/overview.png", alt: "Project three hero" },
+    category: "coding",
+    tags: ["Tag1", "Tag2"],
+    meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
+    links: [
+      { label: "Live Site", href: "https://example.com", kind: "live" },
+      { label: "Repository", href: "https://example.com", kind: "repo" },
+    ],
+    blocks: [
+      { type: "text", title: "Overview", body: "Detailed overview of project three." },
+      { type: "bullets", title: "Key Features", items: [
+        "Feature one",
+        "Feature two",
+        "Feature three"
+      ]},
+      { type: "stack", title: "Technologies Used", items: ["React", "TypeScript", "Tailwind CSS"] },
+      { type: "gallery", title: "Project Screenshots", items: [
+        { type: "image", src: "/images/toDo/macBook.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/Board.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/addBoard.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/bg.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/toDo/filter.png", alt: "Screenshot two" }
+
+      ]}
+    ],
+    size: "big"
+  },
+*/
 ];
