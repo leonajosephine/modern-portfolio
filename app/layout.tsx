@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond, DM_Serif_Display, IBM_Plex_Mono } from "next
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GradientCursor from "@/components/GradientCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${cormorant.variable} ${mono.variable}`}>
         <Header />
+        <GradientCursor />
         {children}
         <Footer />
       </body>

@@ -25,7 +25,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-16 sm:px-6 sm:py-20">
+    <section 
+      data-cursor="hero"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-16 sm:px-6 sm:py-20"
+      >
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
@@ -94,13 +97,13 @@ export default function Hero() {
           }}
           className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12"
         >
-          <a href="#portfolio">
+          <a data-cursor="theme" href="#portfolio">
             <Button variant="primary" size="lg">
               View Projects
             </Button>
           </a>
 
-          <a href="#contact">
+          <a data-cursor="nav" href="#contact">
             <Button variant="secondary" size="lg">
               Get in Touch
             </Button>

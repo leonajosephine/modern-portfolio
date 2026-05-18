@@ -157,7 +157,7 @@ function DesignCard({ card }: { card: GradientCard }) {
 
 export default function DesignHighlights() {
   return (
-    <section id="design" className="px-5 py-20 sm:px-6 sm:py-24 lg:py-32 mx-auto">
+    <section id="design" data-cursor="design" className="px-5 py-20 sm:px-6 sm:py-24 lg:py-32 mx-auto">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 28 }}

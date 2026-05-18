@@ -162,6 +162,17 @@ a:not([class]) {
   body {
     @apply bg-background text-foreground;
   }
+
+  @media (min-width: 768px) {
+    body {
+      cursor: none;
+    }
+  
+    a,
+    button {
+      cursor: none;
+    }
+  }
 }
 
 .container {
