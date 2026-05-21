@@ -295,7 +295,7 @@ export const projects: Project[] = [
       ]}
     ],
     size: "big"
-  },/*
+  },
   {
     slug: "new",
     title: "Design Website & art direction",
@@ -330,7 +330,7 @@ export const projects: Project[] = [
   },
   {
     slug: "new 2",
-    title: "Website for Brand X /art portfolio",
+    title: "grafik design website with heavy design and art direction focus",
     short: "Description for project three.",
     cover: "/images/websiteshop.jpeg",
     hero: { type: "image", src: "/images/toDo/overview.png", alt: "Project three hero" },
@@ -361,36 +361,46 @@ export const projects: Project[] = [
     size: "normal"
   },
   {
-    slug: "new 3",
-    title: "Tech Website for Company Y",
-    short: "Description for project three.",
-    cover: "/images/websiteshop.jpeg",
-    hero: { type: "image", src: "/images/toDo/overview.png", alt: "Project three hero" },
+    slug: "aurem",
+    title: "Jewelry Brand Website & Art Direction",
+    short: "This is for Aurem - a jewelry brand that focuses on creating unique and timeless pieces. The website features a clean and elegant design, showcasing the brand's collections and craftsmanship.",
+    cover: "/images/aurem/responsive.png",
+    hero: { type: "image", src: "/images/aurem/hero.png", alt: "Project three hero" },
     category: "coding",
     tags: ["Tag1", "Tag2"],
-    meta: { role: "Role", year: "2024", duration: "3 weeks", team: "Team Name" },
+    meta: { role: "Role", year: "2026", duration: "1 week", team: "solo" },
     links: [
-      { label: "Live Site", href: "https://example.com", kind: "live" },
+      { label: "Case Study", href: "https://your-site.com/case/aurem", kind: "figma" },
+      { label: "Demo Site", href: "https://example.com", kind: "live" },
       { label: "Repository", href: "https://example.com", kind: "repo" },
     ],
     blocks: [
-      { type: "text", title: "Overview", body: "Detailed overview of project three." },
-      { type: "bullets", title: "Key Features", items: [
-        "Feature one",
-        "Feature two",
-        "Feature three"
-      ]},
-      { type: "stack", title: "Technologies Used", items: ["React", "TypeScript", "Tailwind CSS"] },
-      { type: "gallery", title: "Project Screenshots", items: [
-        { type: "image", src: "/images/toDo/macBook.png", alt: "Screenshot one" },
-        { type: "image", src: "/images/toDo/Board.png", alt: "Screenshot one" },
-        { type: "image", src: "/images/toDo/addBoard.png", alt: "Screenshot one" },
-        { type: "image", src: "/images/toDo/bg.png", alt: "Screenshot one" },
-        { type: "image", src: "/images/toDo/filter.png", alt: "Screenshot two" }
+      { type: "text", title: "Overview", body: "This Project is about building a brand from sratch to a finished website. This includes: the branding, UX/UI, creative and art direction, webdevelopment." },
+      { type: "metrics", title: "Outcome", items: [
+        { label: "UI/UX design & Art direction:", value: "Concept and execution of the visual identity" },
+        { label: "Frontend", value: "Component-based sections" },
+        { label: "Frontend", value: "Component-based sections" }
 
+      ]},
+      { type: "bullets", title: "Key Features", items: [
+        "• Figma: Branding, UI design, Wireframing",
+        "• Art direction: Concept and execution of the visual identity, including the use of colors, typography, and imagery to create a cohesive and compelling brand experience. This included the creation of a photoshoot concept, moodboard and direction for the photography, as well as the selection of models, styling, and locations to ensure that the final AI genrated images aligned with the brand's vision and resonated with the target audience.",
+        "• Next.js: Development of a responsive website with a focus on performance and accessibility",
+      ]},
+      { type: "stack", title: "Technologies Used", items: ["Next.js", "TypeScript", "Tailwind CSS", "AI"] },
+      { type: "gallery", title: "Project Screenshots", items: [
+        { type: "image", src: "/images/aurem/hero.png", alt: "Screenshot one" },
+        { type: "image", src: "/images/aurem/responsive2.png", alt: "Screenshot two" },        { type: "image", src: "/images/aurem/collection.png", alt: "Screenshot three" },
+        { type: "image", src: "/images/aurem/collection2.png", alt: "Screenshot three" },
+        { type: "image", src: "/images/aurem/pdp1.png", alt: "Screenshot four" },
+        { type: "image", src: "/images/aurem/pdp2.png", alt: "Screenshot four" },
+        { type: "image", src: "/images/aurem/explore.png", alt: "Screenshot five" },
+        { type: "image", src: "/images/aurem/featured.png", alt: "Screenshot six" },
+        { type: "image", src: "/images/aurem/campaign.png", alt: "Screenshot six" },
+        { type: "image", src: "/images/aurem/editorialSplit.png", alt: "Screenshot six" },
       ]}
     ],
     size: "big"
   },
-*/
+
 ];
