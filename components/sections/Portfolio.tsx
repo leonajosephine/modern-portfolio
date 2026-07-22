@@ -46,6 +46,21 @@ const gradientMap = {
     "bg-[radial-gradient(circle_at_20%_20%,rgba(186,230,253,0.95),transparent_35%),radial-gradient(circle_at_80%_75%,rgba(168,85,247,0.55),transparent_34%),linear-gradient(135deg,#d7f0f8,#25213d)]",
 } as const;
 
+function getProjectSizeClass(
+  size?: "normal" | "wide" | "tall" | "big"
+) {
+  switch (size) {
+    case "wide":
+      return "col-span-2";
+    case "tall":
+      return "row-span-2";
+    case "big":
+      return "col-span-2 row-span-2";
+    default:
+      return "";
+  }
+}
+
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] =
     useState<Filter>("all");
@@ -110,7 +125,6 @@ export default function Portfolio() {
         color: "var(--alt-text)",
       }}
     >
-      {/* Decorative desktop typography */}
       <motion.div
         aria-hidden="true"
         initial={{
@@ -175,13 +189,11 @@ export default function Portfolio() {
               </span>
             </h2>
 
-            {/* Short mobile description */}
             <p className="mt-5 max-w-[34rem] text-[0.9rem] leading-6 text-[var(--alt-text-muted)] sm:hidden">
               Selected projects across frontend, interface
               design and creative technology.
             </p>
 
-            {/* Full desktop description */}
             <p className="mt-6 hidden max-w-[42rem] text-[1.04rem] leading-8 text-[var(--alt-text-muted)] sm:block">
               A selection of projects across frontend
               development, interface design, and interactive
@@ -189,7 +201,6 @@ export default function Portfolio() {
               and create memorable digital experiences.
             </p>
 
-            {/* Filter */}
             <div className="-mx-5 mt-6 overflow-x-auto px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0">
               <div className="flex w-max rounded-full border border-border bg-card/50 p-1">
                 {filters.map((filter) => {
@@ -240,32 +251,30 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Project Grid */}
         <motion.div
           layout
           className="
             mt-10 grid grid-cols-2
-            auto-rows-[175px] gap-2.5
+            auto-rows-[155px] gap-2.5
             [grid-auto-flow:dense]
-            sm:mt-14 sm:auto-rows-[240px] sm:gap-4
-            md:grid-cols-2
+            sm:mt-14 sm:auto-rows-[220px] sm:gap-4
+            md:auto-rows-[240px]
             lg:grid-cols-3 lg:auto-rows-[220px] lg:gap-5
           "
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
-              const desktopSizeClass =
-                project.size === "tall"
-                  ? "md:row-span-2"
-                  : project.size === "wide"
-                    ? "md:col-span-2"
-                    : project.size === "big"
-                      ? "md:col-span-2 md:row-span-2"
-                      : "";
+              const sizeClass = getProjectSizeClass(
+                project.size
+              );
 
               const gradientClass = project.gradient
                 ? gradientMap[project.gradient]
                 : "";
+
+              const isLargeCard =
+                project.size === "wide" ||
+                project.size === "big";
 
               return (
                 <motion.button
@@ -308,7 +317,7 @@ export default function Portfolio() {
                     "hover:-translate-y-1",
                     "hover:border-white/15",
                     "hover:shadow-[0_20px_50px_rgba(0,0,0,0.28)]",
-                    desktopSizeClass,
+                    sizeClass,
                   ].join(" ")}
                 >
                   {project.gradient ? (
@@ -332,8 +341,8 @@ export default function Portfolio() {
                           group-hover:scale-[1.04]
                         "
                         sizes="
-                          (max-width: 639px) 50vw,
-                          (max-width: 1023px) 50vw,
+                          (max-width: 639px) 100vw,
+                          (max-width: 1023px) 100vw,
                           33vw
                         "
                       />
@@ -352,8 +361,21 @@ export default function Portfolio() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/22 to-transparent" />
                   )}
 
-                  <div className="absolute inset-x-0 bottom-0 z-10 p-3.5 sm:p-6">
-                    <div className="max-w-full sm:max-w-[88%]">
+                  <div
+                    className={[
+                      "absolute inset-x-0 bottom-0 z-10",
+                      isLargeCard
+                        ? "p-4 sm:p-6"
+                        : "p-3.5 sm:p-6",
+                    ].join(" ")}
+                  >
+                    <div
+                      className={
+                        isLargeCard
+                          ? "max-w-[92%] sm:max-w-[88%]"
+                          : "max-w-full sm:max-w-[88%]"
+                      }
+                    >
                       <p
                         className="
                           truncate font-mono
@@ -368,15 +390,16 @@ export default function Portfolio() {
                       </p>
 
                       <h3
-                        className="
-                          mt-1.5 line-clamp-2
-                          text-[0.95rem] font-medium
-                          leading-[1.02]
-                          tracking-[-0.03em]
-                          text-white
-                          sm:mt-2 sm:text-[1.6rem]
-                          sm:leading-[0.98]
-                        "
+                        className={[
+                          "mt-1.5 line-clamp-2",
+                          "font-medium leading-[1.02]",
+                          "tracking-[-0.03em] text-white",
+                          "sm:mt-2 sm:text-[1.6rem]",
+                          "sm:leading-[0.98]",
+                          isLargeCard
+                            ? "text-[1.15rem]"
+                            : "text-[0.95rem]",
+                        ].join(" ")}
                       >
                         {project.title}
                       </h3>
