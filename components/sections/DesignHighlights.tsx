@@ -66,12 +66,12 @@ function DesignCard({ card }: { card: GradientCard }) {
   return (
     <button
       type="button"
-      onClick={() => setIsActive((prev) => !prev)}
+      onClick={() => setIsActive((previous) => !previous)}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onFocus={() => setIsActive(true)}
       onBlur={() => setIsActive(false)}
-      className="group relative min-h-[320px] overflow-hidden rounded-[1.75rem] border border-white/10 text-left shadow-[0_24px_70px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 hover:border-white/20 sm:min-h-[380px]"
+      className="group relative min-h-[300px] w-[84vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-[1.75rem] border border-white/10 text-left shadow-[0_24px_70px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 hover:border-white/20 sm:min-h-[330px] sm:w-[72vw] md:min-h-[380px] md:w-auto md:max-w-none"
     >
       <div className="absolute inset-0">
         <div
@@ -95,18 +95,20 @@ function DesignCard({ card }: { card: GradientCard }) {
         ) : null}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/18 to-black/8" />
+
         <div
           className={[
             "absolute inset-0 bg-[linear-gradient(180deg,rgba(15,16,18,0.12),rgba(15,16,18,0.62))] transition-opacity duration-300",
             isActive ? "opacity-100" : "opacity-0",
           ].join(" ")}
         />
+
         <GrainOverlay />
       </div>
 
       <div
         className={[
-          "relative z-10 flex h-full min-h-[inherit] flex-col justify-between p-6 transition-all duration-300 sm:p-7",
+          "relative z-10 flex h-full min-h-[inherit] flex-col justify-between p-5 transition-all duration-300 sm:p-7",
           isActive ? "translate-y-3 opacity-0" : "translate-y-0 opacity-100",
         ].join(" ")}
       >
@@ -114,14 +116,14 @@ function DesignCard({ card }: { card: GradientCard }) {
           {card.label}
         </p>
 
-        <h3 className="whitespace-pre-line text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[2.7rem]">
+        <h3 className="whitespace-pre-line text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[2.7rem]">
           {card.title}
         </h3>
       </div>
 
       <div
         className={[
-          "absolute inset-0 z-20 flex flex-col justify-between p-6 transition-all duration-300 sm:p-7",
+          "absolute inset-0 z-20 flex flex-col justify-between p-5 transition-all duration-300 sm:p-7",
           isActive
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-3 opacity-0",
@@ -132,11 +134,11 @@ function DesignCard({ card }: { card: GradientCard }) {
             {card.label}
           </p>
 
-          <h3 className="mt-3 text-[2rem] font-medium leading-[1.06] tracking-[-0.04em] text-white sm:text-[2.3rem]">
+          <h3 className="mt-3 text-[1.75rem] font-medium leading-[1.06] tracking-[-0.04em] text-white sm:text-[2.3rem]">
             {card.title.replace("\n", " ")}
           </h3>
 
-          <p className="mt-4 text-sm font-light leading-relaxed text-white/82 sm:text-base">
+          <p className="mt-4 text-[0.84rem] font-light leading-6 text-white/82 sm:text-base sm:leading-relaxed">
             {card.description}
           </p>
         </div>
@@ -146,7 +148,7 @@ function DesignCard({ card }: { card: GradientCard }) {
             {card.stat}
           </span>
 
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">
+          <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/55 sm:text-[10px]">
             hover or tap
           </span>
         </div>
@@ -157,7 +159,11 @@ function DesignCard({ card }: { card: GradientCard }) {
 
 export default function DesignHighlights() {
   return (
-    <section id="design" data-cursor="design" className="px-5 py-20 sm:px-6 sm:py-24 lg:py-32 mx-auto">
+    <section
+      id="design"
+      data-cursor="design"
+      className="mx-auto px-5 py-16 sm:px-6 sm:py-20 lg:py-32"
+    >
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -170,12 +176,12 @@ export default function DesignHighlights() {
             Art Direction
           </p>
 
-          <h2 className="mt-4 text-[clamp(2.8rem,5.2vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-foreground">
+          <h2 className="mt-4 text-[clamp(2.65rem,11vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-foreground">
             Visual ideas with an
             <span className="font-serif italic"> atmospheric edge</span>
           </h2>
 
-          <p className="mt-6 max-w-[42rem] text-[0.98rem] leading-8 text-muted-foreground sm:text-[1.04rem]">
+          <p className="mt-5 max-w-[42rem] text-[0.92rem] leading-7 text-muted-foreground sm:mt-6 sm:text-[1.04rem] sm:leading-8">
             A small exploration of the visual language I like working with:
             editorial typography, soft gradients, subtle texture and modern
             interface details.
@@ -187,7 +193,7 @@ export default function DesignHighlights() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.18 }}
           transition={{ duration: 0.7, delay: 0.05 }}
-          className="mt-14 grid gap-4 md:grid-cols-3 lg:gap-5"
+          className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 lg:gap-5"
         >
           {cards.map((card) => (
             <DesignCard key={card.id} card={card} />

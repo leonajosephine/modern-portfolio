@@ -1,6 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  type TouchEvent,
+} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Block, Media, Project } from "@/lib/projects";
 import MediaRenderer from "./MediaRenderer";
@@ -149,68 +154,31 @@ function MobileProjectNavigation({
   return (
     <nav
       aria-label="Project navigation"
-      className="
-        absolute bottom-1 left-1 right-1 z-50
-        px-2 pb-1 pt-2
-        sm:hidden
-      "
+      className="absolute bottom-1 left-1 right-1 z-50 px-2 pb-[max(0.25rem,env(safe-area-inset-bottom))] pt-2 sm:hidden"
     >
-      <div
-        className="
-          grid grid-cols-[1fr_auto_1fr] items-center gap-2
-          rounded-[1.35rem]
-          border border-white/10
-          bg-background/70
-          px-2 py-2
-          shadow-[0_10px_40px_rgba(0,0,0,0.22)]
-          backdrop-blur-2xl
-          supports-[backdrop-filter]:bg-background/55
-        "
-      >
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-[1.35rem] border border-white/15 bg-background/45 px-2 py-2 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-3xl supports-[backdrop-filter]:bg-background/30">
         <button
           type="button"
           onClick={onPrev}
           disabled={!canGoPrev}
           aria-label="Previous project"
-          className="
-            group flex min-h-11 items-center justify-start gap-1.5
-            rounded-[1rem] px-2.5
-            text-[0.72rem] font-medium
-            text-foreground
-            transition
-            hover:bg-foreground/5
-            active:scale-[0.97]
-            disabled:pointer-events-none
-            disabled:opacity-25
-          "
+          className="group flex min-h-11 items-center justify-start gap-1.5 rounded-[1rem] px-2.5 text-[0.72rem] font-medium text-foreground transition hover:bg-foreground/5 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-25"
         >
           <ChevronLeft
             size={17}
             strokeWidth={1.7}
             className="transition-transform group-hover:-translate-x-0.5"
           />
-
           <span>Previous</span>
         </button>
 
         <div
           aria-label={`Project ${currentIndex + 1} of ${total}`}
-          className="
-            flex min-w-[58px] items-center justify-center
-            px-1
-          "
+          className="flex min-w-[58px] items-center justify-center px-1"
         >
-          <span
-            className="
-              font-mono text-[0.62rem]
-              tracking-[0.18em]
-              text-muted-foreground
-            "
-          >
+          <span className="font-mono text-[0.62rem] tracking-[0.18em] text-muted-foreground">
             {String(currentIndex + 1).padStart(2, "0")}
-            <span className="mx-1.5 text-muted-foreground/35">
-              /
-            </span>
+            <span className="mx-1.5 text-muted-foreground/35">/</span>
             <span className="text-muted-foreground/55">
               {String(total).padStart(2, "0")}
             </span>
@@ -222,20 +190,9 @@ function MobileProjectNavigation({
           onClick={onNext}
           disabled={!canGoNext}
           aria-label="Next project"
-          className="
-            group flex min-h-11 items-center justify-end gap-1.5
-            rounded-[1rem] px-2.5
-            text-[0.72rem] font-medium
-            text-foreground
-            transition
-            hover:bg-foreground/5
-            active:scale-[0.97]
-            disabled:pointer-events-none
-            disabled:opacity-25
-          "
+          className="group flex min-h-11 items-center justify-end gap-1.5 rounded-[1rem] px-2.5 text-[0.72rem] font-medium text-foreground transition hover:bg-foreground/5 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-25"
         >
           <span>Next</span>
-
           <ChevronRight
             size={17}
             strokeWidth={1.7}
@@ -248,22 +205,34 @@ function MobileProjectNavigation({
 }
 
 function splitBlocks(blocks: Block[]) {
-  const galleryBlocks = blocks.filter(
-    (block) => block.type === "gallery"
-  );
-
-  const contentBlocks = blocks.filter(
-    (block) => block.type !== "gallery"
-  );
-
   return {
-    galleryBlocks,
-    contentBlocks,
+    galleryBlocks: blocks.filter((block) => block.type === "gallery"),
+    contentBlocks: blocks.filter((block) => block.type !== "gallery"),
   };
 }
 
 function shouldSpanFullWidth(media: Media) {
+  if (media.span === "full") {
+    return true;
+  }
+
+  if (media.span === "single") {
+    return false;
+  }
+
   return media.type === "video" || media.type === "youtube";
+}
+
+function isInteractiveTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) {
+    return false;
+  }
+
+  return Boolean(
+    target.closest(
+      "a, button, input, textarea, select, video, iframe, [role='button']",
+    ),
+  );
 }
 
 export default function ProjectModal({
@@ -278,38 +247,73 @@ export default function ProjectModal({
   onClose: () => void;
 }) {
   const isOpen =
-    openIndex !== null &&
-    openIndex >= 0 &&
-    openIndex < projects.length;
+    openIndex !== null && openIndex >= 0 && openIndex < projects.length;
 
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const touchStartRef = useRef({
+    x: 0,
+    y: 0,
+    time: 0,
+    ignore: false,
+  });
 
-  const current = isOpen
-    ? projects[openIndex as number]
-    : null;
-
-  const canGoPrev =
-    isOpen && (openIndex as number) > 0;
-
+  const current = isOpen ? projects[openIndex as number] : null;
+  const canGoPrev = isOpen && (openIndex as number) > 0;
   const canGoNext =
-    isOpen &&
-    (openIndex as number) < projects.length - 1;
+    isOpen && (openIndex as number) < projects.length - 1;
 
   const goPrev = () => {
-    if (!canGoPrev) {
-      return;
+    if (canGoPrev) {
+      setOpenIndex((openIndex as number) - 1);
     }
-
-    setOpenIndex((openIndex as number) - 1);
   };
 
   const goNext = () => {
-    if (!canGoNext) {
+    if (canGoNext) {
+      setOpenIndex((openIndex as number) + 1);
+    }
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now(),
+      ignore: isInteractiveTarget(event.target),
+    };
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (touchStartRef.current.ignore || !event.changedTouches[0]) {
       return;
     }
 
-    setOpenIndex((openIndex as number) + 1);
+    const touch = event.changedTouches[0];
+    const distanceX = touch.clientX - touchStartRef.current.x;
+    const distanceY = touch.clientY - touchStartRef.current.y;
+    const duration = Date.now() - touchStartRef.current.time;
+
+    const isHorizontalGesture =
+      Math.abs(distanceX) > Math.abs(distanceY) * 1.35;
+    const hasEnoughDistance = Math.abs(distanceX) >= 65;
+    const isFastEnough = duration <= 750;
+
+    if (!isHorizontalGesture || !hasEnoughDistance || !isFastEnough) {
+      return;
+    }
+
+    if (distanceX < 0) {
+      goNext();
+    } else {
+      goPrev();
+    }
+  };
+
+  const handleTouchCancel = () => {
+    touchStartRef.current.ignore = true;
   };
 
   const { galleryBlocks, contentBlocks } = useMemo(() => {
@@ -328,9 +332,7 @@ export default function ProjectModal({
       return;
     }
 
-    const previousOverflow =
-      document.body.style.overflow;
-
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -355,21 +357,10 @@ export default function ProjectModal({
 
     return () => {
       window.clearTimeout(focusTimeout);
-
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-
-      document.body.style.overflow =
-        previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
     };
-  }, [
-    isOpen,
-    onClose,
-    openIndex,
-    projects.length,
-  ]);
+  }, [isOpen, onClose, openIndex, projects.length]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -429,21 +420,9 @@ export default function ProjectModal({
             role="dialog"
             aria-modal="true"
             aria-label={`${current.title} project details`}
-            initial={{
-              opacity: 0,
-              scale: 0.96,
-              y: 24,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 0.97,
-              y: 18,
-            }}
+            initial={{ opacity: 0, scale: 0.96, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 18 }}
             transition={{
               duration: 0.38,
               ease: [0.22, 1, 0.36, 1],
@@ -453,18 +432,9 @@ export default function ProjectModal({
             <motion.div
               key={current.slug}
               className="relative flex h-full min-h-0 flex-col"
-              initial={{
-                opacity: 0,
-                y: 18,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              exit={{
-                opacity: 0,
-                y: 14,
-              }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 14 }}
               transition={{
                 duration: 0.32,
                 ease: [0.22, 1, 0.36, 1],
@@ -482,7 +452,10 @@ export default function ProjectModal({
 
               <div
                 ref={scrollContainerRef}
-                className="min-h-0 flex-1 pb-28 touch-pan-y overflow-y-auto overscroll-contain [scrollbar-gutter:stable]"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onTouchCancel={handleTouchCancel}
+                className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain pb-28 [scrollbar-gutter:stable]"
                 style={{
                   WebkitOverflowScrolling: "touch",
                 }}
@@ -506,15 +479,8 @@ export default function ProjectModal({
                   <div className="relative flex flex-col justify-between bg-card px-5 py-6 sm:px-8 sm:py-8 lg:min-h-[58vh] lg:px-10 lg:py-9">
                     <div>
                       <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-muted-foreground sm:text-[0.65rem] sm:tracking-[0.24em]">
-                        {String(
-                          (openIndex as number) + 1
-                        ).padStart(2, "0")}{" "}
-                        /{" "}
-                        {String(projects.length).padStart(
-                          2,
-                          "0"
-                        )}{" "}
-                        ·{" "}
+                        {String((openIndex as number) + 1).padStart(2, "0")} /{" "}
+                        {String(projects.length).padStart(2, "0")} ·{" "}
                         {current.meta?.year ?? "Project"}
                       </p>
 
@@ -532,27 +498,19 @@ export default function ProjectModal({
 
                       {current.links?.length ? (
                         <div className="flex flex-wrap gap-2 sm:gap-3">
-                          {current.links.map(
-                            (link, index) => (
-                              <a
-                                key={`${link.label}-${index}`}
-                                href={link.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-2 text-[0.72rem] text-foreground transition hover:border-foreground/30 hover:bg-muted sm:min-h-0 sm:gap-3 sm:px-4 sm:py-2.5 sm:text-sm"
-                              >
-                                <LinkBadge
-                                  kind={link.kind}
-                                />
-
-                                <span>{link.label}</span>
-
-                                <LinkIcon
-                                  kind={link.kind}
-                                />
-                              </a>
-                            )
-                          )}
+                          {current.links.map((link, index) => (
+                            <a
+                              key={`${link.label}-${index}`}
+                              href={link.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-2 text-[0.72rem] text-foreground transition hover:border-foreground/30 hover:bg-muted sm:min-h-0 sm:gap-3 sm:px-4 sm:py-2.5 sm:text-sm"
+                            >
+                              <LinkBadge kind={link.kind} />
+                              <span>{link.label}</span>
+                              <LinkIcon kind={link.kind} />
+                            </a>
+                          ))}
                         </div>
                       ) : null}
                     </div>
@@ -560,52 +518,40 @@ export default function ProjectModal({
                 </section>
 
                 <div className="mx-auto max-w-[980px] space-y-7 px-4 py-7 sm:space-y-8 sm:px-7 sm:py-10 lg:py-12">
-                  {galleryBlocks.map(
-                    (block, blockIndex) =>
-                      block.type === "gallery" ? (
-                        <section
-                          key={blockIndex}
-                          className="space-y-3 sm:space-y-4"
-                        >
-                          {block.title ? (
-                            <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground sm:text-[0.68rem] sm:tracking-[0.22em]">
-                              {block.title}
-                            </p>
-                          ) : null}
+                  {galleryBlocks.map((block, blockIndex) =>
+                    block.type === "gallery" ? (
+                      <section
+                        key={blockIndex}
+                        className="space-y-3 sm:space-y-4"
+                      >
+                        {block.title ? (
+                          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground sm:text-[0.68rem] sm:tracking-[0.22em]">
+                            {block.title}
+                          </p>
+                        ) : null}
 
-                          <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                            {block.items.map(
-                              (media, mediaIndex) => {
-                                const fullWidth =
-                                  shouldSpanFullWidth(
-                                    media
-                                  );
+                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                          {block.items.map((media, mediaIndex) => {
+                            const fullWidth = shouldSpanFullWidth(media);
 
-                                return (
-                                  <div
-                                    key={mediaIndex}
-                                    className={
-                                      fullWidth
-                                        ? "col-span-2"
-                                        : "col-span-1"
-                                    }
-                                  >
-                                    <MediaRenderer
-                                      media={media}
-                                    />
-                                  </div>
-                                );
-                              }
-                            )}
-                          </div>
-                        </section>
-                      ) : null
+                            return (
+                              <div
+                                key={mediaIndex}
+                                className={
+                                  fullWidth ? "col-span-2" : "col-span-1"
+                                }
+                              >
+                                <MediaRenderer media={media} />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </section>
+                    ) : null,
                   )}
 
                   <div className="border-t border-border pt-7 sm:pt-8">
-                    <BlockRenderer
-                      blocks={contentBlocks}
-                    />
+                    <BlockRenderer blocks={contentBlocks} />
                   </div>
 
                   <p className="hidden font-mono text-[0.62rem] uppercase tracking-[0.22em] text-muted-foreground/60 sm:block">
