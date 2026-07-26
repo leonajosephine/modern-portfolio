@@ -59,6 +59,92 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "reading-list-app",
+    title: "Reading List App",
+    short:
+      "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
+    cover: "/images/readingList/hero.png",
+    hero: {
+      type: "image",
+      src: "/images/readingList/read_dark.png",
+      alt: "Reading List App",
+    },
+    category: "coding",
+    tags: ["TagA", "TagB"],
+    meta: {
+      role: "Role",
+      year: "2023",
+      duration: "3 months",
+      team: "Team Alpha",
+    },
+    links: [
+      { label: "Live App", href: "https://example.com", kind: "live" },
+      { label: "GitHub", href: "https://example.com", kind: "repo" },
+    ],
+    blocks: [
+      {
+        type: "text",
+        title: "Introduction",
+        body: "Detailed introduction of project four.",
+      },
+      {
+        type: "bullets",
+        title: "Main Features",
+        items: [
+          "Save all your books in one place",
+          "Make Lists to organize your reading",
+          "Switch Theme to your liking (6 different themes)",
+          "Connect with friends to see their reading lists and share recommendations",
+        ],
+      },
+      {
+        type: "stack",
+        title: "Used Technologies",
+        items: [
+          "React Native",
+          "iOS",
+          "Android",
+          "XCode",
+          "Supabase",
+          "GoogleBooksAPI",
+        ],
+      },
+      {
+        type: "gallery",
+        title: "Project Images",
+        items: [
+          {
+            type: "image",
+            src: "/images/readingList/read_themes.png",
+            alt: "Theme overview",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/readingList/read_home.png",
+            alt: "Home screen",
+          },
+          {
+            type: "image",
+            src: "/images/readingList/read_features.png",
+            alt: "Feature overview",
+          },
+          {
+            type: "image",
+            src: "/images/readingList/read_themes2.png",
+            alt: "Theme variations",
+          },
+          {
+            type: "image",
+            src: "/images/readingList/read_dark2.png",
+            alt: "Dark theme",
+          },
+        ],
+      },
+    ],
+    size: "big",
+  },
+  {
     slug: "netflix-rebuild",
     title: "Netflix Rebuild",
     short: "Netflix-inspired UI with search, trailers & a personal list.",
@@ -316,92 +402,6 @@ export const projects: Project[] = [
       },
     ],
     size: "normal",
-  },
-  {
-    slug: "reading-list-app",
-    title: "Reading List App",
-    short:
-      "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
-    cover: "/images/readingList/hero.png",
-    hero: {
-      type: "image",
-      src: "/images/readingList/read_dark.png",
-      alt: "Reading List App",
-    },
-    category: "coding",
-    tags: ["TagA", "TagB"],
-    meta: {
-      role: "Role",
-      year: "2023",
-      duration: "3 months",
-      team: "Team Alpha",
-    },
-    links: [
-      { label: "Live App", href: "https://example.com", kind: "live" },
-      { label: "GitHub", href: "https://example.com", kind: "repo" },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "Introduction",
-        body: "Detailed introduction of project four.",
-      },
-      {
-        type: "bullets",
-        title: "Main Features",
-        items: [
-          "Save all your books in one place",
-          "Make Lists to organize your reading",
-          "Switch Theme to your liking (6 different themes)",
-          "Connect with friends to see their reading lists and share recommendations",
-        ],
-      },
-      {
-        type: "stack",
-        title: "Used Technologies",
-        items: [
-          "React Native",
-          "iOS",
-          "Android",
-          "XCode",
-          "Supabase",
-          "GoogleBooksAPI",
-        ],
-      },
-      {
-        type: "gallery",
-        title: "Project Images",
-        items: [
-          {
-            type: "image",
-            src: "/images/readingList/read_themes.png",
-            alt: "Theme overview",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/readingList/read_home.png",
-            alt: "Home screen",
-          },
-          {
-            type: "image",
-            src: "/images/readingList/read_features.png",
-            alt: "Feature overview",
-          },
-          {
-            type: "image",
-            src: "/images/readingList/read_themes2.png",
-            alt: "Theme variations",
-          },
-          {
-            type: "image",
-            src: "/images/readingList/read_dark2.png",
-            alt: "Dark theme",
-          },
-        ],
-      },
-    ],
-    size: "big",
   },
   {
     slug: "mini-game",
