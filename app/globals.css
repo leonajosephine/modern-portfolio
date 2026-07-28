@@ -1,27 +1,39 @@
 @import "tailwindcss";
-/*@import "tw-animate-css";*/
+/* @import "tw-animate-css"; */
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
   --bg-primary: #0b0b0d;
---bg-secondary: #141417;
---bg-tertiary: #1c1c20;
+  --bg-secondary: #141417;
+  --bg-tertiary: #1c1c20;
 
-  --text-primary: #f4f1ec;      /* minimal weicher */
-  --text-secondary: #a8a29e;    /* leicht wärmer */
+  --text-primary: #f4f1ec;
+  --text-secondary: #a8a29e;
 
   --accent: #e7ddcf;
   --accent-strong: #fff6e8;
 
-  --border: rgba(255, 255, 255, 0.06); 
+  --border: rgba(255, 255, 255, 0.06);
   --shadow: rgba(0, 0, 0, 0.45);
 
   --container: 1240px;
 
   --alt-bg: #121214;
   --alt-text: #e7ddcf;
-  --alt-text-muted: #a8a29e; 
+  --alt-text-muted: #a8a29e;
+
+  /* Custom cursor */
+  --cursor-main: rgba(255, 255, 255, 0.18);
+  --cursor-border: rgba(255, 255, 255, 0.3);
+  --cursor-shadow: rgba(255, 255, 255, 0.22);
+  --cursor-dot: rgba(255, 255, 255, 0.9);
+
+  --cursor-glow-inner: rgba(255, 255, 255, 0.58);
+  --cursor-glow-middle: rgba(255, 255, 255, 0.18);
+
+  --cursor-nav-inner: rgba(255, 255, 255, 0.62);
+  --cursor-nav-middle: rgba(168, 85, 247, 0.42);
 }
 
 [data-theme="light"] {
@@ -38,48 +50,83 @@
   --border: rgba(0, 0, 0, 0.08);
   --shadow: rgba(0, 0, 0, 0.08);
 
-  /* Alternative section colors for light theme */
   --alt-bg: #ede9e2;
   --alt-text: #2d2925;
-  --alt-text-muted: rgba(45, 41, 37, 0.6); 
+  --alt-text-muted: rgba(45, 41, 37, 0.6);
+
+  /* Dark glass cursor for bright backgrounds */
+  --cursor-main: rgba(23, 21, 19, 0.16);
+  --cursor-border: rgba(23, 21, 19, 0.42);
+  --cursor-shadow: rgba(23, 21, 19, 0.24);
+  --cursor-dot: rgba(23, 21, 19, 0.95);
+
+  --cursor-glow-inner: rgba(23, 21, 19, 0.58);
+  --cursor-glow-middle: rgba(23, 21, 19, 0.2);
+
+  --cursor-nav-inner: rgba(45, 41, 37, 0.58);
+  --cursor-nav-middle: rgba(168, 85, 247, 0.28);
 }
 
 [data-theme="sunset"] {
   --bg-primary: #1f0507;
   --bg-secondary: #321012;
-  --bg-tertiary: #4a1619;    /* muted burgundy */
+  --bg-tertiary: #4a1619;
 
-  --text-primary: #fff4f5;    /* blush white */
-  --text-secondary: #e8b8c2;  /* muted peony */
+  --text-primary: #fff4f5;
+  --text-secondary: #e8b8c2;
 
-  --accent: #e0a4b0;          /* hibiscus tonic */
-  --accent-strong: #f4c9d6;   /* peony */
+  --accent: #e0a4b0;
+  --accent-strong: #f4c9d6;
 
   --border: rgba(255, 244, 245, 0.11);
   --shadow: rgba(42, 7, 9, 0.48);
 
-  --alt-bg: #f4c9d6;          /* peony */
+  --alt-bg: #f4c9d6;
   --alt-text: #3e1113;
   --alt-text-muted: rgba(62, 17, 19, 0.62);
+
+  /* Rosé glass cursor */
+  --cursor-main: rgba(244, 201, 214, 0.2);
+  --cursor-border: rgba(244, 201, 214, 0.36);
+  --cursor-shadow: rgba(224, 164, 176, 0.3);
+  --cursor-dot: rgba(255, 244, 245, 0.95);
+
+  --cursor-glow-inner: rgba(244, 201, 214, 0.68);
+  --cursor-glow-middle: rgba(224, 164, 176, 0.23);
+
+  --cursor-nav-inner: rgba(244, 201, 214, 0.66);
+  --cursor-nav-middle: rgba(232, 184, 194, 0.34);
 }
 
 [data-theme="ocean"] {
-  --bg-primary: #001f27;      /* ink black */
-  --bg-secondary: #003a35;    /* evergreen */
-  --bg-tertiary: #719a73;     /* sage green */
+  --bg-primary: #001f27;
+  --bg-secondary: #003a35;
+  --bg-tertiary: #719a73;
 
-  --text-primary: #f0e7d5;    /* vanilla cream */
-  --text-secondary: #a8c3a8;  /* muted sage */
+  --text-primary: #f0e7d5;
+  --text-secondary: #a8c3a8;
 
-  --accent: #1f73c2;          /* bright marine */
-  --accent-strong: #8fc7ff;   /* soft marine highlight */
+  --accent: #1f73c2;
+  --accent-strong: #8fc7ff;
 
   --border: rgba(240, 231, 213, 0.12);
   --shadow: rgba(0, 31, 39, 0.42);
 
-  --alt-bg: #003A35;
+  --alt-bg: #003a35;
   --alt-text: #f0e7d5;
-  --alt-text-muted: #a8c3a8; 
+  --alt-text-muted: #a8c3a8;
+
+  /* Cool blue glass cursor */
+  --cursor-main: rgba(143, 199, 255, 0.18);
+  --cursor-border: rgba(143, 199, 255, 0.38);
+  --cursor-shadow: rgba(31, 115, 194, 0.34);
+  --cursor-dot: rgba(240, 231, 213, 0.95);
+
+  --cursor-glow-inner: rgba(143, 199, 255, 0.7);
+  --cursor-glow-middle: rgba(31, 115, 194, 0.22);
+
+  --cursor-nav-inner: rgba(143, 199, 255, 0.68);
+  --cursor-nav-middle: rgba(113, 154, 115, 0.4);
 }
 
 html {
@@ -124,31 +171,34 @@ a:not([class]) {
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
-  
+
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
+
   --color-card: var(--bg-secondary);
   --color-card-foreground: var(--text-primary);
+
   --color-popover: var(--bg-secondary);
   --color-popover-foreground: var(--text-primary);
+
   --color-primary: var(--text-primary);
   --color-primary-foreground: var(--bg-primary);
+
   --color-secondary: var(--bg-secondary);
   --color-secondary-foreground: var(--text-primary);
+
   --color-muted: var(--bg-tertiary);
   --color-muted-foreground: var(--text-secondary);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--bg-primary);
+
   --color-border: var(--border);
   --color-input: var(--border);
   --color-ring: var(--accent);
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   *,
   *::before,
   *::after {
@@ -157,19 +207,22 @@ a:not([class]) {
 
   * {
     margin: 0;
-  }  
+    @apply border-border;
+  }
 
   body {
     @apply bg-background text-foreground;
   }
 
-  @media (min-width: 768px) {
-    body {
-      cursor: none;
-    }
-  
+  @media (min-width: 768px) and (pointer: fine) {
+    body,
     a,
-    button {
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary {
       cursor: none;
     }
   }
