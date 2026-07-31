@@ -59,59 +59,346 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "reading-list-app",
-    title: "Reading List App",
+    slug: "aurem",
+    title: "Aurem",
     short:
-      "This project is a book/reading list app that allows users to track their reading progress, create personalized reading lists, and discover new books based on their interests. The app features a clean and intuitive interface, making it easy for users to manage their reading habits and explore a wide range of book recommendations.",
-    cover: "/images/readingList/hero.png",
+      "As someone who's rarely seen without a ton of jewelry, creating my own luxury brand playground felt like the perfect opportunity to combine branding, storytelling and frontend development.",
+  
+    cover: "/images/aurem/responsive.png",
+  
     hero: {
       type: "image",
-      src: "/images/readingList/read_dark.png",
-      alt: "Reading List App",
+      src: "/images/aurem/hero.png",
+      alt: "Aurem jewelry website",
     },
-    category: "coding",
-    tags: ["TagA", "TagB"],
+  
+    category: "design",
+  
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Branding",
+      "Art Direction",
+      "AI Imagery",
+    ],
+  
     meta: {
-      role: "Role",
-      year: "2023",
-      duration: "3 months",
-      team: "Team Alpha",
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      duration: "1 week",
+      team: "Solo",
+    },
+  
+    links: [],
+  
+    blocks: [
+      {
+        type: "text",
+        title: "Why Aurem?",
+        body:
+          "I've always loved jewelry—not just as an accessory, but as something that tells a story and becomes part of someone's identity. I wanted to challenge myself to build an entire luxury brand from nothing more than a blank canvas. Instead of starting with a homepage, I started with a vision: creating a world that felt elegant, timeless and cohesive in every detail.",
+      },
+  
+      {
+        type: "text",
+        title: "Building a Brand, Not Just a Website",
+        body:
+          "Before designing a single interface, I explored the brand itself. From typography, color palettes and product presentation to campaign concepts and visual storytelling, every creative decision was made with the overall identity in mind. The final website became a natural extension of that brand—designed to feel premium, immersive and consistent across every touchpoint.",
+      },
+  
+      {
+        type: "metrics",
+        title: "My Contribution",
+        items: [
+          {
+            label: "Brand Strategy & Art Direction",
+            value:
+              "Developed the complete visual identity, creative direction, typography, color palette and campaign concept.",
+          },
+          {
+            label: "UX/UI Design",
+            value:
+              "Designed responsive ecommerce experiences focused on storytelling, product discovery and a premium shopping journey.",
+          },
+          {
+            label: "Frontend Development",
+            value:
+              "Built the website with reusable components using Next.js, TypeScript and Tailwind CSS with a focus on performance and accessibility.",
+          },
+        ],
+      },
+  
+      {
+        type: "bullets",
+        title: "Project Highlights",
+        items: [
+          "Developed an entire luxury jewelry brand from scratch.",
+          "Created the visual identity before designing the website.",
+          "Directed and generated AI campaign imagery based on custom moodboards and art direction.",
+          "Designed responsive collection and product detail experiences.",
+          "Built reusable frontend components with Next.js and Tailwind CSS.",
+          "Focused on storytelling to create a premium ecommerce experience rather than a traditional online shop.",
+        ],
+      },
+  
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Figma",
+          "AI Image Generation",
+        ],
+      },
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/aurem/hero.png",
+            alt: "Aurem hero",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/responsive2.png",
+            alt: "Responsive mockups",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/collection.png",
+            alt: "Collection page",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/collection2.png",
+            alt: "Collection overview",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/pdp1.png",
+            alt: "Product detail page",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/pdp2.png",
+            alt: "Product detail page detail",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/explore.png",
+            alt: "Explore section",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/featured.png",
+            alt: "Featured products",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/campaign.png",
+            alt: "Campaign artwork",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/aurem/editorialSplit.png",
+            alt: "Editorial split layout",
+          },
+        ],
+      },
+    ],
+  
+    size: "big",
+  },
+  {
+    slug: "eightsquared",
+    title: "Eightsquared",
+    short:
+      "A modern responsive website for an AI company with a clean, minimal and technical visual direction.",
+    cover: "/images/e2/e2_hero.png",
+    hero: {
+      type: "image",
+      src: "/images/e2/e2_hero.png",
+      alt: "Eightsquared hero",
+    },
+    category: "design",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Responsive Design",
+      "Dark Mode",
+      "UI Design",
+    ],
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      duration: "2 weeks",
+      team: "Solo",
     },
     links: [
-      { label: "Live App", href: "https://example.com", kind: "live" },
-      { label: "GitHub", href: "https://example.com", kind: "repo" },
+      {
+        label: "Live Demo",
+        href: "https://eightsquared.vercel.app",
+        kind: "live",
+      },
+      // Add the correct repository link once it is ready.
+      // {
+      //   label: "GitHub Repository",
+      //   href: "https://...",
+      //   kind: "repo",
+      // },
     ],
     blocks: [
       {
         type: "text",
-        title: "Introduction",
-        body: "Detailed introduction of project four.",
+        title: "Making AI Feel Clear, Not Cold",
+        body:
+          "The project explores how an AI company can feel innovative and technically credible without relying on an overly cold or generic visual language.",
+      },
+      {
+        type: "text",
+        title: "Goal",
+        body:
+          "Create a responsive company website that presents services, work and brand positioning through a clean, minimal and distinctly technical aesthetic.",
+      },
+      {
+        type: "bullets",
+        title: "Highlights",
+        items: [
+          "Responsive layouts for desktop, tablet and mobile",
+          "Coordinated light and dark themes",
+          "Reusable component system",
+          "Clear visual hierarchy for technical content",
+          "Brand identity and digital design direction",
+        ],
+      },
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: ["Next.js", "TypeScript", "Tailwind CSS", "Figma"],
+      },
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/e2/e2_components.png",
+            alt: "Component overview",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_lightanddark.png",
+            alt: "Light and dark mode",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_desktop_dark.png",
+            alt: "Desktop dark mode",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_responsive.png",
+            alt: "Responsive layouts",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_brandIdentity.png",
+            alt: "Brand identity",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_showcase.png",
+            alt: "Website showcase",
+            span: "full",
+          },
+        ],
+      },
+    ],
+    size: "normal",
+  },
+  {
+    slug: "reading-list-app",
+    title: "Reading App",
+    short:
+      "A mobile reading companion for tracking progress, organizing books and building personal reading lists.",
+    cover: "/images/readingList/hero.png",
+    hero: {
+      type: "image",
+      src: "/images/readingList/read_dark.png",
+      alt: "Reading app in dark mode",
+    },
+    category: "coding",
+    tags: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Supabase",
+      "Google Books API",
+      "Mobile UX",
+    ],
+    meta: {
+      role: "Product Designer & App Developer",
+      year: "2026",
+      team: "Solo",
+    },
+    links: [
+      // Add live, app store or repository links once they are ready.
+      // {
+      //   label: "GitHub Repository",
+      //   href: "https://...",
+      //   kind: "repo",
+      // },
+    ],
+    blocks: [
+      {
+        type: "text",
+        title: "A Reading App That Feels Like Yours",
+        body:
+          "As someone who loves books, I wanted to create a reading app that felt less like a database and more like a personal reading space — somewhere to collect stories, track progress and organize the books that matter to you.",
+      },
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "The app allows users to manage a personal library, track reading progress, create custom lists and discover books in one mobile experience.",
       },
       {
         type: "bullets",
         title: "Main Features",
         items: [
-          "Save all your books in one place",
-          "Make Lists to organize your reading",
-          "Switch Theme to your liking (6 different themes)",
-          "Connect with friends to see their reading lists and share recommendations",
+          "Save and organize books in a personal library",
+          "Track reading status and progress",
+          "Create personalized reading lists",
+          "Switch between six visual themes",
+          "Discover books through the Google Books API",
+          "Connect with friends and share reading inspiration",
         ],
       },
       {
         type: "stack",
-        title: "Used Technologies",
+        title: "Tech & Tools",
         items: [
           "React Native",
+          "Expo",
+          "TypeScript",
+          "Supabase",
+          "Google Books API",
           "iOS",
           "Android",
-          "XCode",
-          "Supabase",
-          "GoogleBooksAPI",
         ],
       },
       {
         type: "gallery",
-        title: "Project Images",
+        title: "Selected Screens",
         items: [
           {
             type: "image",
@@ -145,56 +432,285 @@ export const projects: Project[] = [
     size: "big",
   },
   {
+    slug: "lunara",
+    title: "Lunara",
+    short:
+      "An editorial skincare concept focused on premium product presentation and calm visual storytelling.",
+    cover: "/images/lunara/lunara_title.png",
+    hero: {
+      type: "image",
+      src: "/images/lunara/lunara_hero.png",
+      alt: "Lunara skincare hero",
+    },
+    category: "design",
+    tags: [
+      "Brand Design",
+      "UI Design",
+      "React",
+      "TypeScript",
+      "Responsive Design",
+      "Editorial",
+    ],
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2025",
+      duration: "1 week",
+      team: "Solo",
+    },
+    links: [
+      // Add the real links once they are ready.
+      // {
+      //   label: "Figma",
+      //   href: "https://...",
+      //   kind: "figma",
+      // },
+      // {
+      //   label: "GitHub Repository",
+      //   href: "https://...",
+      //   kind: "repo",
+      // },
+    ],
+    blocks: [
+      {
+        type: "text",
+        title: "Skincare, Told Like an Editorial",
+        body:
+          "Lunara explores how a skincare brand can feel informative, calm and premium without becoming overly clinical or decorative.",
+      },
+      {
+        type: "text",
+        title: "Concept",
+        body:
+          "A minimal editorial layout centered on typography, spacing and strong product storytelling.",
+      },
+      {
+        type: "metrics",
+        title: "Design Focus",
+        items: [
+          {
+            label: "Visual Tone",
+            value: "Premium, calm and editorial",
+          },
+          {
+            label: "Structure",
+            value: "Reusable component-based sections",
+          },
+        ],
+      },
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: ["React", "TypeScript", "Tailwind CSS", "Figma"],
+      },
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/lunara/lunara_mobile1.png",
+            alt: "Lunara mobile experience",
+          },
+          {
+            type: "image",
+            src: "/images/lunara/lunara_packages.png",
+            alt: "Lunara product packaging",
+          },
+          {
+            type: "image",
+            src: "/images/lunara/lunara_single.png",
+            alt: "Lunara single product view",
+          },
+          {
+            type: "image",
+            src: "/images/lunara-overview.png",
+            alt: "Lunara website overview",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/lunara-divider.png",
+            alt: "Lunara editorial divider",
+          },
+          {
+            type: "image",
+            src: "/images/lunara-teaser.png",
+            alt: "Lunara campaign teaser",
+          },
+          {
+            type: "image",
+            src: "/images/lunara/lunara_magazine.png",
+            alt: "Lunara magazine-inspired layout",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/lunara/lunara_brandIdentity.png",
+            alt: "Lunara brand identity",
+          },
+        ],
+      },
+    ],
+    size: "tall",
+  },
+  {
+    slug: "merle-and-lasse",
+    title: "Merle & Lasse",
+    short:
+      "A multilingual wedding website that brings practical guest information into a warm and personal digital experience.",
+    cover: "/images/m&l/invitations.jpg",
+    hero: {
+      type: "image",
+      src: "/images/m&l/cover.png",
+      alt: "Merle and Lasse wedding website",
+    },
+    category: "design",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "next-intl",
+      "Responsive Design",
+      "UI Design",
+    ],
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      team: "Solo",
+    },
+    links: [
+      // Add the live website or repository when it is ready to be public.
+      // {
+      //   label: "Live Website",
+      //   href: "https://...",
+      //   kind: "live",
+      // },
+    ],
+    blocks: [
+      {
+        type: "text",
+        title: "More Personal Than a Printed Invitation",
+        body:
+          "The goal was to create more than a practical information page. The website should feel like an extension of the wedding itself — warm, elegant and personal, while still helping guests find every important detail quickly.",
+      },
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "The website combines the couple's story, schedule, gallery, location details, accommodation information, FAQs and an RSVP flow in one responsive experience.",
+      },
+      {
+        type: "bullets",
+        title: "Highlights",
+        items: [
+          "Custom visual language based on the wedding stationery",
+          "Responsive guest experience for mobile and desktop",
+          "Multilingual content in German, English and Danish",
+          "Structured schedule, travel and accommodation information",
+          "Digital RSVP experience",
+          "Custom illustrations, ornaments and typography",
+        ],
+      },
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "next-intl",
+          "Figma",
+        ],
+      },
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/m&l/cover.png",
+            alt: "Wedding website homepage",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/invitations.jpg",
+            alt: "Wedding invitation and visual identity",
+          },
+        ],
+      },
+    ],
+    size: "normal",
+  },
+  {
     slug: "netflix-rebuild",
     title: "Netflix Rebuild",
-    short: "Netflix-inspired UI with search, trailers & a personal list.",
+    short:
+      "A Netflix-inspired browsing experience with responsive discovery, trailers, search and a personal watchlist.",
     cover: "/images/netflix.jpg",
     hero: {
       type: "image",
       src: "/images/netflix/Netflix_mockup_responsive.png",
-      alt: "Homepage",
+      alt: "Netflix-inspired responsive interface",
     },
     category: "coding",
-    tags: ["Next.js", "React", "TypeScript", "Framer Motion", "TMDB"],
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Framer Motion",
+      "TMDB API",
+      "Responsive Design",
+    ],
     meta: {
-      role: "Frontend",
+      role: "Frontend Developer",
       year: "2026",
       duration: "2 weeks",
       team: "Solo",
     },
     links: [
       {
-        label: "Live Demo",
-        href: "https://your-demo-url.com",
-        kind: "live",
-      },
-      {
-        label: "GitHub Repo",
+        label: "GitHub Repository",
         href: "https://github.com/leonajosephine/netflix-inspired",
         kind: "repo",
       },
+      // Add the live URL once the project is deployed.
+      // {
+      //   label: "Live Demo",
+      //   href: "https://...",
+      //   kind: "live",
+      // },
     ],
     blocks: [
       {
         type: "text",
+        title: "Rebuilding a Familiar Experience",
+        body:
+          "This project started as a frontend challenge: recreate the feeling of a familiar streaming platform while focusing on responsive behavior, interaction details and dynamic movie data.",
+      },
+      {
+        type: "text",
         title: "Goal",
-        body: "Rebuild a Netflix-like browsing experience with modern transitions and fast navigation.",
+        body:
+          "Build a Netflix-inspired browsing experience with modern transitions, responsive navigation and dynamic content from the TMDB API.",
       },
       {
         type: "bullets",
         title: "Highlights",
         items: [
-          "Trailer modal via TMDB /videos",
-          "Search experience with responsive results grid",
-          "My List stored in localStorage",
+          "Trailer modal powered by the TMDB API",
+          "Responsive search experience and results grid",
+          "Personal watchlist stored in localStorage",
           "Keyboard-friendly interactions",
+          "Reusable movie rows and detail views",
         ],
       },
       {
         type: "stack",
         title: "Tech Stack",
         items: [
-          "Next.js (App Router)",
+          "Next.js",
+          "React",
           "TypeScript",
           "Framer Motion",
           "TMDB API",
@@ -202,7 +718,7 @@ export const projects: Project[] = [
       },
       {
         type: "gallery",
-        title: "Screens / Interactions",
+        title: "Screens & Interactions",
         items: [
           {
             type: "video",
@@ -224,106 +740,13 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/netflix_movierow_trends.png",
-            alt: "Trends row design",
+            alt: "Trending movie row",
           },
           {
             type: "image",
             src: "/images/netflix_moviemodal.png",
-            alt: "Movie detail page",
+            alt: "Movie detail modal",
             span: "full",
-          },
-        ],
-      },
-    ],
-    size: "wide",
-  },
-  {
-    slug: "skincare-brand-site",
-    title: "Skincare Brand Website",
-    short: "Ultra clean product/brand website with editorial visuals.",
-    cover: "/images/lunara/lunara_title.png",
-    hero: {
-      type: "image",
-      src: "/images/lunara/lunara_hero.png",
-      alt: "Skincare hero",
-    },
-    category: "design",
-    tags: ["Design", "React", "UI", "Brand", "Responsive", "Mobile-First"],
-    meta: {
-      role: "UI/Frontend",
-      year: "2025",
-      duration: "1 week",
-      team: "Solo",
-    },
-    links: [
-      {
-        label: "Case Study",
-        href: "https://your-site.com/case/skincare",
-        kind: "case",
-      },
-      { label: "Figma", href: "https://figma.com/...", kind: "figma" },
-      {
-        label: "Repo",
-        href: "https://github.com/leonajosephine/lunara-skin",
-        kind: "repo",
-      },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "Concept",
-        body: "A minimal editorial layout focusing on typography, spacing and strong product storytelling.",
-      },
-      {
-        type: "metrics",
-        title: "Outcome",
-        items: [
-          { label: "Focus", value: "Premium, clean aesthetic" },
-          { label: "Structure", value: "Component-based sections" },
-        ],
-      },
-      {
-        type: "stack",
-        title: "Technologies Used",
-        items: ["React", "TypeScript", "Tailwind CSS"],
-      },
-      {
-        type: "gallery",
-        title: "Mockups",
-        items: [
-          {
-            type: "image",
-            src: "/images/lunara/lunara_mobile1.png",
-          },
-          {
-            type: "image",
-            src: "/images/lunara/lunara_packages.png",
-          },
-          {
-            type: "image",
-            src: "/images/lunara/lunara_single.png",
-          },
-          {
-            type: "image",
-            src: "/images/lunara-overview.png",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/lunara-divider.png",
-          },
-          {
-            type: "image",
-            src: "/images/lunara-teaser.png",
-          },
-          {
-            type: "image",
-            src: "/images/lunara/lunara_magazine.png",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/lunara/lunara_brandIdentity.png",
           },
         ],
       },
@@ -331,41 +754,139 @@ export const projects: Project[] = [
     size: "tall",
   },
   {
+    slug: "apple-vision-pro",
+    title: "Apple Vision Pro",
+    short:
+      "A spatial computing exploration focused on immersive interaction, 3D content and native visionOS development.",
+    cover: "/images/metallic.png",
+    hero: {
+      type: "image",
+      src: "/images/metallic.png",
+      alt: "Apple Vision Pro spatial experience",
+    },
+    category: "3d",
+    tags: [
+      "visionOS",
+      "Swift",
+      "SwiftUI",
+      "RealityKit",
+      "Spatial Design",
+      "3D",
+    ],
+    meta: {
+      role: "Creative Developer",
+      year: "2024",
+      team: "Team Project",
+    },
+    links: [
+      // Add a video, case study or repository if it can be shared publicly.
+      // {
+      //   label: "Project Video",
+      //   href: "https://...",
+      //   kind: "video",
+      // },
+    ],
+    blocks: [
+      {
+        type: "text",
+        title: "Designing Beyond the Screen",
+        body:
+          "This project explored what changes when an interface is no longer limited to a flat screen. The focus was on spatial interaction, immersive content and native development for Apple Vision Pro.",
+      },
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "The experience combined SwiftUI interfaces with spatial and 3D elements created with RealityKit.",
+      },
+      {
+        type: "bullets",
+        title: "Focus Areas",
+        items: [
+          "Native visionOS interface development",
+          "Spatial layout and interaction patterns",
+          "Integration of 3D content with RealityKit",
+          "Experimentation with depth, scale and immersion",
+          "Adapting familiar UI principles to a spatial environment",
+        ],
+      },
+      {
+        type: "stack",
+        title: "Tech Stack",
+        items: ["Swift", "SwiftUI", "RealityKit", "visionOS", "Xcode"],
+      },
+      {
+        type: "gallery",
+        title: "Project Preview",
+        items: [
+          {
+            type: "image",
+            src: "/images/metallic.png",
+            alt: "Apple Vision Pro project preview",
+            span: "full",
+          },
+        ],
+      },
+    ],
+    size: "wide",
+  },
+
+  // ---------------------------------------------------------------------------
+  // TEMPORARILY HIDDEN PROJECTS
+  // Keep these objects inside the file so they can be reactivated later.
+  // ---------------------------------------------------------------------------
+
+  /*
+  {
     slug: "to-do-list",
-    title: "To do List App",
-    short: "Description for project three.",
+    title: "To-do List App",
+    short: "A customizable task board for organizing projects and daily work.",
     cover: "/images/toDo/cover.png",
     hero: {
       type: "image",
       src: "/images/toDo/overview.png",
-      alt: "Project three hero",
+      alt: "To-do list app overview",
     },
     category: "coding",
-    tags: ["Tag1", "Tag2"],
+    tags: ["React", "TypeScript", "Tailwind CSS"],
     meta: {
-      role: "Role",
+      role: "Frontend Developer",
       year: "2024",
       duration: "3 weeks",
-      team: "Team Name",
+      team: "Solo",
     },
     links: [
-      { label: "Live Site", href: "https://example.com", kind: "live" },
-      { label: "Repository", href: "https://example.com", kind: "repo" },
+      // {
+      //   label: "Live Demo",
+      //   href: "https://...",
+      //   kind: "live",
+      // },
+      // {
+      //   label: "GitHub Repository",
+      //   href: "https://...",
+      //   kind: "repo",
+      // },
     ],
     blocks: [
       {
         type: "text",
         title: "Overview",
-        body: "Detailed overview of project three.",
+        body:
+          "A task management interface with customizable boards, filtering and visual organization options.",
       },
       {
         type: "bullets",
         title: "Key Features",
-        items: ["Feature one", "Feature two", "Feature three"],
+        items: [
+          "Create and manage task boards",
+          "Add new boards and tasks",
+          "Filter tasks",
+          "Customize the visual background",
+        ],
       },
       {
         type: "stack",
-        title: "Technologies Used",
+        title: "Tech Stack",
         items: ["React", "TypeScript", "Tailwind CSS"],
       },
       {
@@ -403,43 +924,34 @@ export const projects: Project[] = [
     ],
     size: "normal",
   },
+  */
+
+  /*
   {
     slug: "mini-game",
-    title: "Mini Game Test",
-    short: "Description for project four.",
+    title: "Mini Game",
+    short:
+      "A small interactive game project that is currently being prepared for the portfolio.",
     cover: "/images/collage.jpg",
     hero: {
       type: "image",
       src: "/images/collage.jpg",
-      alt: "Project four hero",
+      alt: "Mini game project",
     },
     category: "coding",
-    tags: ["TagA", "TagB"],
+    tags: [],
     meta: {
-      role: "Role",
+      role: "Developer",
       year: "2023",
-      duration: "4 weeks",
-      team: "Team Alpha",
+      team: "Solo",
     },
-    links: [
-      { label: "Live Demo", href: "https://example.com", kind: "live" },
-      { label: "GitHub", href: "https://example.com", kind: "repo" },
-    ],
+    links: [],
     blocks: [
       {
         type: "text",
-        title: "Introduction",
-        body: "Detailed introduction of project four.",
-      },
-      {
-        type: "bullets",
-        title: "Main Features",
-        items: ["Feature A", "Feature B", "Feature C"],
-      },
-      {
-        type: "stack",
-        title: "Used Technologies",
-        items: ["TechA", "TechB", "TechC"],
+        title: "Overview",
+        body:
+          "This project is currently hidden until its content, visuals and final case study are ready.",
       },
       {
         type: "gallery",
@@ -448,292 +960,46 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/websiteshop.jpeg",
-            alt: "Image one",
+            alt: "Mini game preview",
           },
           {
             type: "image",
             src: "/images/websiteshop.jpeg",
-            alt: "Image two",
+            alt: "Mini game detail",
           },
         ],
       },
     ],
     size: "normal",
   },
+  */
+
+  /*
   {
-    slug: "apple-vision-app",
-    title: "Apple Vision pro VR app",
-    short: "Description for project three.",
-    cover: "/images/metallic.png",
-    hero: {
-      type: "image",
-      src: "/images/metallic.png",
-      alt: "Project three hero",
-    },
-    category: "3d",
-    tags: ["Tag1", "Tag2"],
-    meta: {
-      role: "Role",
-      year: "2024",
-      duration: "3 weeks",
-      team: "Team Name",
-    },
-    links: [
-      { label: "Live Site", href: "https://example.com", kind: "live" },
-      { label: "Repository", href: "https://example.com", kind: "repo" },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "Overview",
-        body: "Detailed overview of project three.",
-      },
-      {
-        type: "bullets",
-        title: "Key Features",
-        items: ["Feature one", "Feature two", "Feature three"],
-      },
-      {
-        type: "stack",
-        title: "Technologies Used",
-        items: ["Tech1", "Tech2", "Tech3"],
-      },
-      {
-        type: "gallery",
-        title: "Project Screenshots",
-        items: [
-          {
-            type: "image",
-            src: "/images/metallic.png",
-            alt: "Screenshot one",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/metallic.png",
-            alt: "Screenshot two",
-          },
-        ],
-      },
-    ],
-    size: "normal",
-  },
-  {
-    slug: "wedding",
-    title: "Wedding Website",
-    short: "Netflix-inspired UI with search, trailers & a personal list.",
-    cover: "/images/m&l/invitations.jpg",
-    hero: {
-      type: "image",
-      src: "/images/m&l/cover.png",
-      alt: "Homepage",
-    },
-    category: "design",
-    tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
-    meta: {
-      role: "Frontend",
-      year: "2026",
-      duration: "2 weeks",
-      team: "Solo",
-    },
-    links: [
-      {
-        label: "Live Demo",
-        href: "https://your-demo-url.com",
-        kind: "live",
-      },
-      {
-        label: "GitHub Repo",
-        href: "https://github.com/leonajosephine/netflix-inspired",
-        kind: "repo",
-      },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "Goal",
-        body: "Rebuild a Netflix-like browsing experience with modern transitions and fast navigation.",
-      },
-      {
-        type: "bullets",
-        title: "Highlights",
-        items: [
-          "Trailer modal via TMDB /videos",
-          "Search experience with responsive results grid",
-          "My List stored in localStorage",
-          "Keyboard-friendly interactions",
-        ],
-      },
-      {
-        type: "stack",
-        title: "Tech Stack",
-        items: [
-          "Next.js (App Router)",
-          "TypeScript",
-          "Framer Motion",
-          "TMDB API",
-        ],
-      },
-      {
-        type: "gallery",
-        title: "Screens / Interactions",
-        items: [
-          {
-            type: "image",
-            src: "/images/netflix_overview.png",
-            alt: "Homepage",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/netflix_movierow_trends.png",
-            alt: "Trends row design",
-          },
-          {
-            type: "image",
-            src: "/images/netflix_moviemodal.png",
-            alt: "Movie detail page",
-          },
-        ],
-      },
-    ],
-    size: "tall",
-  },
-  {
-    slug: "eightsquared",
-    title: "Eightsquared Website",
+    slug: "design-website",
+    title: "Design Website & Art Direction",
     short:
-      "Modern responsive website for an AI Company, showcasing their portfolio and services with a clean, minimalist but also techy aesthetic.",
-    cover: "/images/e2/e2_hero.png",
-    hero: {
-      type: "image",
-      src: "/images/e2/e2_hero.png",
-      alt: "Eightsquared hero",
-    },
-    category: "design",
-    tags: ["Next.js", "TypeScript", "Framer Motion", "TMDB"],
-    meta: {
-      role: "Frontend",
-      year: "2026",
-      duration: "2 weeks",
-      team: "Solo",
-    },
-    links: [
-      {
-        label: "Live Demo",
-        href: "https://eightsquared.vercel.app",
-        kind: "live",
-      },
-      {
-        label: "GitHub Repo",
-        href: "https://github.com/leonajosephine/netflix-inspired",
-        kind: "repo",
-      },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "Goal",
-        body: "Rebuild a Netflix-like browsing experience with modern transitions and fast navigation.",
-      },
-      {
-        type: "bullets",
-        title: "Highlights",
-        items: [
-          "Trailer modal via TMDB /videos",
-          "Search experience with responsive results grid",
-          "My List stored in localStorage",
-          "Keyboard-friendly interactions",
-        ],
-      },
-      {
-        type: "stack",
-        title: "Tech Stack",
-        items: [
-          "Next.js (App Router)",
-          "TypeScript",
-          "Framer Motion",
-          "TMDB API",
-        ],
-      },
-      {
-        type: "gallery",
-        title: "Screens / Interactions",
-        items: [
-          {
-            type: "image",
-            src: "/images/e2/e2_components.png",
-            alt: "Component overview",
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_lightanddark.png",
-            alt: "Light and dark mode",
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_desktop_dark.png",
-            alt: "Desktop dark mode",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_responsive.png",
-            alt: "Responsive layouts",
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_brandIdentity.png",
-            alt: "Brand identity",
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_showcase.png",
-            alt: "Website showcase",
-            span: "full",
-          },
-        ],
-      },
-    ],
-    size: "big",
-  },
-  {
-    slug: "new",
-    title: "Design Website & art direction",
-    short: "Description for project three.",
+      "A design-led website concept that is currently being prepared for the portfolio.",
     cover: "/images/toDo/cover.png",
     hero: {
       type: "image",
       src: "/images/toDo/overview.png",
-      alt: "Project three hero",
+      alt: "Design website concept",
     },
-    category: "coding",
-    tags: ["Tag1", "Tag2"],
+    category: "design",
+    tags: [],
     meta: {
-      role: "Role",
+      role: "Designer & Developer",
       year: "2024",
-      duration: "3 weeks",
-      team: "Team Name",
+      team: "Solo",
     },
-    links: [
-      { label: "Live Site", href: "https://example.com", kind: "live" },
-      { label: "Repository", href: "https://example.com", kind: "repo" },
-    ],
+    links: [],
     blocks: [
       {
         type: "text",
         title: "Overview",
-        body: "Detailed overview of project three.",
-      },
-      {
-        type: "bullets",
-        title: "Key Features",
-        items: ["Feature one", "Feature two", "Feature three"],
-      },
-      {
-        type: "stack",
-        title: "Technologies Used",
-        items: ["React", "TypeScript", "Tailwind CSS"],
+        body:
+          "This project is currently hidden until its design, imagery and case study are ready.",
       },
       {
         type: "gallery",
@@ -742,71 +1008,62 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/toDo/macBook.png",
-            alt: "Screenshot one",
+            alt: "Desktop mockup",
             span: "full",
           },
           {
             type: "image",
             src: "/images/toDo/Board.png",
-            alt: "Screenshot two",
+            alt: "Website screen",
           },
           {
             type: "image",
             src: "/images/toDo/addBoard.png",
-            alt: "Screenshot three",
+            alt: "Website detail",
           },
           {
             type: "image",
             src: "/images/toDo/bg.png",
-            alt: "Screenshot four",
+            alt: "Visual concept",
           },
           {
             type: "image",
             src: "/images/toDo/filter.png",
-            alt: "Screenshot five",
+            alt: "Interface detail",
           },
         ],
       },
     ],
     size: "normal",
   },
+  */
+
+  /*
   {
-    slug: "new-2",
-    title: "grafik design website with heavy design and art direction focus",
-    short: "Description for project three.",
+    slug: "graphic-design-website",
+    title: "Graphic Design Website",
+    short:
+      "A visually expressive website concept with a strong graphic design and art direction focus.",
     cover: "/images/websiteshop.jpeg",
     hero: {
       type: "image",
       src: "/images/toDo/overview.png",
-      alt: "Project three hero",
+      alt: "Graphic design website concept",
     },
-    category: "coding",
-    tags: ["Tag1", "Tag2"],
+    category: "design",
+    tags: [],
     meta: {
-      role: "Role",
+      role: "Designer & Developer",
       year: "2024",
-      duration: "3 weeks",
-      team: "Team Name",
+      team: "Solo",
     },
-    links: [
-      { label: "Live Site", href: "https://example.com", kind: "live" },
-      { label: "Repository", href: "https://example.com", kind: "repo" },
-    ],
+    links: [],
     blocks: [
       {
         type: "text",
         title: "Overview",
-        body: "Detailed overview of project three.",
-      },
-      {
-        type: "bullets",
-        title: "Key Features",
-        items: ["Feature one", "Feature two", "Feature three"],
-      },
-      {
-        type: "stack",
-        title: "Technologies Used",
-        items: ["React", "TypeScript", "Tailwind CSS"],
+        body:
+          "This project is currently hidden until its visual direction and case study are ready.",
       },
       {
         type: "gallery",
@@ -815,159 +1072,33 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/toDo/macBook.png",
-            alt: "Screenshot one",
+            alt: "Desktop mockup",
             span: "full",
           },
           {
             type: "image",
             src: "/images/toDo/Board.png",
-            alt: "Screenshot two",
+            alt: "Website screen",
           },
           {
             type: "image",
             src: "/images/toDo/addBoard.png",
-            alt: "Screenshot three",
+            alt: "Website detail",
           },
           {
             type: "image",
             src: "/images/toDo/bg.png",
-            alt: "Screenshot four",
+            alt: "Visual concept",
           },
           {
             type: "image",
             src: "/images/toDo/filter.png",
-            alt: "Screenshot five",
+            alt: "Interface detail",
           },
         ],
       },
     ],
     size: "normal",
   },
-  {
-    slug: "aurem",
-    title: "Jewelry Brand Website & Art Direction",
-    short:
-      "This is for Aurem - a jewelry brand that focuses on creating unique and timeless pieces. The website features a clean and elegant design, showcasing the brand's collections and craftsmanship.",
-    cover: "/images/aurem/responsive.png",
-    hero: {
-      type: "image",
-      src: "/images/aurem/hero.png",
-      alt: "Aurem jewelry website",
-    },
-    category: "coding",
-    tags: ["Tag1", "Tag2"],
-    meta: {
-      role: "Role",
-      year: "2026",
-      duration: "1 week",
-      team: "solo",
-    },
-    links: [
-      {
-        label: "Case Study",
-        href: "https://your-site.com/case/aurem",
-        kind: "figma",
-      },
-      { label: "Demo Site", href: "https://example.com", kind: "live" },
-      { label: "Repository", href: "https://example.com", kind: "repo" },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "Overview",
-        body: "This Project is about building a brand from sratch to a finished website. This includes: the branding, UX/UI, creative and art direction, webdevelopment.",
-      },
-      {
-        type: "metrics",
-        title: "Outcome",
-        items: [
-          {
-            label: "UI/UX design & Art direction:",
-            value: "Concept and execution of the visual identity",
-          },
-          {
-            label: "Frontend",
-            value: "Component-based sections",
-          },
-          {
-            label: "Frontend",
-            value: "Component-based sections",
-          },
-        ],
-      },
-      {
-        type: "bullets",
-        title: "Key Features",
-        items: [
-          "• Figma: Branding, UI design, Wireframing",
-          "• Art direction: Concept and execution of the visual identity, including the use of colors, typography, and imagery to create a cohesive and compelling brand experience. This included the creation of a photoshoot concept, moodboard and direction for the photography, as well as the selection of models, styling, and locations to ensure that the final AI genrated images aligned with the brand's vision and resonated with the target audience.",
-          "• Next.js: Development of a responsive website with a focus on performance and accessibility",
-        ],
-      },
-      {
-        type: "stack",
-        title: "Technologies Used",
-        items: ["Next.js", "TypeScript", "Tailwind CSS", "AI"],
-      },
-      {
-        type: "gallery",
-        title: "Project Screenshots",
-        items: [
-          {
-            type: "image",
-            src: "/images/aurem/hero.png",
-            alt: "Aurem hero",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/responsive2.png",
-            alt: "Responsive mockups",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/collection.png",
-            alt: "Collection page",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/collection2.png",
-            alt: "Collection overview",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/pdp1.png",
-            alt: "Product detail page",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/pdp2.png",
-            alt: "Product detail page detail",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/explore.png",
-            alt: "Explore section",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/featured.png",
-            alt: "Featured products",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/campaign.png",
-            alt: "Campaign artwork",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/aurem/editorialSplit.png",
-            alt: "Editorial split layout",
-          },
-        ],
-      },
-    ],
-    size: "big",
-  },
+  */
 ];
