@@ -62,7 +62,7 @@ export const projects: Project[] = [
     slug: "aurem",
     title: "Aurem",
     short:
-      "As someone who's rarely seen without a ton of jewelry, creating my own luxury brand playground felt like the perfect opportunity to combine branding, storytelling and frontend development.",
+      "As someone who's never seen without a ton of jewelry, creating my own luxury brand playground felt like the perfect opportunity to combine branding, storytelling and frontend development.",
   
     cover: "/images/aurem/responsive.png",
   
@@ -97,14 +97,14 @@ export const projects: Project[] = [
         type: "text",
         title: "Why Aurem?",
         body:
-          "I've always loved jewelry—not just as an accessory, but as something that tells a story and becomes part of someone's identity. I wanted to challenge myself to build an entire luxury brand from nothing more than a blank canvas. Instead of starting with a homepage, I started with a vision: creating a world that felt elegant, timeless and cohesive in every detail.",
+          "I've always loved jewelry—not just as an accessory, but as something that tells a story and becomes part of someone's identity. I wanted to challenge myself to build an entire luxury brand from nothing more than a blank canvas. Instead of starting with a homepage, I started with a vision: creating a world that felt special, timeless and cohesive in every detail.",
       },
   
       {
         type: "text",
         title: "Building a Brand, Not Just a Website",
         body:
-          "Before designing a single interface, I explored the brand itself. From typography, color palettes and product presentation to campaign concepts and visual storytelling, every creative decision was made with the overall identity in mind. The final website became a natural extension of that brand—designed to feel premium, immersive and consistent across every touchpoint.",
+          "I started from typography, color palettes and product presentation to campaign concepts and visual storytelling, every creative decision was made with the overall identity in mind. The final website became a natural extension of that brand—designed to feel premium and consistent across every touchpoint.",
       },
   
       {
@@ -240,7 +240,7 @@ export const projects: Project[] = [
       role: "UI Designer & Frontend Developer",
       year: "2026",
       duration: "2 weeks",
-      team: "Solo",
+      team: "Client Project",
     },
     links: [
       {
@@ -329,7 +329,7 @@ export const projects: Project[] = [
     slug: "reading-list-app",
     title: "Reading App",
     short:
-      "A mobile reading companion for tracking progress, organizing books and building personal reading lists.",
+      "Inspired by my love for fantasy books - I designed the reading app I would love to have myself: Part digital bookshelf, part reading journal—the app and themes to choose from.",
     cover: "/images/readingList/hero.png",
     hero: {
       type: "image",
@@ -363,7 +363,7 @@ export const projects: Project[] = [
         type: "text",
         title: "A Reading App That Feels Like Yours",
         body:
-          "As someone who loves books, I wanted to create a reading app that felt less like a database and more like a personal reading space — somewhere to collect stories, track progress and organize the books that matter to you.",
+          "Since I love books, I wanted to create a reading app that felt less like a database and more like a personal reading space — somewhere to collect stories, track progress and organize the books that matter to you.",
       },
       {
         type: "text",
@@ -557,11 +557,11 @@ export const projects: Project[] = [
     slug: "merle-and-lasse",
     title: "Merle & Lasse",
     short:
-      "A multilingual wedding website that brings practical guest information into a warm and personal digital experience.",
+      "When one of your best friends asks you to do their wedding website - of course the answer is yes! This was the perfect opportunity to create something special for the two of them.",
     cover: "/images/m&l/invitations.jpg",
     hero: {
       type: "image",
-      src: "/images/m&l/cover.png",
+      src: "/images/m&l/letter1.png",
       alt: "Merle and Lasse wedding website",
     },
     category: "design",
@@ -595,9 +595,9 @@ export const projects: Project[] = [
       },
       {
         type: "text",
-        title: "Overview",
+        title: "A digital invitation",
         body:
-          "The website combines the couple's story, schedule, gallery, location details, accommodation information, FAQs and an RSVP flow in one responsive experience.",
+          "The multilingual website combines the couple's story, schedule, gallery, location details, accommodation information, FAQs and an RSVP flow in one responsive experience.",
       },
       {
         type: "bullets",
@@ -628,13 +628,43 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
-            src: "/images/m&l/cover.png",
+            src: "/images/m&l/letter2.png",
             alt: "Wedding website homepage",
             span: "full",
           },
           {
             type: "image",
-            src: "/images/m&l/invitations.jpg",
+            src: "/images/m&l/letterDetail.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/stage.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/timetable.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/rsvp.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/countdown.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/dresscode.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/footer.png",
             alt: "Wedding invitation and visual identity",
           },
         ],
@@ -646,7 +676,7 @@ export const projects: Project[] = [
     slug: "netflix-rebuild",
     title: "Netflix Rebuild",
     short:
-      "A Netflix-inspired browsing experience with responsive discovery, trailers, search and a personal watchlist.",
+      "A Netflix-inspired browsing experience with responsive discovery, trailers, search and a personal watchlist. This was my way of studying one of the most polished streaming experiences—and understanding the tiny interaction details behind it.",
     cover: "/images/netflix.jpg",
     hero: {
       type: "image",
