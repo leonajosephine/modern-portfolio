@@ -104,7 +104,7 @@ export default function About() {
           className="mx-auto max-w-[980px] text-center"
         >
           <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.26em] text-muted-foreground sm:text-[0.72rem]">
-            About me
+            Skills
           </p>
 
           <h2 className="mx-auto mt-3 max-w-[820px] text-[clamp(2.8rem,14vw,8rem)] font-medium uppercase leading-[0.86] tracking-[-0.075em] text-foreground sm:mt-5">
@@ -118,13 +118,13 @@ export default function About() {
           </p>
 
           <div className="mt-6 flex items-center justify-center gap-2.5 sm:mt-8 sm:gap-3">
-            <Button
+            {/*<Button
               variant="secondary"
               size="lg"
               className="h-10 rounded-full px-4 text-xs sm:h-11 sm:px-6 sm:text-sm"
             >
               Download CV
-            </Button>
+            </Button>*/}
 
             <a href="#portfolio">
               <Button

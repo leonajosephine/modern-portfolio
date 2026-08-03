@@ -785,13 +785,13 @@ export const projects: Project[] = [
   },
   {
     slug: "apple-vision-pro",
-    title: "Apple Vision Pro",
+    title: "Apple Vision Pro Interior App",
     short:
-      "A spatial computing exploration focused on immersive interaction, 3D content and native visionOS development.",
-    cover: "/images/metallic.png",
+      "Exploring the future of spatial computing with immersive interactions, 3D content, and native visionOS development.",
+    cover: "/images/avp/pink.webp",
     hero: {
       type: "image",
-      src: "/images/metallic.png",
+      src: "/images/avp/vision3.png",
       alt: "Apple Vision Pro spatial experience",
     },
     category: "3d",
@@ -821,22 +821,22 @@ export const projects: Project[] = [
         type: "text",
         title: "Designing Beyond the Screen",
         body:
-          "This project explored what changes when an interface is no longer limited to a flat screen. The focus was on spatial interaction, immersive content and native development for Apple Vision Pro.",
+          "This project was an exciting opportunity to explore what happens when interfaces break free from the limits of a flat screen. With the Apple Vision Pro, I dove into the world of spatial computing, where depth, scale, and immersion redefine how we interact with digital content. The goal was to create experiences that feel intuitive, engaging, and completely natural in a 3D environment.",
       },
       {
         type: "text",
         title: "Overview",
         body:
-          "The experience combined SwiftUI interfaces with spatial and 3D elements created with RealityKit.",
+          "The project combined SwiftUI for native visionOS interfaces with RealityKit to bring 3D elements to life. It was all about experimenting with spatial layouts, immersive interactions, and blending familiar UI principles with the exciting possibilities of a spatial environment.",
       },
       {
         type: "bullets",
         title: "Focus Areas",
         items: [
-          "Native visionOS interface development",
-          "Spatial layout and interaction patterns",
-          "Integration of 3D content with RealityKit",
-          "Experimentation with depth, scale and immersion",
+          "Developing native visionOS interfaces with SwiftUI",
+          "Creating spatial layouts and interaction patterns",
+          "Integrating 3D content with RealityKit",
+          "Experimenting with depth, scale, and immersion",
           "Adapting familiar UI principles to a spatial environment",
         ],
       },
@@ -850,10 +850,20 @@ export const projects: Project[] = [
         title: "Project Preview",
         items: [
           {
-            type: "image",
-            src: "/images/metallic.png",
-            alt: "Apple Vision Pro project preview",
+            type: "video",
+            src: "/media/avp-video.mp4", // Add VIDEO!!
+            poster: "/images/avp/pink.webp",
             span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/avp/person.jpg",
+            alt: "Spatial interface example",
+          },
+          {
+            type: "image",
+            src: "/images/avp/vision3.png",
+            alt: "Immersive spatial experience",
           },
         ],
       },
