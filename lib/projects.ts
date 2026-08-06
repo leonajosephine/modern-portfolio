@@ -329,7 +329,7 @@ export const projects: Project[] = [
     slug: "reading-list-app",
     title: "Reading App",
     short:
-      "Inspired by my love for fantasy books - I designed the reading app I would love to have myself: Part digital bookshelf, part reading journal—the app and themes to choose from.",
+      "Inspired by my love for fantasy books - I designed the reading app I would love to have myself: Part digital bookshelf, part reading journal and themes to choose from.",
     cover: "/images/readingList/hero.png",
     hero: {
       type: "image",
