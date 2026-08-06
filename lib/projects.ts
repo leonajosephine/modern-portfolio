@@ -560,9 +560,9 @@ export const projects: Project[] = [
       "When one of your best friends asks you to do their wedding website - of course the answer is yes! This was the perfect opportunity to create something special for the two of them.",
     cover: "/images/m&l/invitations.jpg",
     hero: {
-      type: "image",
-      src: "/images/m&l/letter1.png",
-      alt: "Merle and Lasse wedding website",
+      type: "video",
+      src: "/images/m&l/letterOpening.mov", //vid 
+      poster: "/images/m&l/letter1.png",
     },
     category: "design",
     tags: [
@@ -851,9 +851,14 @@ export const projects: Project[] = [
         items: [
           {
             type: "video",
-            src: "/media/avp-video.mp4", // Add VIDEO!!
+            src: "/images/avp/newInterior.mp4", 
             poster: "/images/avp/pink.webp",
             span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/avp/object.png",
+            alt: "Spatial interface example",
           },
           {
             type: "image",
@@ -862,7 +867,7 @@ export const projects: Project[] = [
           },
           {
             type: "image",
-            src: "/images/avp/vision3.png",
+            src: "/images/avp/sensors.jpg",
             alt: "Immersive spatial experience",
           },
         ],
