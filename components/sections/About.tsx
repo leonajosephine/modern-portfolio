@@ -1,60 +1,99 @@
 "use client";
 
 import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import {
-  Code,
-  Layout,
-  Globe,
+  AnimatePresence,
+  motion,
+  type Variants,
+} from "framer-motion";
+import {
+  Code2,
+  PanelsTopLeft,
+  Sparkles,
   Smartphone,
-  Download,
-  ArrowUpRight,
 } from "lucide-react";
 
 const focusItems = [
   {
     number: "01",
-    title: "Frontend",
-    text: "Building clean, accessible and responsive interfaces.",
-    tools: ["React", "Next.js", "TypeScript", "Tailwind"],
-    icon: Code,
+    title: "Web Development",
+    text: "From polished interfaces to complete responsive web experiences.",
+    tools: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "APIs",
+      "Sitecore",
+      "Wix",
+    ],
+    icon: Code2,
   },
   {
     number: "02",
-    title: "Design",
-    text: "Creating visual systems with a strong sense for layout.",
-    tools: ["Figma", "UI/UX", "Design Systems", "Editorial"],
-    icon: Layout,
+    title: "UI / UX & Product",
+    text: "Turning ideas into intuitive products, systems and interactions.",
+    tools: [
+      "Figma",
+      "UI / UX",
+      "Prototyping",
+      "Design Systems",
+      "Accessibility",
+    ],
+    icon: PanelsTopLeft,
   },
   {
     number: "03",
-    title: "Creative Tech",
-    text: "Exploring motion, spatial interfaces and digital experiences.",
-    tools: ["Framer Motion", "AR / VR", "3D", "Prototyping"],
-    icon: Globe,
+    title: "Brand & Creative",
+    text: "Building visual worlds that give digital products personality.",
+    tools: [
+      "Branding",
+      "Art Direction",
+      "Editorial Design",
+      "AI Imagery",
+      "Motion",
+    ],
+    icon: Sparkles,
   },
   {
     number: "04",
-    title: "App Development",
-    text: "Developing iOS and hybrid apps with thoughtful interaction.",
-    tools: ["Swift", "SwiftUI", "React Native", "Mobile UI"],
+    title: "Apps & Emerging Tech",
+    text: "Exploring mobile, spatial interfaces and new ways to interact.",
+    tools: [
+      "React Native",
+      "Expo",
+      "Swift",
+      "SwiftUI",
+      "visionOS",
+      "Supabase",
+    ],
     icon: Smartphone,
   },
 ];
 
-const headerVariants: Variants = {
+/* -------------------------------------------------------------------------- */
+/* Motion                                                                     */
+/* -------------------------------------------------------------------------- */
+
+const introContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const introItemVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 28,
-    scale: 0.98,
+    y: 24,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.7,
+      duration: 0.75,
       ease: [0.22, 1, 0.36, 1],
     },
   },
@@ -65,7 +104,7 @@ const cardContainerVariants: Variants = {
   visible: {
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.1,
+      delayChildren: 0.08,
     },
   },
 };
@@ -73,176 +112,472 @@ const cardContainerVariants: Variants = {
 const cardVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 24,
-    scale: 0.98,
+    y: 26,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.65,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
 export default function About() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState(0);
+
+  const activeItem = focusItems[activeCard];
+
+  const handleCardClick = (index: number) => {
+    if (window.matchMedia("(hover: none)").matches) {
+      setActiveCard(index);
+    }
+  };
 
   return (
     <section
       id="about"
-      className="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24 lg:py-32"
+      className="
+        relative overflow-hidden
+        px-5 py-16
+        sm:px-6 sm:py-24
+        lg:py-32
+      "
     >
       <div className="container">
+        {/* ------------------------------------------------------------------ */}
+        {/* Intro                                                              */}
+        {/* ------------------------------------------------------------------ */}
+
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={headerVariants}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          variants={introContainerVariants}
           className="mx-auto max-w-[980px] text-center"
         >
-          <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.26em] text-muted-foreground sm:text-[0.72rem]">
-            Skills
-          </p>
+          <motion.p
+            variants={introItemVariants}
+            className="
+              font-mono text-[0.65rem]
+              font-medium uppercase
+              tracking-[0.26em]
+              text-muted-foreground
+              sm:text-[0.72rem]
+            "
+          >
+            A little about me
+          </motion.p>
 
-          <h2 className="mx-auto mt-3 max-w-[820px] text-[clamp(2.8rem,14vw,8rem)] font-medium uppercase leading-[0.86] tracking-[-0.075em] text-foreground sm:mt-5">
+          <motion.h2
+            variants={introItemVariants}
+            className="
+              mx-auto mt-3
+              max-w-[820px]
+              text-[clamp(2.8rem,14vw,8rem)]
+              font-medium uppercase
+              leading-[0.86]
+              tracking-[-0.075em]
+              text-foreground
+              sm:mt-5
+            "
+          >
             About me.
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-5 max-w-[640px] text-[0.9rem] leading-6 text-muted-foreground sm:mt-7 sm:text-[1.08rem] sm:leading-8">
-            I’m Leona, a creative developer with a strong eye for thoughtful
-            interfaces, visual systems and digital products that feel both
-            functional and crafted.
-          </p>
+          <motion.p
+            variants={introItemVariants}
+            className="
+              mx-auto mt-5
+              max-w-[700px]
+              text-[0.9rem] leading-6
+              text-muted-foreground
 
-          <div className="mt-6 flex items-center justify-center gap-2.5 sm:mt-8 sm:gap-3">
-            {/*<Button
-              variant="secondary"
-              size="lg"
-              className="h-10 rounded-full px-4 text-xs sm:h-11 sm:px-6 sm:text-sm"
-            >
-              Download CV
-            </Button>*/}
-
-            <a href="#portfolio">
-              <Button
-                variant="accent"
-                size="lg"
-                className="h-10 rounded-full px-4 text-xs sm:h-11 sm:px-6 sm:text-sm"
-              >
-                View Projects
-              </Button>
-            </a>
-          </div>
+              sm:mt-7
+              sm:text-[1.08rem]
+              sm:leading-8
+            "
+          >
+            I&apos;m Leona, a developer working across web,
+            mobile, product design and visual direction. I love
+            taking ideas from an early concept all the way to
+            thoughtful, polished digital experiences.
+          </motion.p>
         </motion.div>
 
-        <div className="mx-auto mt-10 flex max-w-[1120px] items-end justify-between sm:mt-14">
-          <p className="font-sans text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground sm:text-[0.72rem] sm:tracking-[0.26em]">
-            {"// Skills"}
+        {/* ------------------------------------------------------------------ */}
+        {/* Section label                                                      */}
+        {/* ------------------------------------------------------------------ */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 16,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.4,
+          }}
+          transition={{
+            duration: 0.65,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+            mx-auto mt-10 flex
+            max-w-[1120px]
+            items-end justify-between
+            sm:mt-14
+          "
+        >
+          <p
+            className="
+              font-sans text-[0.65rem]
+              uppercase tracking-[0.24em]
+              text-muted-foreground
+
+              sm:text-[0.72rem]
+              sm:tracking-[0.26em]
+            "
+          >
+            {"// What I do"}
           </p>
 
-          <p className="text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground/60 sm:hidden">
+          <p
+            className="
+              text-[0.62rem]
+              uppercase tracking-[0.18em]
+              text-muted-foreground/60
+              sm:hidden
+            "
+          >
             Swipe
           </p>
-        </div>
+        </motion.div>
+
+        {/* ------------------------------------------------------------------ */}
+        {/* Focus cards                                                        */}
+        {/* ------------------------------------------------------------------ */}
 
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{
+            once: true,
+            amount: 0.12,
+          }}
           variants={cardContainerVariants}
           className="
-            -mx-5 mt-2 flex snap-x snap-mandatory gap-3
-            overflow-x-auto px-5 pb-3
+            -mx-5 -mt-1
+            flex snap-x snap-mandatory
+            gap-3 overflow-x-auto
+            px-5 pb-3 pt-4
+
             [scrollbar-width:none]
             [&::-webkit-scrollbar]:hidden
-            sm:mx-auto sm:grid sm:max-w-[1120px]
-            sm:grid-cols-2 sm:gap-4 sm:px-0 sm:pb-0
+
+            sm:mx-auto
+            sm:grid
+            sm:max-w-[1120px]
+            sm:grid-cols-2
+            sm:gap-4
+            sm:px-0
+            sm:pb-0
+            sm:pt-4
+
             lg:grid-cols-4
           "
         >
           {focusItems.map(
-            ({ number, title, text, tools, icon: Icon }, index) => {
+            ({ number, title, text, icon: Icon }, index) => {
               const isActive = activeCard === index;
 
               return (
                 <motion.button
                   key={title}
                   type="button"
-                  onClick={() =>
-                    setActiveCard(isActive ? null : index)
-                  }
                   variants={cardVariants}
-                  className="
-                    group relative min-h-[205px]
-                    w-[82vw] max-w-[310px] shrink-0 snap-start
-                    overflow-hidden rounded-[1.4rem]
-                    border border-border bg-card/45
-                    p-5 text-left
-                    transition-all duration-500
-                    hover:-translate-y-1 hover:bg-card/80
-                    sm:min-h-[230px] sm:w-auto sm:max-w-none
-                    sm:shrink sm:rounded-[1.5rem] sm:p-6
-                  "
+                  onMouseEnter={() => {
+                    if (
+                      window.matchMedia("(hover: hover)").matches
+                    ) {
+                      setActiveCard(index);
+                    }
+                  }}
+                  onFocus={() => setActiveCard(index)}
+                  onClick={() => handleCardClick(index)}
+                  className={`
+                    group relative
+                    flex min-h-[230px]
+                    w-[82vw] max-w-[310px]
+                    shrink-0 snap-start
+                    flex-col
+
+                    overflow-hidden
+                    rounded-[1.4rem]
+                    border p-5
+                    text-left
+
+                    transition-[transform,background-color,border-color]
+                    duration-500
+
+                    hover:-translate-y-1
+
+                    sm:min-h-[250px]
+                    sm:w-auto
+                    sm:max-w-none
+                    sm:shrink
+                    sm:rounded-[1.5rem]
+                    sm:p-6
+
+                    ${
+                      isActive
+                        ? "border-foreground/20 bg-card/75"
+                        : "border-border bg-card/40 hover:border-foreground/10 hover:bg-card/60"
+                    }
+                  `}
                 >
-                  <div className="flex items-start justify-between gap-6">
-                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground sm:text-[0.7rem] sm:tracking-[0.24em]">
+                  {/* Top */}
+                  <div className="flex shrink-0 items-start justify-between gap-5">
+                    <span
+                      className="
+                        font-mono
+                        text-[0.65rem]
+                        uppercase
+                        tracking-[0.22em]
+                        text-muted-foreground
+                        sm:text-[0.7rem]
+                      "
+                    >
                       {number}
                     </span>
 
                     <Icon
                       size={21}
-                      className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground sm:h-[23px] sm:w-[23px]"
+                      strokeWidth={1.5}
+                      className={`
+                        shrink-0
+                        transition-all duration-500
+
+                        ${
+                          isActive
+                            ? "-rotate-6 text-foreground"
+                            : "text-muted-foreground group-hover:-rotate-3 group-hover:text-foreground"
+                        }
+                      `}
                     />
                   </div>
 
-                  <div className="mt-10 sm:mt-16">
-                    <h3 className="text-lg font-medium tracking-[-0.04em] text-foreground sm:text-xl">
+                  {/* Active marker */}
+                  <motion.span
+                    initial={false}
+                    animate={{
+                      width: isActive ? 32 : 0,
+                      opacity: isActive ? 1 : 0,
+                    }}
+                    transition={{
+                      duration: 0.35,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="
+                      mt-5 block h-px
+                      shrink-0
+                      bg-foreground/50
+                    "
+                  />
+
+                  {/* Content */}
+                  <div className="mt-auto pt-8">
+                    <h3
+                      className="
+                        max-w-[13rem]
+                        text-lg font-medium
+                        leading-[1.08]
+                        tracking-[-0.04em]
+                        text-foreground
+                        sm:text-xl
+                      "
+                    >
                       {title}
                     </h3>
 
-                    <p className="mt-2 text-[0.82rem] leading-5 text-muted-foreground sm:text-sm sm:leading-6">
+                    <p
+                      className="
+                        mt-3
+                        text-[0.82rem]
+                        leading-5
+                        text-muted-foreground
+
+                        sm:text-sm
+                        sm:leading-6
+                      "
+                    >
                       {text}
                     </p>
-                  </div>
-
-                  <div
-                    className={`
-                      flex flex-wrap gap-1.5 overflow-hidden
-                      transition-all duration-500 sm:gap-2
-                      lg:max-h-0 lg:opacity-0
-                      lg:group-hover:mt-5
-                      lg:group-hover:max-h-32
-                      lg:group-hover:opacity-100
-                      ${
-                        isActive
-                          ? "mt-4 max-h-32 opacity-100"
-                          : "mt-0 max-h-0 opacity-0"
-                      }
-                    `}
-                  >
-                    {tools.map((tool) => (
-                      <span
-                        key={tool}
-                        className="
-                          rounded-full border border-border
-                          bg-background/60 px-2.5 py-1
-                          text-[0.58rem] uppercase tracking-[0.13em]
-                          text-muted-foreground
-                          sm:px-3 sm:text-[0.68rem]
-                          sm:tracking-[0.16em]
-                        "
-                      >
-                        {tool}
-                      </span>
-                    ))}
                   </div>
                 </motion.button>
               );
             }
           )}
+        </motion.div>
+
+        {/* ------------------------------------------------------------------ */}
+        {/* Editorial toolbox                                                  */}
+        {/* ------------------------------------------------------------------ */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 18,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          transition={{
+            duration: 0.7,
+            delay: 0.12,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mx-auto max-w-[1120px]"
+        >
+          <div
+            className="
+              mt-7
+              border-t border-border/70
+              pt-5
+              sm:mt-9
+              sm:pt-6
+            "
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeItem.title}
+                initial={{
+                  opacity: 0,
+                  y: 7,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  y: -5,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  grid gap-5
+
+                  md:grid-cols-[180px_1fr]
+                  md:items-start
+
+                  lg:grid-cols-[220px_1fr]
+                "
+              >
+                {/* Category */}
+                <div>
+                  <p
+                    className="
+                      font-mono
+                      text-[0.58rem]
+                      uppercase
+                      tracking-[0.22em]
+                      text-muted-foreground/60
+                    "
+                  >
+                    In my toolbox
+                  </p>
+
+                  <p
+                    className="
+                      mt-2
+                      text-[0.82rem]
+                      font-medium
+                      tracking-[-0.02em]
+                      text-foreground
+                    "
+                  >
+                    {activeItem.number} / {activeItem.title}
+                  </p>
+                </div>
+
+                {/* Skills */}
+                <div
+                  className="
+                    flex flex-wrap
+                    items-center
+                    gap-x-3 gap-y-2
+                    sm:gap-x-4
+                  "
+                >
+                  {activeItem.tools.map((tool, index) => (
+                    <motion.div
+                      key={tool}
+                      initial={{
+                        opacity: 0,
+                        y: 6,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        duration: 0.32,
+                        delay: index * 0.035,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="flex items-center gap-3 sm:gap-4"
+                    >
+                      <span
+                        className="
+                          text-[0.75rem]
+                          font-medium
+                          uppercase
+                          tracking-[0.12em]
+                          text-muted-foreground
+
+                          transition-colors
+                          duration-300
+
+                          hover:text-foreground
+
+                          sm:text-[0.82rem]
+                        "
+                      >
+                        {tool}
+                      </span>
+
+                      {index < activeItem.tools.length - 1 && (
+                        <span
+                          aria-hidden="true"
+                          className="
+                            h-[3px] w-[3px]
+                            rounded-full
+                            bg-muted-foreground/35
+                          "
+                        />
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </motion.div>
       </div>
     </section>

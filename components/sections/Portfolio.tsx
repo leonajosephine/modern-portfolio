@@ -148,7 +148,7 @@ export default function Portfolio() {
           hidden h-full
           w-[clamp(7rem,12vw,14rem)]
           overflow-hidden select-none
-          lg:block
+          2xl:block
         "
       >
         <p

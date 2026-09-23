@@ -217,6 +217,135 @@ export const projects: Project[] = [
     size: "big",
   },
   {
+    slug: "atlumen",
+    title: "Atlumen",
+  
+    short:
+      "Building Atlumen meant shaping the brand from the ground up — from visual identity and art direction to a responsive digital experience for an AI tool built for expert workflows.",
+  
+    cover: "/images/atlumen/frame.png",
+  
+    hero: {
+      type: "image",
+      src: "/images/atlumen/responsive.png",
+      alt: "Atlumen brand and website",
+    },
+  
+    category: "design",
+  
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Branding",
+      "Art Direction",
+      "UI / UX",
+      "AI",
+    ],
+  
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      team: "Client Project",
+    },
+  
+    links: [],
+  
+    blocks: [
+      {
+        type: "text",
+        title: "From Blank Canvas to Brand",
+        body:
+          "The project started without an established visual identity, giving me the opportunity to shape Atlumen from the ground up. I developed the visual direction, defined the look and feel of the imagery and translated the brand into a complete responsive website.",
+      },
+  
+      {
+        type: "text",
+        title: "Designed Around the Product",
+        body:
+          "Atlumen is an AI-powered tool designed to support expert workflows and make complex day-to-day processes more efficient. The website needed to introduce that idea clearly while giving the product a distinct and credible identity of its own.",
+      },
+  
+      {
+        type: "metrics",
+        title: "My Contribution",
+        items: [
+          {
+            label: "Branding & Art Direction",
+            value:
+              "Developed the visual identity, creative direction and imagery style for the brand.",
+          },
+          {
+            label: "UX / UI Design",
+            value:
+              "Designed the complete responsive website and translated the product into a clear digital experience.",
+          },
+          {
+            label: "Frontend Development",
+            value:
+              "Built the responsive website with reusable components and a focus on performance and accessibility.",
+          },
+        ],
+      },
+  
+      {
+        type: "bullets",
+        title: "Highlights",
+        items: [
+          "Created the visual identity and digital design direction from the ground up",
+          "Defined the art direction and visual language for brand imagery",
+          "Designed the complete responsive website across desktop, tablet and mobile",
+          "Translated an AI-powered product into a clear and approachable web experience",
+          "Built a reusable frontend component system",
+          "Created a consistent visual system across brand and product communication",
+        ],
+      },
+  
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Figma",
+          "AI",
+        ],
+      },
+  
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/atlumen/mockup.png",
+            alt: "Atlumen brand and website",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/atlumen/collage.png",
+            alt: "Atlumen visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/atlumen/mockup2.png",
+            alt: "Atlumen website design",
+          },
+          {
+            type: "image",
+            src: "/images/atlumen/atlumenBrand.png",
+            alt: "Atlumen responsive website",
+            span: "full",
+          },
+        ],
+      },
+    ],
+  
+    size: "wide",
+  },
+  {
     slug: "eightsquared",
     title: "Eightsquared",
     short:

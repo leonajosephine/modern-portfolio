@@ -14,6 +14,7 @@ export default function Hero() {
         "--mx",
         `${(e.clientX / w) * 100}%`
       );
+
       document.documentElement.style.setProperty(
         "--my",
         `${(e.clientY / h) * 100}%`
@@ -21,14 +22,19 @@ export default function Hero() {
     };
 
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+    };
   }, []);
 
   return (
-    <section 
+    <section
+      id="top"
       data-cursor="hero"
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-16 sm:px-6 sm:py-20"
-      >
+    >
+      {/* Cursor glow */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
@@ -41,11 +47,16 @@ export default function Hero() {
         }}
       />
 
+      {/* Ambient background glow */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
-        transition={{ duration: 1.3, delay: 0.15, ease: "easeOut" }}
+        transition={{
+          duration: 1.3,
+          delay: 0.15,
+          ease: "easeOut",
+        }}
         className="pointer-events-none absolute inset-0"
         style={{
           background:
@@ -54,6 +65,7 @@ export default function Hero() {
       />
 
       <div className="container relative z-10 flex flex-col items-center text-center">
+        {/* Role */}
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,12 +76,21 @@ export default function Hero() {
           }}
           className="mb-6 text-[0.7rem] uppercase tracking-[0.28em] text-muted-foreground sm:text-xs"
         >
-          ⎯ Creative Developer · UI / UX · Frontend
+          ⎯ Web & App Developer · UI / UX · Creative Tech
         </motion.p>
 
+        {/* Name */}
         <motion.div
-          initial={{ opacity: 0, y: 42, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{
+            opacity: 0,
+            y: 42,
+            scale: 0.96,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
           transition={{
             duration: 0.95,
             delay: 0.38,
@@ -87,6 +108,7 @@ export default function Hero() {
           />
         </motion.div>
 
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -97,13 +119,13 @@ export default function Hero() {
           }}
           className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12"
         >
-          <a data-cursor="theme" href="#portfolio">
+          <a data-cursor="plain" href="#portfolio">
             <Button variant="primary" size="lg">
               View Projects
             </Button>
           </a>
 
-          <a data-cursor="nav" href="#contact">
+          <a data-cursor="plain" href="#contact">
             <Button variant="secondary" size="lg">
               Get in Touch
             </Button>
