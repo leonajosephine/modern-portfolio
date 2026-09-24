@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useMotionValue,
   useSpring,
@@ -25,22 +26,34 @@ const gradients = {
 } as const;
 
 type GradientVariant = keyof typeof gradients;
-type CursorType = GradientVariant | "plain";
+
+type MartiniVariant =
+  | "martini"
+  | "martini-view"
+  | "martini-explore";
+
+type CursorType =
+  | GradientVariant
+  | MartiniVariant
+  | "plain";
 
 export default function GradientCursor() {
   const [variant, setVariant] =
     useState<CursorType>("default");
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [isPointer, setIsPointer] = useState(false);
+  const [isVisible, setIsVisible] =
+    useState(false);
+
+  const [isPointer, setIsPointer] =
+    useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  /*
-   * Main cursor
-   * Fast and responsive.
-   */
+  /* ------------------------------------------------------------------ */
+  /* Main cursor                                                        */
+  /* ------------------------------------------------------------------ */
+
   const cursorX = useSpring(mouseX, {
     stiffness: 520,
     damping: 38,
@@ -53,10 +66,10 @@ export default function GradientCursor() {
     mass: 0.4,
   });
 
-  /*
-   * Glow trail
-   * Slightly slower for the soft trailing effect.
-   */
+  /* ------------------------------------------------------------------ */
+  /* Glow trail                                                         */
+  /* ------------------------------------------------------------------ */
+
   const trailX = useSpring(mouseX, {
     stiffness: 120,
     damping: 26,
@@ -70,7 +83,9 @@ export default function GradientCursor() {
   });
 
   useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleMouseMove = (
+      event: MouseEvent
+    ) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
 
@@ -84,9 +99,10 @@ export default function GradientCursor() {
         return;
       }
 
-      const cursorArea = target.closest<HTMLElement>(
-        "[data-cursor]"
-      );
+      const cursorArea =
+        target.closest<HTMLElement>(
+          "[data-cursor]"
+        );
 
       const clickable = target.closest(
         "a, button, [role='button'], input, select, textarea, summary"
@@ -97,12 +113,19 @@ export default function GradientCursor() {
 
       setIsPointer(Boolean(clickable));
 
-      /*
-       * "plain" is intentionally handled separately
-       * because it doesn't have a gradient.
-       */
       if (requestedVariant === "plain") {
         setVariant("plain");
+        return;
+      }
+
+      if (
+        requestedVariant === "martini" ||
+        requestedVariant ===
+          "martini-view" ||
+        requestedVariant ===
+          "martini-explore"
+      ) {
+        setVariant(requestedVariant);
         return;
       }
 
@@ -174,158 +197,325 @@ export default function GradientCursor() {
     };
   }, [mouseX, mouseY]);
 
-  /*
-   * Both default and plain use the compact cursor.
-   *
-   * Difference:
-   * default can react to clickable elements,
-   * plain deliberately stays quiet.
-   */
-  const isPlain = variant === "plain";
+  /* ------------------------------------------------------------------ */
+  /* Cursor modes                                                       */
+  /* ------------------------------------------------------------------ */
+
+  const isPlain =
+    variant === "plain";
+
+  const isMartini =
+    variant === "martini" ||
+    variant === "martini-view" ||
+    variant === "martini-explore";
+
+  const isMartiniAction =
+    variant === "martini-view" ||
+    variant === "martini-explore";
+
   const isCompact =
-    variant === "default" || variant === "plain";
+    variant === "default" ||
+    variant === "plain";
 
   const shouldReactToPointer =
-    isPointer && !isPlain;
+    isPointer &&
+    !isPlain &&
+    !isMartini;
 
   const gradient =
-    variant !== "plain"
-      ? gradients[variant]
+    variant !== "plain" &&
+    !isMartini
+      ? gradients[
+          variant as GradientVariant
+        ]
       : gradients.default;
+
+  const martiniLabel =
+    variant === "martini-view"
+      ? "VIEW"
+      : variant === "martini-explore"
+        ? "EXPLORE"
+        : "";
+
+  /* ------------------------------------------------------------------ */
+  /* Render                                                             */
+  /* ------------------------------------------------------------------ */
 
   return (
     <div
       aria-hidden="true"
       className="
-        pointer-events-none fixed inset-0
-        z-[9999] hidden md:block
+        pointer-events-none
+        fixed inset-0
+        z-[9999]
+        hidden
+        md:block
       "
     >
-      {/* Soft trailing glow */}
-      <motion.div
-        className="absolute rounded-full blur-3xl"
-        style={{
-          x: trailX,
-          y: trailY,
+      {/* =============================================================== */}
+      {/* STANDARD GLOW CURSOR                                            */}
+      {/* =============================================================== */}
 
-          width: isCompact ? 58 : 150,
-          height: isCompact ? 58 : 150,
+      {!isMartini && (
+        <>
+          {/* Soft trailing glow */}
+          <motion.div
+            className="
+              absolute
+              rounded-full
+              blur-3xl
+            "
+            style={{
+              x: trailX,
+              y: trailY,
 
-          translateX: "-50%",
-          translateY: "-50%",
+              width: isCompact
+                ? 58
+                : 150,
 
-          background: gradient,
+              height: isCompact
+                ? 58
+                : 150,
 
-          willChange:
-            "transform, opacity",
-        }}
-        animate={{
-          opacity: isVisible
-            ? isCompact
-              ? isPlain
-                ? 0.22
-                : 0.42
-              : 0.68
-            : 0,
+              translateX: "-50%",
+              translateY: "-50%",
 
-          scale: shouldReactToPointer
-            ? 1.3
-            : 1,
-        }}
-        transition={{
-          opacity: {
-            duration: 0.2,
-          },
+              background: gradient,
 
-          scale: {
-            duration: 0.25,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        }}
-      />
+              willChange:
+                "transform, opacity",
+            }}
+            animate={{
+              opacity: isVisible
+                ? isCompact
+                  ? isPlain
+                    ? 0.22
+                    : 0.42
+                  : 0.68
+                : 0,
 
-      {/* Main cursor */}
-      <motion.div
-        className="
-          absolute rounded-full
-          border backdrop-blur-sm
-        "
-        style={{
-          x: cursorX,
-          y: cursorY,
+              scale:
+                shouldReactToPointer
+                  ? 1.3
+                  : 1,
+            }}
+            transition={{
+              opacity: {
+                duration: 0.2,
+              },
 
-          width: isCompact ? 16 : 42,
-          height: isCompact ? 16 : 42,
+              scale: {
+                duration: 0.25,
+                ease: [
+                  0.22,
+                  1,
+                  0.36,
+                  1,
+                ],
+              },
+            }}
+          />
 
-          translateX: "-50%",
-          translateY: "-50%",
+          {/* Main cursor */}
+          <motion.div
+            className="
+              absolute
+              rounded-full
+              border
+              backdrop-blur-sm
+            "
+            style={{
+              x: cursorX,
+              y: cursorY,
 
-          borderColor:
-            "var(--cursor-border)",
+              width: isCompact
+                ? 16
+                : 42,
 
-          background: isCompact
-            ? "var(--cursor-main)"
-            : gradient,
+              height: isCompact
+                ? 16
+                : 42,
 
-          boxShadow: isCompact
-            ? "0 0 18px var(--cursor-shadow)"
-            : "0 0 42px var(--cursor-shadow)",
+              translateX: "-50%",
+              translateY: "-50%",
 
-          willChange:
-            "transform, opacity",
-        }}
-        animate={{
-          opacity: isVisible ? 1 : 0,
+              borderColor:
+                "var(--cursor-border)",
 
-          scale: shouldReactToPointer
-            ? 1.22
-            : 1,
-        }}
-        transition={{
-          opacity: {
-            duration: 0.15,
-          },
+              background: isCompact
+                ? "var(--cursor-main)"
+                : gradient,
 
-          scale: {
-            duration: 0.2,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        }}
-      />
+              boxShadow: isCompact
+                ? "0 0 18px var(--cursor-shadow)"
+                : "0 0 42px var(--cursor-shadow)",
 
-      {/* Center dot */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          x: cursorX,
-          y: cursorY,
+              willChange:
+                "transform, opacity",
+            }}
+            animate={{
+              opacity: isVisible
+                ? 1
+                : 0,
 
-          width: 3,
-          height: 3,
+              scale:
+                shouldReactToPointer
+                  ? 1.22
+                  : 1,
+            }}
+            transition={{
+              opacity: {
+                duration: 0.15,
+              },
 
-          translateX: "-50%",
-          translateY: "-50%",
+              scale: {
+                duration: 0.2,
+                ease: [
+                  0.22,
+                  1,
+                  0.36,
+                  1,
+                ],
+              },
+            }}
+          />
 
-          background:
-            "var(--cursor-dot)",
+          {/* Center dot */}
+          <motion.div
+            className="
+              absolute
+              rounded-full
+            "
+            style={{
+              x: cursorX,
+              y: cursorY,
 
-          boxShadow:
-            "0 0 8px var(--cursor-shadow)",
+              width: 3,
+              height: 3,
 
-          willChange:
-            "transform, opacity",
-        }}
-        animate={{
-          opacity: isVisible ? 1 : 0,
+              translateX: "-50%",
+              translateY: "-50%",
 
-          scale: shouldReactToPointer
-            ? 0.75
-            : 1,
-        }}
-        transition={{
-          duration: 0.15,
-        }}
-      />
+              background:
+                "var(--cursor-dot)",
+
+              boxShadow:
+                "0 0 8px var(--cursor-shadow)",
+
+              willChange:
+                "transform, opacity",
+            }}
+            animate={{
+              opacity: isVisible
+                ? 1
+                : 0,
+
+              scale:
+                shouldReactToPointer
+                  ? 0.75
+                  : 1,
+            }}
+            transition={{
+              duration: 0.15,
+            }}
+          />
+        </>
+      )}
+
+      {/* =============================================================== */}
+      {/* MARTINI EDITORIAL CURSOR                                        */}
+      {/* =============================================================== */}
+
+      {isMartini && (
+        <motion.div
+          className="
+            absolute
+            flex
+            items-center
+            justify-center
+
+            rounded-full
+            border
+            border-foreground
+
+            bg-foreground
+            text-background
+          "
+          style={{
+            x: cursorX,
+            y: cursorY,
+
+            translateX: "-50%",
+            translateY: "-50%",
+
+            willChange:
+              "transform, width, height, opacity",
+          }}
+          initial={false}
+          animate={{
+            opacity: isVisible
+              ? 1
+              : 0,
+
+            width: isMartiniAction
+              ? 82
+              : 18,
+
+            height: isMartiniAction
+              ? 82
+              : 18,
+          }}
+          transition={{
+            opacity: {
+              duration: 0.15,
+            },
+
+            width: {
+              type: "spring",
+              stiffness: 260,
+              damping: 22,
+            },
+
+            height: {
+              type: "spring",
+              stiffness: 260,
+              damping: 22,
+            },
+          }}
+        >
+          <AnimatePresence mode="wait">
+            {isMartiniAction && (
+              <motion.span
+                key={martiniLabel}
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                transition={{
+                  duration: 0.16,
+                }}
+                className="
+                  font-mono
+                  text-[0.52rem]
+                  font-medium
+                  uppercase
+                  tracking-[0.16em]
+                "
+              >
+                {martiniLabel}
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      )}
     </div>
   );
 }
