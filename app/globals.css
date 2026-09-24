@@ -162,26 +162,46 @@
 /* -------------------------------------------------------------------------- */
 
 [data-theme="ocean"] {
+  /* ------------------------------------------------------------------------ */
+  /* Base                                                                     */
+  /* ------------------------------------------------------------------------ */
+
   --bg-primary: #f4f1ff;
-  --bg-secondary: #e9e3ff;
-  --bg-tertiary: #d9d0ff;
+  --bg-secondary: #ebe7ff;
+  --bg-tertiary: #ddd7ff;
 
   --text-primary: #18164f;
-  --text-secondary: #6d688f;
+  --text-secondary: #686486;
 
   --accent: #29258f;
-  --accent-strong: #19166f;
+  --accent-strong: #18164f;
 
   --border: rgba(24, 22, 79, 0.1);
-  --shadow: rgba(56, 46, 125, 0.14);
+  --shadow: rgba(56, 46, 125, 0.12);
 
   /* ------------------------------------------------------------------------ */
   /* Alternate section                                                        */
   /* ------------------------------------------------------------------------ */
 
-  --alt-bg: #29258f;
-  --alt-text: #f7f4ff;
-  --alt-text-muted: rgba(247, 244, 255, 0.68);
+  /*
+   * Ocean stays predominantly light.
+   * Instead of jumping to dark navy,
+   * alternate sections use a stronger
+   * periwinkle / lavender surface.
+   */
+
+  --alt-bg: #d9d2ff;
+  --alt-text: #18164f;
+  --alt-text-muted: rgba(24, 22, 79, 0.62);
+
+  /* ------------------------------------------------------------------------ */
+  /* Theme-specific surfaces                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  --ocean-surface-soft: #f4f1ff;
+  --ocean-surface-lavender: #ebe7ff;
+  --ocean-surface-periwinkle: #d9d2ff;
+  --ocean-surface-strong: #c8beff;
 
   /* ------------------------------------------------------------------------ */
   /* Theme-specific accent palette                                            */
@@ -198,13 +218,29 @@
   --ocean-peach: #f6b28b;
   --ocean-orange: #ff9e5c;
 
+  /*
+   * Deliberately rare.
+   * Best reserved for Contact / special moments.
+   */
   --ocean-lime: #d8ff72;
+
+  /* ------------------------------------------------------------------------ */
+  /* Glass                                                                    */
+  /* ------------------------------------------------------------------------ */
+
+  --ocean-glass: rgba(247, 244, 255, 0.62);
+  --ocean-glass-strong: rgba(247, 244, 255, 0.78);
+
+  --ocean-glass-border: rgba(24, 22, 79, 0.1);
+
+  --ocean-glass-shadow:
+    0 10px 35px rgba(61, 48, 132, 0.08);
 
   /* ------------------------------------------------------------------------ */
   /* Typography                                                               */
   /* ------------------------------------------------------------------------ */
 
-  --font-body: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
   --font-display: var(--font-space-grotesk);
   --font-accent: var(--font-dm-serif);
   --font-code: var(--font-ibm-mono);
