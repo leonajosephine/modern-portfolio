@@ -6,7 +6,7 @@ import { ArrowDownRight } from "lucide-react";
 
 const letters = ["L", "E", "O", "N", "A"];
 
-export default function SwissHero() {
+export default function LightHero() {
   const [activeLetter, setActiveLetter] =
     useState<number | null>(null);
 

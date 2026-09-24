@@ -4,19 +4,19 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
 
-import EditorialHero from "@/components/hero/EditorialHero";
-import SwissHero from "@/components/hero/SwissHero";
+import DarkHero from "@/components/hero/DarkHero";
+import LightHero from "@/components/hero/LightHero";
 import MartiniHero from "@/components/hero/MartiniHero";
-import FluidHero from "@/components/hero/FluidHero";
+import OceanHero from "@/components/hero/OceanHero";
 
 export default function Hero() {
   const theme = usePortfolioTheme();
 
   const heroes = {
-    dark: EditorialHero,
-    light: SwissHero,
+    dark: DarkHero,
+    light: LightHero,
     sunset: MartiniHero,
-    ocean: FluidHero,
+    ocean: OceanHero,
   };
 
   const ActiveHero = heroes[theme];

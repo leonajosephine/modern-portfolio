@@ -5,7 +5,7 @@ import { ArrowDownRight } from "lucide-react";
 
 import FluidBackground from "@/components/hero/fluid/FluidBackground";
 
-export default function FluidHero() {
+export default function OceanHero() {
   return (
     <section
       id="top"
@@ -15,11 +15,11 @@ export default function FluidHero() {
         min-h-[100svh]
         overflow-hidden
         bg-background
-        text-white
+        text-[#18164f]
       "
     >
       {/* ================================================================ */}
-      {/* GPU FLUID DEBUG                                                  */}
+      {/* FLUID BACKGROUND                                                 */}
       {/* ================================================================ */}
 
       <div className="absolute inset-0">
@@ -31,7 +31,7 @@ export default function FluidHero() {
             pointer-events-none
             absolute
             inset-0
-            bg-[radial-gradient(circle_at_50%_45%,transparent_0%,rgba(20,14,55,0.12)_100%)]
+            bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(24,22,79,0.035)_100%)]
           "
         />
       </div>
@@ -62,7 +62,7 @@ export default function FluidHero() {
           lg:pt-32
         "
       >
-        {/* TOP */}
+        {/* TOP META */}
 
         <motion.div
           initial={{
@@ -80,10 +80,6 @@ export default function FluidHero() {
             flex
             items-center
             justify-between
-
-            border-t
-            border-white/25
-            pt-3
           "
         >
           <p
@@ -92,7 +88,7 @@ export default function FluidHero() {
               text-[0.55rem]
               uppercase
               tracking-[0.18em]
-              text-white/60
+              text-[#18164f]/55
             "
           >
             Portfolio · 2026
@@ -100,14 +96,18 @@ export default function FluidHero() {
 
           <p
             className="
+              hidden
+
               font-mono
               text-[0.55rem]
               uppercase
               tracking-[0.18em]
-              text-white/60
+              text-[#18164f]/55
+
+              sm:block
             "
           >
-            Fluid Debug · WebGL2
+            Hamburg · Germany
           </p>
         </motion.div>
 
@@ -131,6 +131,8 @@ export default function FluidHero() {
               text-center
             "
           >
+            {/* INTERACTION HINT */}
+
             <motion.p
               initial={{
                 opacity: 0,
@@ -151,11 +153,13 @@ export default function FluidHero() {
                 text-[0.56rem]
                 uppercase
                 tracking-[0.22em]
-                text-white/60
+                text-[#18164f]/55
               "
             >
-              Move your cursor
+              Move around · see what happens
             </motion.p>
+
+            {/* HEADLINE */}
 
             <motion.h1
               initial={{
@@ -180,33 +184,30 @@ export default function FluidHero() {
                 mx-auto
                 max-w-[11ch]
 
-                font-display
+                
                 text-[clamp(3.65rem,10vw,10rem)]
                 font-medium
                 leading-[0.86]
                 tracking-[-0.075em]
+
+                text-[#18164f]
               "
             >
               Design meets
 
-              <span
-                className="
-                  block
-                  font-serif
-                  font-normal
-                  italic
-                "
-              >
-                technology.
-              </span>
+              technology.
             </motion.h1>
+
+            {/* DESCRIPTION */}
 
             <motion.p
               initial={{
                 opacity: 0,
+                y: 10,
               }}
               animate={{
                 opacity: 1,
+                y: 0,
               }}
               transition={{
                 delay: 0.3,
@@ -215,35 +216,41 @@ export default function FluidHero() {
               className="
                 mx-auto
                 mt-8
-                max-w-[32rem]
+                max-w-[31rem]
 
                 text-sm
                 leading-7
-                text-white/65
+                text-[#18164f]/65
 
                 sm:text-base
               "
             >
-              This is intentionally the
-              raw velocity field. Move
-              quickly through the background
-              and look for cyan and magenta
-              trails.
+              I design and build digital
+              experiences where thoughtful
+              interfaces meet solid
+              technology.
             </motion.p>
+
+            {/* CTA */}
 
             <motion.div
               initial={{
                 opacity: 0,
+                y: 8,
               }}
               animate={{
                 opacity: 1,
+                y: 0,
               }}
               transition={{
                 delay: 0.45,
+                duration: 0.7,
               }}
               className="
                 pointer-events-auto
+
                 mt-8
+
                 flex
                 justify-center
               "
@@ -251,13 +258,15 @@ export default function FluidHero() {
               <a
                 href="#portfolio"
                 className="
+                  group
+
                   inline-flex
                   items-center
                   gap-3
 
-                  rounded-full
+                  rounded-[var(--radius-button)]
 
-                  bg-[#d8ff72]
+                  bg-[#29258f]
 
                   px-6
                   py-3.5
@@ -266,7 +275,14 @@ export default function FluidHero() {
                   font-medium
                   uppercase
                   tracking-[0.1em]
-                  text-[#18164f]
+                  text-[#f7f4ff]
+
+                  transition-all
+                  duration-300
+
+                  hover:-translate-y-0.5
+                  hover:bg-[#18164f]
+                  hover:shadow-[0_12px_32px_rgba(41,37,143,0.18)]
                 "
               >
                 Explore Work
@@ -274,39 +290,73 @@ export default function FluidHero() {
                 <ArrowDownRight
                   size={16}
                   strokeWidth={1.5}
+                  className="
+                    transition-transform
+                    duration-300
+
+                    group-hover:translate-x-0.5
+                    group-hover:translate-y-0.5
+                  "
                 />
               </a>
             </motion.div>
           </div>
         </div>
 
-        {/* BOTTOM */}
+        {/* BOTTOM META */}
 
-        <div
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.6,
+            duration: 0.7,
+          }}
           className="
             flex
-            items-center
+            items-end
             justify-between
-
-            border-t
-            border-white/25
-            pt-3
 
             font-mono
             text-[0.52rem]
             uppercase
             tracking-[0.16em]
-            text-white/55
+            text-[#18164f]/50
           "
         >
           <span>
-            GPU Velocity Field
+            Frontend · UI/UX · Creative
           </span>
 
-          <span>
-            Debug Mode · 01
-          </span>
-        </div>
+          <a
+            href="#about"
+            className="
+              pointer-events-auto
+
+              hidden
+              items-center
+              gap-2
+
+              transition-opacity
+              duration-300
+
+              hover:opacity-60
+
+              sm:flex
+            "
+          >
+            Scroll to explore
+
+            <ArrowDownRight
+              size={13}
+              strokeWidth={1.5}
+            />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

@@ -10,11 +10,6 @@ void main() {
 }
 `;
 
-
-/* -------------------------------------------------------------------------- */
-/* Fluid simulation                                                           */
-/* -------------------------------------------------------------------------- */
-
 export const simulationShader = `#version 300 es
 precision highp float;
 
@@ -35,15 +30,6 @@ void main() {
   vec2 velocity =
     center.xy;
 
-
-  /*
-   * Follow the velocity backwards to find
-   * where this piece of liquid came from.
-   *
-   * This is the part that makes the trail
-   * actually flow instead of just fading.
-   */
-
   vec2 backUv =
     clamp(
       v_uv -
@@ -54,80 +40,55 @@ void main() {
       vec2(1.0)
     );
 
-
   vec4 advected =
     texture(
       u_previous,
       backUv
     );
 
-
   vec4 left =
     texture(
       u_previous,
       clamp(
         backUv -
-        vec2(
-          u_texel.x,
-          0.0
-        ),
+        vec2(u_texel.x, 0.0),
         vec2(0.0),
         vec2(1.0)
       )
     );
-
 
   vec4 right =
     texture(
       u_previous,
       clamp(
         backUv +
-        vec2(
-          u_texel.x,
-          0.0
-        ),
+        vec2(u_texel.x, 0.0),
         vec2(0.0),
         vec2(1.0)
       )
     );
-
 
   vec4 bottom =
     texture(
       u_previous,
       clamp(
         backUv -
-        vec2(
-          0.0,
-          u_texel.y
-        ),
+        vec2(0.0, u_texel.y),
         vec2(0.0),
         vec2(1.0)
       )
     );
-
 
   vec4 top =
     texture(
       u_previous,
       clamp(
         backUv +
-        vec2(
-          0.0,
-          u_texel.y
-        ),
+        vec2(0.0, u_texel.y),
         vec2(0.0),
         vec2(1.0)
       )
     );
-
-
-  /*
-   * Velocity spreads relatively slowly.
-   *
-   * This keeps the liquid viscous rather
-   * than turning it into smoke.
-   */
 
   vec2 diffusedVelocity =
     advected.xy * 0.82 +
@@ -139,14 +100,6 @@ void main() {
     ) *
     0.045;
 
-
-  /*
-   * Z stores our persistent liquid height.
-   *
-   * It diffuses a little more gently and
-   * survives longer than the velocity.
-   */
-
   float diffusedHeight =
     advected.z * 0.90 +
     (
@@ -157,17 +110,8 @@ void main() {
     ) *
     0.025;
 
-
-  /*
-   * Very slow energy loss.
-   */
-
-  diffusedVelocity *=
-    0.992;
-
-  diffusedHeight *=
-    0.996;
-
+  diffusedVelocity *= 0.992;
+  diffusedHeight *= 0.996;
 
   outColor =
     vec4(
@@ -178,19 +122,12 @@ void main() {
 }
 `;
 
-
-/* -------------------------------------------------------------------------- */
-/* Pointer injection                                                          */
-/* -------------------------------------------------------------------------- */
-
 export const splatShader = `#version 300 es
 precision highp float;
 
 uniform sampler2D u_previous;
-
 uniform vec2 u_point;
 uniform vec2 u_force;
-
 uniform float u_radius;
 uniform float u_aspect;
 
@@ -204,22 +141,18 @@ void main() {
       v_uv
     );
 
-
   vec2 difference =
     v_uv -
     u_point;
 
-
   difference.x *=
     u_aspect;
-
 
   float distanceSquared =
     dot(
       difference,
       difference
     );
-
 
   float splat =
     exp(
@@ -230,65 +163,49 @@ void main() {
       )
     );
 
-
-  /*
-   * XY = velocity.
-   */
-
   state.xy +=
     u_force *
     splat;
 
-
   /*
-   * Z = persistent liquid height.
-   *
-   * Faster gestures add slightly more
-   * material to the surface.
+   * Stronger minimum body contribution:
+   * slow gestures now still build a visible
+   * thick-gel surface.
    */
+  float forceStrength =
+    length(
+      u_force
+    );
 
   state.z =
     min(
-      2.5,
+      2.8,
       state.z +
       splat *
       (
-        0.16 +
+        0.24 +
         min(
-          length(u_force) * 1.8,
-          0.34
+          forceStrength * 2.4,
+          0.42
         )
       )
     );
-
 
   outColor =
     state;
 }
 `;
 
-
-/* -------------------------------------------------------------------------- */
-/* Final liquid + gradient render                                             */
-/* -------------------------------------------------------------------------- */
-
 export const renderShader = `#version 300 es
 precision highp float;
 
 uniform sampler2D u_fluid;
-
 uniform vec2 u_resolution;
 uniform vec2 u_simTexel;
-
 uniform float u_time;
 
 in vec2 v_uv;
 out vec4 outColor;
-
-
-/* -------------------------------------------------------------------------- */
-/* Gradient helpers                                                           */
-/* -------------------------------------------------------------------------- */
 
 float blob(
   vec2 uv,
@@ -305,11 +222,6 @@ float blob(
     );
 }
 
-
-/* -------------------------------------------------------------------------- */
-/* Living gradient                                                            */
-/* -------------------------------------------------------------------------- */
-
 vec3 gradientPalette(
   vec2 uv,
   float time
@@ -317,93 +229,106 @@ vec3 gradientPalette(
   vec3 base =
     vec3(
       0.965,
-      0.952,
+      0.950,
       1.0
     );
-
 
   vec3 lavender =
     vec3(
-      0.54,
-      0.43,
+      0.49,
+      0.37,
       1.0
     );
 
+  vec3 purple =
+    vec3(
+      0.36,
+      0.25,
+      0.92
+    );
 
   vec3 periwinkle =
     vec3(
-      0.68,
-      0.65,
+      0.66,
+      0.62,
       1.0
     );
-
 
   vec3 blue =
     vec3(
-      0.48,
-      0.76,
+      0.43,
+      0.72,
       1.0
     );
 
+  vec3 powderBlue =
+    vec3(
+      0.66,
+      0.84,
+      1.0
+    );
 
   vec3 pink =
     vec3(
-      0.95,
-      0.48,
-      0.72
+      0.96,
+      0.45,
+      0.70
     );
-
 
   vec3 peach =
     vec3(
       1.0,
-      0.57,
-      0.32
+      0.55,
+      0.30
     );
-
 
   vec3 lime =
     vec3(
-      0.80,
+      0.82,
       1.0,
-      0.34
+      0.36
     );
 
-
   /*
-   * The gradient itself slowly flows.
+   * Faster ambient movement.
    *
-   * Two frequencies stop the movement
-   * from looking like one simple wave.
+   * Still slow enough to feel calm, but now
+   * clearly readable over a few seconds.
    */
-
   vec2 flowUv =
     uv;
-
 
   flowUv.x +=
     sin(
       uv.y * 3.2 +
-      time * 0.10
+      time * 0.28
     ) *
-    0.018;
-
+    0.036;
 
   flowUv.x +=
     sin(
-      uv.y * 7.0 -
-      time * 0.055
+      uv.y * 6.8 -
+      time * 0.17
     ) *
-    0.007;
+    0.015;
 
+  flowUv.x +=
+    cos(
+      (
+        uv.x +
+        uv.y
+      ) *
+      4.2 +
+      time * 0.14
+    ) *
+    0.010;
 
   flowUv.y +=
     cos(
       uv.x * 2.8 -
-      time * 0.085
+      time * 0.24
     ) *
-    0.016;
-
+    0.032;
 
   flowUv.y +=
     sin(
@@ -412,272 +337,313 @@ vec3 gradientPalette(
         uv.y
       ) *
       5.0 +
-      time * 0.06
+      time * 0.18
     ) *
-    0.006;
+    0.014;
 
+  flowUv.y +=
+    cos(
+      uv.x * 7.0 +
+      time * 0.12
+    ) *
+    0.008;
 
   /*
-   * Slowly moving color bodies.
+   * The actual color centers now travel enough
+   * that the composition visibly changes while
+   * the user is looking at the Hero.
    */
-
-  vec2 p1 =
+  vec2 lavenderPosition =
     vec2(
-      0.13 +
+      0.16 +
       sin(
-        time * 0.10
+        time * 0.22
       ) *
-      0.10,
-
-      0.76 +
+      0.19 +
       cos(
-        time * 0.075
-      ) *
-      0.08
-    );
-
-
-  vec2 p2 =
-    vec2(
-      0.82 +
-      cos(
-        time * 0.082
-      ) *
-      0.09,
-
-      0.72 +
-      sin(
         time * 0.095
       ) *
-      0.07
+      0.045,
+
+      0.75 +
+      cos(
+        time * 0.17
+      ) *
+      0.15
     );
 
+  vec2 bluePosition =
+    vec2(
+      0.80 +
+      cos(
+        time * 0.19
+      ) *
+      0.18,
 
-  vec2 p3 =
+      0.70 +
+      sin(
+        time * 0.21
+      ) *
+      0.14
+    );
+
+  vec2 pinkPosition =
     vec2(
       0.67 +
       sin(
-        time * 0.072
+        time * 0.16
       ) *
-      0.10,
+      0.18,
 
-      0.24 +
+      0.27 +
       cos(
-        time * 0.088
+        time * 0.20
       ) *
-      0.08
+      0.14
     );
 
-
-  vec2 p4 =
+  vec2 peachPosition =
     vec2(
       0.16 +
       cos(
-        time * 0.090
+        time * 0.20
+      ) *
+      0.16,
+
+      0.19 +
+      sin(
+        time * 0.16
+      ) *
+      0.13
+    );
+
+  vec2 centerPosition =
+    vec2(
+      0.48 +
+      sin(
+        time * 0.13
+      ) *
+      0.15,
+
+      0.52 +
+      cos(
+        time * 0.15
+      ) *
+      0.14
+    );
+
+  vec2 purplePosition =
+    vec2(
+      0.42 +
+      cos(
+        time * 0.12
+      ) *
+      0.20,
+
+      0.69 +
+      sin(
+        time * 0.14
+      ) *
+      0.14
+    );
+
+  vec2 limePosition =
+    vec2(
+      0.88 +
+      sin(
+        time * 0.12
       ) *
       0.08,
 
       0.18 +
-      sin(
-        time * 0.070
+      cos(
+        time * 0.14
       ) *
       0.07
     );
 
-
-  vec2 p5 =
-    vec2(
-      0.48 +
-      sin(
-        time * 0.055
-      ) *
-      0.09,
-
-      0.51 +
-      cos(
-        time * 0.063
-      ) *
-      0.08
-    );
-
-
-  vec2 p6 =
-    vec2(
-      0.88 +
-      sin(
-        time * 0.050
-      ) *
-      0.05,
-
-      0.20 +
-      cos(
-        time * 0.061
-      ) *
-      0.05
-    );
-
-
-  float b1 =
+  float lavenderBlob =
     blob(
       flowUv,
-      p1,
-      3.05
+      lavenderPosition,
+      2.45
     );
 
-
-  float b2 =
+  float blueBlob =
     blob(
       flowUv,
-      p2,
-      3.35
+      bluePosition,
+      2.65
     );
 
-
-  float b3 =
+  float pinkBlob =
     blob(
       flowUv,
-      p3,
-      3.45
+      pinkPosition,
+      2.80
     );
 
-
-  float b4 =
+  float peachBlob =
     blob(
       flowUv,
-      p4,
-      3.65
+      peachPosition,
+      2.95
     );
 
-
-  float b5 =
+  float centerBlob =
     blob(
       flowUv,
-      p5,
-      3.15
+      centerPosition,
+      2.55
     );
 
-
-  float b6 =
+  float purpleBlob =
     blob(
       flowUv,
-      p6,
+      purplePosition,
+      3.00
+    );
+
+  float limeBlob =
+    blob(
+      flowUv,
+      limePosition,
       5.2
     );
 
-
-  /*
-   * Tiny intensity breathing.
-   */
-
-  float breathe =
-    0.92 +
+  float lavenderBreath =
+    0.86 +
     sin(
-      time * 0.16
+      time * 0.34
     ) *
-    0.08;
+    0.14;
 
+  float blueBreath =
+    0.87 +
+    sin(
+      time * 0.29 +
+      1.8
+    ) *
+    0.13;
+
+  float pinkBreath =
+    0.87 +
+    sin(
+      time * 0.31 +
+      3.4
+    ) *
+    0.13;
+
+  float peachBreath =
+    0.89 +
+    sin(
+      time * 0.25 +
+      5.1
+    ) *
+    0.11;
+
+  float purpleBreath =
+    0.87 +
+    sin(
+      time * 0.23 +
+      2.4
+    ) *
+    0.13;
 
   vec3 color =
     base;
-
 
   color =
     mix(
       color,
       lavender,
       clamp(
-        b1 *
-        0.90 *
-        breathe,
+        lavenderBlob *
+        0.94 *
+        lavenderBreath,
         0.0,
-        0.90
+        0.94
       )
     );
-
 
   color =
     mix(
       color,
       blue,
       clamp(
-        b2 *
-        0.72,
+        blueBlob *
+        0.80 *
+        blueBreath,
         0.0,
-        0.76
+        0.82
       )
     );
-
 
   color =
     mix(
       color,
       pink,
       clamp(
-        b3 *
-        0.64 *
-        (
-          1.02 -
-          0.06 *
-          sin(
-            time * 0.13
-          )
-        ),
+        pinkBlob *
+        0.70 *
+        pinkBreath,
         0.0,
-        0.68
+        0.74
       )
     );
-
 
   color =
     mix(
       color,
       peach,
       clamp(
-        b4 *
-        0.58,
+        peachBlob *
+        0.66 *
+        peachBreath,
         0.0,
-        0.62
+        0.70
       )
     );
-
 
   color =
     mix(
       color,
-      periwinkle,
+      powderBlue,
       clamp(
-        b5 *
-        0.38,
+        centerBlob *
+        0.30,
         0.0,
-        0.42
+        0.34
       )
     );
 
-
-  /*
-   * Lime is deliberately tiny.
-   */
+  color =
+    mix(
+      color,
+      purple,
+      clamp(
+        purpleBlob *
+        0.31 *
+        purpleBreath,
+        0.0,
+        0.33
+      )
+    );
 
   color =
     mix(
       color,
       lime,
       clamp(
-        b6 *
-        0.13,
+        limeBlob *
+        0.11,
         0.0,
-        0.10
+        0.075
       )
     );
 
-
   return color;
 }
-
-
-/* -------------------------------------------------------------------------- */
-/* Main                                                                       */
-/* -------------------------------------------------------------------------- */
 
 void main() {
   vec4 fluid =
@@ -686,26 +652,18 @@ void main() {
       v_uv
     );
 
-
   vec2 velocity =
     fluid.xy;
-
 
   float height =
     fluid.z;
 
-
   /*
-   * ------------------------------------------------------------------------
-   * PERSISTENT SURFACE NORMAL
-   * ------------------------------------------------------------------------
-   *
-   * Unlike the old version this comes
-   * from the stored fluid texture rather
-   * than five cursor circles.
+   * Two normal scales:
+   * one broad for the soft body deformation,
+   * one tighter for the glassy inner edge.
    */
-
-  float heightLeft =
+  float hLeft =
     texture(
       u_fluid,
       clamp(
@@ -719,8 +677,7 @@ void main() {
       )
     ).z;
 
-
-  float heightRight =
+  float hRight =
     texture(
       u_fluid,
       clamp(
@@ -734,8 +691,7 @@ void main() {
       )
     ).z;
 
-
-  float heightBottom =
+  float hBottom =
     texture(
       u_fluid,
       clamp(
@@ -749,8 +705,7 @@ void main() {
       )
     ).z;
 
-
-  float heightTop =
+  float hTop =
     texture(
       u_fluid,
       clamp(
@@ -763,25 +718,74 @@ void main() {
         vec2(1.0)
       )
     ).z;
-
 
   vec2 heightNormal =
     vec2(
-      heightLeft -
-      heightRight,
-
-      heightBottom -
-      heightTop
+      hLeft - hRight,
+      hBottom - hTop
     );
 
+  float hLeftWide =
+    texture(
+      u_fluid,
+      clamp(
+        v_uv -
+        vec2(
+          u_simTexel.x * 5.0,
+          0.0
+        ),
+        vec2(0.0),
+        vec2(1.0)
+      )
+    ).z;
 
-  /*
-   * A second, slightly wider derivative
-   * comes from velocity.
-   *
-   * This creates additional irregular
-   * ridges instead of one perfect ring.
-   */
+  float hRightWide =
+    texture(
+      u_fluid,
+      clamp(
+        v_uv +
+        vec2(
+          u_simTexel.x * 5.0,
+          0.0
+        ),
+        vec2(0.0),
+        vec2(1.0)
+      )
+    ).z;
+
+  float hBottomWide =
+    texture(
+      u_fluid,
+      clamp(
+        v_uv -
+        vec2(
+          0.0,
+          u_simTexel.y * 5.0
+        ),
+        vec2(0.0),
+        vec2(1.0)
+      )
+    ).z;
+
+  float hTopWide =
+    texture(
+      u_fluid,
+      clamp(
+        v_uv +
+        vec2(
+          0.0,
+          u_simTexel.y * 5.0
+        ),
+        vec2(0.0),
+        vec2(1.0)
+      )
+    ).z;
+
+  vec2 broadNormal =
+    vec2(
+      hLeftWide - hRightWide,
+      hBottomWide - hTopWide
+    );
 
   vec2 velocityNormal =
     vec2(
@@ -797,7 +801,6 @@ void main() {
           vec2(1.0)
         )
       ).x -
-
       texture(
         u_fluid,
         clamp(
@@ -823,7 +826,6 @@ void main() {
           vec2(1.0)
         )
       ).y -
-
       texture(
         u_fluid,
         clamp(
@@ -838,107 +840,239 @@ void main() {
       ).y
     );
 
-
   vec2 normal2 =
-    heightNormal * 1.35 +
+    heightNormal * 1.65 +
+    broadNormal * 0.58 +
     velocityNormal * 0.42;
 
+  float velocityStrength =
+    length(
+      velocity
+    );
 
   float activity =
     clamp(
-      height * 0.72 +
-      length(
-        velocity
-      ) *
-      2.0,
+      height * 0.92 +
+      velocityStrength * 2.35,
       0.0,
       1.0
     );
 
+  float bodyMask =
+    smoothstep(
+      0.025,
+      0.46,
+      height
+    );
+
+  float coreMask =
+    smoothstep(
+      0.11,
+      0.72,
+      height
+    );
 
   /*
-   * ------------------------------------------------------------------------
-   * AMBIENT LIQUID MOVEMENT
-   * ------------------------------------------------------------------------
+   * The untouched background itself also drifts,
+   * so the scene is visibly alive before the
+   * cursor even interacts with it.
    */
-
   vec2 ambientUv =
     v_uv;
-
 
   ambientUv.x +=
     sin(
       v_uv.y * 2.7 +
-      u_time * 0.09
+      u_time * 0.22
+    ) *
+    0.012;
+
+  ambientUv.x +=
+    sin(
+      (
+        v_uv.x +
+        v_uv.y
+      ) *
+      4.2 -
+      u_time * 0.12
     ) *
     0.006;
-
 
   ambientUv.y +=
     cos(
       v_uv.x * 2.4 -
-      u_time * 0.075
+      u_time * 0.19
     ) *
-    0.005;
-
+    0.011;
 
   /*
-   * ------------------------------------------------------------------------
-   * REFRACTION
-   * ------------------------------------------------------------------------
+   * FAKE THICK GLASS / GEL
    *
-   * Velocity stretches the gradient in
-   * the movement direction.
-   *
-   * Height normals bend it around the
-   * persistent wake.
+   * The body gets a broad directional push,
+   * while the edge gets a stronger normal-based
+   * bend. This is intentionally more readable
+   * than physically accurate.
    */
+  vec2 bodyDisplacement =
+    velocity * 1.75 +
+    broadNormal * 0.20;
+
+  vec2 edgeDisplacement =
+    normal2 * 0.26;
 
   vec2 refractedUv =
-    ambientUv -
-    velocity * 0.78 -
-    normal2 * 0.115;
-
-
-  refractedUv =
     clamp(
-      refractedUv,
+      ambientUv -
+      bodyDisplacement -
+      edgeDisplacement,
       vec2(0.0),
       vec2(1.0)
     );
 
+  vec2 deepUv =
+    clamp(
+      ambientUv -
+      velocity * 2.20 -
+      broadNormal * 0.31 -
+      normal2 * 0.10,
+      vec2(0.0),
+      vec2(1.0)
+    );
 
-  vec3 color =
+  vec2 rimUv =
+    clamp(
+      ambientUv +
+      normal2 * 0.075 -
+      velocity * 0.32,
+      vec2(0.0),
+      vec2(1.0)
+    );
+
+  vec3 originalGradient =
+    gradientPalette(
+      ambientUv,
+      u_time
+    );
+
+  vec3 refractedGradient =
     gradientPalette(
       refractedUv,
       u_time
     );
 
+  vec3 deepGradient =
+    gradientPalette(
+      deepUv,
+      u_time
+    );
+
+  vec3 rimGradient =
+    gradientPalette(
+      rimUv,
+      u_time
+    );
 
   /*
-   * ------------------------------------------------------------------------
-   * GEL LIGHTING
-   * ------------------------------------------------------------------------
+   * The body now visibly carries a displaced
+   * copy of the gradient. This is the main
+   * readability improvement.
    */
+  vec3 color =
+    mix(
+      originalGradient,
+      refractedGradient,
+      bodyMask * 0.78
+    );
+
+  color =
+    mix(
+      color,
+      deepGradient,
+      coreMask * 0.28
+    );
+
+  /*
+   * Slight chromatic separation at the edge.
+   * Very restrained: fake glass, not RGB glitch.
+   */
+  float rimStrength =
+    smoothstep(
+      0.004,
+      0.070,
+      length(normal2)
+    ) *
+    bodyMask;
+
+  color =
+    mix(
+      color,
+      rimGradient,
+      rimStrength * 0.16
+    );
+
+  float luminance =
+    dot(
+      color,
+      vec3(
+        0.2126,
+        0.7152,
+        0.0722
+      )
+    );
+
+  vec3 saturatedColor =
+    mix(
+      vec3(luminance),
+      color,
+      1.20
+    );
+
+  color =
+    mix(
+      color,
+      saturatedColor,
+      bodyMask * 0.28
+    );
+
+  /*
+   * Broad translucent body:
+   * a small lift + tint makes the pushed
+   * material visible even over soft colors.
+   */
+  color +=
+    vec3(
+      0.028,
+      0.020,
+      0.052
+    ) *
+    bodyMask *
+    0.34;
+
+  color -=
+    vec3(
+      0.020,
+      0.014,
+      0.038
+    ) *
+    coreMask *
+    0.22;
 
   vec3 normal =
     normalize(
       vec3(
-        normal2 * 14.0,
+        normal2 * 17.0,
         1.0
       )
     );
 
-
   vec3 lightDirection =
     normalize(
       vec3(
-        -0.65,
-        0.72,
-        0.90
+        -0.62,
+        0.74,
+        0.92
       )
     );
-
 
   float diffuse =
     dot(
@@ -946,104 +1080,104 @@ void main() {
       lightDirection
     );
 
-
   float ridge =
     smoothstep(
-      0.006,
-      0.085,
-      length(
-        normal2
-      )
+      0.003,
+      0.060,
+      length(normal2)
     ) *
-    activity;
+    bodyMask;
 
+  float broadRidge =
+    smoothstep(
+      0.002,
+      0.050,
+      length(broadNormal)
+    ) *
+    bodyMask;
 
   float brightEdge =
     smoothstep(
-      0.04,
-      0.72,
+      0.015,
+      0.62,
       diffuse
     ) *
     ridge;
 
-
   float darkEdge =
     smoothstep(
-      0.02,
-      0.62,
+      0.010,
+      0.54,
       -diffuse
     ) *
     ridge;
 
+  /*
+   * Broad soft highlight first.
+   */
+  color +=
+    vec3(
+      0.18,
+      0.16,
+      0.27
+    ) *
+    broadRidge *
+    0.22;
 
   /*
-   * Pale lavender highlight.
+   * Then the sharper glass edge.
    */
+  color +=
+    vec3(
+      0.24,
+      0.22,
+      0.34
+    ) *
+    brightEdge *
+    0.40;
+
+  color -=
+    vec3(
+      0.085,
+      0.060,
+      0.140
+    ) *
+    darkEdge *
+    0.38;
+
+  /*
+   * Curvature gives the gel an inner lip.
+   */
+  float curvature =
+    abs(
+      hLeft +
+      hRight +
+      hBottom +
+      hTop -
+      4.0 * height
+    );
+
+  float innerLip =
+    smoothstep(
+      0.0015,
+      0.045,
+      curvature
+    ) *
+    bodyMask;
 
   color +=
     vec3(
       0.16,
       0.14,
-      0.24
+      0.25
     ) *
-    brightEdge *
-    0.24;
-
+    innerLip *
+    0.20;
 
   /*
-   * Indigo opposite edge.
+   * Soft specular rather than a hard wet-water
+   * sparkle. This keeps it closer to gel/glass.
    */
-
-  color -=
-    vec3(
-      0.07,
-      0.05,
-      0.11
-    ) *
-    darkEdge *
-    0.25;
-
-
-  /*
-   * ------------------------------------------------------------------------
-   * SECONDARY INNER RIDGE
-   * ------------------------------------------------------------------------
-   *
-   * This gives us a hint of another
-   * material edge without drawing an
-   * artificial circular ring.
-   */
-
-  float innerRidge =
-    smoothstep(
-      0.015,
-      0.13,
-      abs(
-        heightLeft +
-        heightRight -
-        heightBottom -
-        heightTop
-      )
-    ) *
-    activity;
-
-
-  color +=
-    vec3(
-      0.10,
-      0.08,
-      0.18
-    ) *
-    innerRidge *
-    0.11;
-
-
-  /*
-   * ------------------------------------------------------------------------
-   * SPECULAR
-   * ------------------------------------------------------------------------
-   */
-
   vec3 viewDirection =
     vec3(
       0.0,
@@ -1051,13 +1185,11 @@ void main() {
       1.0
     );
 
-
   vec3 halfDirection =
     normalize(
       lightDirection +
       viewDirection
     );
-
 
   float specular =
     pow(
@@ -1068,25 +1200,44 @@ void main() {
         ),
         0.0
       ),
-      24.0
+      16.0
     ) *
     ridge;
 
-
   color +=
     vec3(
-      0.20,
-      0.18,
-      0.28
+      0.25,
+      0.23,
+      0.34
     ) *
     specular *
-    0.22;
-
+    0.34;
 
   /*
-   * Very slight milky finish.
+   * A very soft milky transmission inside
+   * thicker areas helps sell material volume.
    */
+  vec3 milky =
+    mix(
+      color,
+      vec3(
+        0.975,
+        0.962,
+        1.0
+      ),
+      0.10
+    );
 
+  color =
+    mix(
+      color,
+      milky,
+      coreMask * 0.20
+    );
+
+  /*
+   * Keep untouched background crisp.
+   */
   color =
     mix(
       color,
@@ -1095,9 +1246,8 @@ void main() {
         0.975,
         1.0
       ),
-      0.012
+      0.006
     );
-
 
   outColor =
     vec4(

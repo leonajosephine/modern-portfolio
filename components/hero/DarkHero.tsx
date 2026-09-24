@@ -2,29 +2,36 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+
 import { Button } from "@/components/ui/button";
 import ScrollVelocity from "@/components/ui/shadcn-io/scroll-velocity";
 
-export default function Hero() {
+export default function DarkHero() {
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      const { innerWidth: w, innerHeight: h } = window;
+      const {
+        innerWidth: width,
+        innerHeight: height,
+      } = window;
 
       document.documentElement.style.setProperty(
         "--mx",
-        `${(e.clientX / w) * 100}%`
+        `${(e.clientX / width) * 100}%`
       );
 
       document.documentElement.style.setProperty(
         "--my",
-        `${(e.clientY / h) * 100}%`
+        `${(e.clientY / height) * 100}%`
       );
     };
 
     window.addEventListener("mousemove", onMove);
 
     return () => {
-      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener(
+        "mousemove",
+        onMove
+      );
     };
   }, []);
 
@@ -32,22 +39,34 @@ export default function Hero() {
     <section
       id="top"
       data-cursor="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-16 sm:px-6 sm:py-20"
+      className="
+        relative flex min-h-screen
+        items-center justify-center
+        overflow-hidden
+        px-5 py-16
+        sm:px-6 sm:py-20
+      "
     >
       {/* Cursor glow */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.1, ease: "easeOut" }}
-        className="pointer-events-none absolute inset-0"
+        transition={{
+          duration: 1.1,
+          ease: "easeOut",
+        }}
+        className="
+          pointer-events-none
+          absolute inset-0
+        "
         style={{
           background:
             "radial-gradient(240px 240px at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.08), transparent 60%)",
         }}
       />
 
-      {/* Ambient background glow */}
+      {/* Ambient glow */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
@@ -57,29 +76,49 @@ export default function Hero() {
           delay: 0.15,
           ease: "easeOut",
         }}
-        className="pointer-events-none absolute inset-0"
+        className="
+          pointer-events-none
+          absolute inset-0
+        "
         style={{
           background:
             "radial-gradient(circle at 50% 18%, rgba(255,255,255,0.06), transparent 28%)",
         }}
       />
 
-      <div className="container relative z-10 flex flex-col items-center text-center">
-        {/* Role */}
+      <div
+        className="
+          container relative z-10
+          flex flex-col
+          items-center text-center
+        "
+      >
         <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 18,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
             duration: 0.7,
             delay: 0.2,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mb-6 text-[0.7rem] uppercase tracking-[0.28em] text-muted-foreground sm:text-xs"
+          className="
+            mb-6
+            text-[0.7rem]
+            uppercase
+            tracking-[0.28em]
+            text-muted-foreground
+            sm:text-xs
+          "
         >
           ⎯ Web & App Developer · UI / UX · Creative Tech
         </motion.p>
 
-        {/* Name */}
         <motion.div
           initial={{
             opacity: 0,
@@ -104,29 +143,59 @@ export default function Hero() {
               "Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann Leona Josephine Redmann",
             ]}
             velocity={90}
-            className="font-sans text-[clamp(3.6rem,12vw,13rem)] font-semibold leading-[0.88] tracking-[-0.07em] text-foreground xl:text-[clamp(7rem,10vw,15rem)]"
+            className="
+              font-display
+              text-[clamp(3.6rem,12vw,13rem)]
+              font-semibold
+              leading-[0.88]
+              tracking-[-0.07em]
+              text-foreground
+              xl:text-[clamp(7rem,10vw,15rem)]
+            "
           />
         </motion.div>
 
-        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 18,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
             duration: 0.65,
             delay: 0.85,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12"
+          className="
+            mt-8 flex flex-wrap
+            items-center justify-center
+            gap-3
+            sm:mt-12
+          "
         >
-          <a data-cursor="plain" href="#portfolio">
-            <Button variant="primary" size="lg">
+          <a
+            data-cursor="plain"
+            href="#portfolio"
+          >
+            <Button
+              variant="primary"
+              size="lg"
+            >
               View Projects
             </Button>
           </a>
 
-          <a data-cursor="plain" href="#contact">
-            <Button variant="secondary" size="lg">
+          <a
+            data-cursor="plain"
+            href="#contact"
+          >
+            <Button
+              variant="secondary"
+              size="lg"
+            >
               Get in Touch
             </Button>
           </a>

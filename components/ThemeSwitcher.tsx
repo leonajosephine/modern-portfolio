@@ -18,6 +18,7 @@ import {
   Martini,
   Moon,
   Sun,
+  Droplets
 } from "lucide-react";
 
 export type ThemeId =
@@ -56,7 +57,7 @@ const themes: Theme[] = [
   },
   {
     id: "ocean",
-    icon: <Flower2 size={16} />,
+    icon: <Droplets size={16} />,
     label: "Use tennis court theme",
     shortLabel: "Tennis",
   },
@@ -185,7 +186,7 @@ export default function ThemeSwitcher() {
     <div
       ref={switcherRef}
       className="relative"
-      data-cursor="theme"
+      data-cursor="plain"
     >
       {/* Desktop */}
       <div
