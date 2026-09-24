@@ -7,10 +7,12 @@ import {
   useState,
   type ReactNode,
 } from "react";
+
 import {
   AnimatePresence,
   motion,
 } from "framer-motion";
+
 import {
   Flower2,
   Martini,
@@ -18,7 +20,11 @@ import {
   Sun,
 } from "lucide-react";
 
-type ThemeId = "dark" | "light" | "sunset" | "ocean";
+export type ThemeId =
+  | "dark"
+  | "light"
+  | "sunset"
+  | "ocean";
 
 type Theme = {
   id: ThemeId;
@@ -56,56 +62,79 @@ const themes: Theme[] = [
   },
 ];
 
-function isThemeId(value: string | null): value is ThemeId {
-  return themes.some((theme) => theme.id === value);
+function isThemeId(
+  value: string | null
+): value is ThemeId {
+  return themes.some(
+    (theme) => theme.id === value
+  );
 }
 
 function applyTheme(theme: ThemeId) {
-  document.body.setAttribute("data-theme", theme);
+  document.body.setAttribute(
+    "data-theme",
+    theme
+  );
 
   window.dispatchEvent(
-    new CustomEvent("portfolio-theme-change", {
-      detail: {
-        theme,
-      },
-    })
+    new CustomEvent(
+      "portfolio-theme-change",
+      {
+        detail: {
+          theme,
+        },
+      }
+    )
   );
 }
 
 export default function ThemeSwitcher() {
   const [currentTheme, setCurrentTheme] =
     useState<ThemeId>("dark");
-  const [isOpen, setIsOpen] = useState(false);
 
-  const switcherRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] =
+    useState(false);
+
+  const switcherRef =
+    useRef<HTMLDivElement>(null);
+
   const mobileMenuId = useId();
 
   useEffect(() => {
     const storedTheme =
-      window.localStorage.getItem(STORAGE_KEY);
+      window.localStorage.getItem(
+        STORAGE_KEY
+      );
 
-    const initialTheme: ThemeId = isThemeId(storedTheme)
-      ? storedTheme
-      : "dark";
+    const initialTheme: ThemeId =
+      isThemeId(storedTheme)
+        ? storedTheme
+        : "dark";
 
     setCurrentTheme(initialTheme);
     applyTheme(initialTheme);
   }, []);
 
   useEffect(() => {
-    const handlePointerDown = (event: PointerEvent) => {
+    const handlePointerDown = (
+      event: PointerEvent
+    ) => {
       const target = event.target;
 
       if (
         target instanceof Node &&
         switcherRef.current &&
-        !switcherRef.current.contains(target)
+        !switcherRef.current.contains(
+          target
+        )
       ) {
         setIsOpen(false);
       }
     };
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (
+      event: KeyboardEvent
+    ) => {
       if (event.key === "Escape") {
         setIsOpen(false);
       }
@@ -115,6 +144,7 @@ export default function ThemeSwitcher() {
       "pointerdown",
       handlePointerDown
     );
+
     document.addEventListener(
       "keydown",
       handleKeyDown
@@ -125,6 +155,7 @@ export default function ThemeSwitcher() {
         "pointerdown",
         handlePointerDown
       );
+
       document.removeEventListener(
         "keydown",
         handleKeyDown
@@ -137,12 +168,18 @@ export default function ThemeSwitcher() {
     setIsOpen(false);
 
     applyTheme(theme);
-    window.localStorage.setItem(STORAGE_KEY, theme);
+
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      theme
+    );
   };
 
   const activeTheme =
-    themes.find((theme) => theme.id === currentTheme) ??
-    themes[0];
+    themes.find(
+      (theme) =>
+        theme.id === currentTheme
+    ) ?? themes[0];
 
   return (
     <div
@@ -150,9 +187,12 @@ export default function ThemeSwitcher() {
       className="relative"
       data-cursor="theme"
     >
-      {/* Desktop version */}
+      {/* Desktop */}
       <div
-        className="hidden items-center gap-1.5 md:flex"
+        className="
+          hidden items-center
+          gap-1.5 md:flex
+        "
         role="group"
         aria-label="Choose color theme"
       >
@@ -164,21 +204,28 @@ export default function ThemeSwitcher() {
             <button
               key={theme.id}
               type="button"
-              onClick={() => setTheme(theme.id)}
+              onClick={() =>
+                setTheme(theme.id)
+              }
               aria-label={theme.label}
               aria-pressed={isActive}
               aria-current={
-                isActive ? "true" : undefined
+                isActive
+                  ? "true"
+                  : undefined
               }
               className={`
-                flex h-9 w-9 items-center justify-center
-                rounded-full border
-                transition-all duration-200
+                portfolio-theme-button
+                flex h-9 w-9
+                items-center justify-center
+                border
+
                 focus-visible:outline-none
                 focus-visible:ring-2
                 focus-visible:ring-ring
                 focus-visible:ring-offset-2
                 focus-visible:ring-offset-background
+
                 ${
                   isActive
                     ? "scale-105 border-primary bg-primary text-primary-foreground"
@@ -187,11 +234,16 @@ export default function ThemeSwitcher() {
               `}
             >
               <span
-                className={`transition-transform duration-200 ${
-                  isActive
-                    ? "scale-110"
-                    : "scale-100"
-                }`}
+                className={`
+                  transition-transform
+                  duration-200
+
+                  ${
+                    isActive
+                      ? "scale-110"
+                      : "scale-100"
+                  }
+                `}
               >
                 {theme.icon}
               </span>
@@ -200,23 +252,30 @@ export default function ThemeSwitcher() {
         })}
       </div>
 
-      {/* Mobile active-theme button */}
+      {/* Mobile active theme */}
       <button
         type="button"
         onClick={() =>
-          setIsOpen((current) => !current)
+          setIsOpen(
+            (current) => !current
+          )
         }
         className="
-          flex h-9 w-9 items-center justify-center
-          rounded-full border border-primary
-          bg-primary text-primary-foreground
-          transition-all duration-200
+          portfolio-theme-button
+          flex h-9 w-9
+          items-center justify-center
+          border border-primary
+          bg-primary
+          text-primary-foreground
+
           hover:scale-105
+
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-ring
           focus-visible:ring-offset-2
           focus-visible:ring-offset-background
+
           md:hidden
         "
         aria-label={`Current theme: ${activeTheme.shortLabel}. Open theme menu`}
@@ -237,14 +296,19 @@ export default function ThemeSwitcher() {
           }}
           transition={{
             duration: 0.22,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [
+              0.22,
+              1,
+              0.36,
+              1,
+            ],
           }}
         >
           {activeTheme.icon}
         </motion.span>
       </button>
 
-      {/* Mobile theme dropdown */}
+      {/* Mobile dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -266,15 +330,22 @@ export default function ThemeSwitcher() {
             }}
             transition={{
               duration: 0.2,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [
+                0.22,
+                1,
+                0.36,
+                1,
+              ],
             }}
             className="
+              portfolio-theme-panel
               absolute right-0
               top-[calc(100%+0.65rem)]
-              z-40 flex flex-col gap-1.5
-              rounded-[1.25rem]
+              z-40
+              flex flex-col gap-1.5
               border border-border/70
-              bg-background/90 p-1.5
+              bg-background/90
+              p-1.5
               shadow-[0_16px_45px_rgba(0,0,0,0.18)]
               backdrop-blur-xl
               md:hidden
@@ -282,52 +353,69 @@ export default function ThemeSwitcher() {
             role="group"
             aria-label="Choose color theme"
           >
-            {themes.map((theme, index) => {
-              const isActive =
-                currentTheme === theme.id;
+            {themes.map(
+              (theme, index) => {
+                const isActive =
+                  currentTheme ===
+                  theme.id;
 
-              return (
-                <motion.button
-                  key={theme.id}
-                  type="button"
-                  onClick={() =>
-                    setTheme(theme.id)
-                  }
-                  initial={{
-                    opacity: 0,
-                    y: -5,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.18,
-                    delay: index * 0.035,
-                  }}
-                  aria-label={theme.label}
-                  aria-pressed={isActive}
-                  aria-current={
-                    isActive ? "true" : undefined
-                  }
-                  className={`
-                    flex h-9 w-9 items-center justify-center
-                    rounded-full border
-                    transition-all duration-200
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-ring
-                    ${
-                      isActive
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-transparent bg-transparent text-foreground hover:border-border hover:bg-muted"
+                return (
+                  <motion.button
+                    key={theme.id}
+                    type="button"
+                    onClick={() =>
+                      setTheme(
+                        theme.id
+                      )
                     }
-                  `}
-                >
-                  {theme.icon}
-                </motion.button>
-              );
-            })}
+                    initial={{
+                      opacity: 0,
+                      y: -5,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: 0.18,
+                      delay:
+                        index *
+                        0.035,
+                    }}
+                    aria-label={
+                      theme.label
+                    }
+                    aria-pressed={
+                      isActive
+                    }
+                    aria-current={
+                      isActive
+                        ? "true"
+                        : undefined
+                    }
+                    className={`
+                      portfolio-theme-button
+                      flex h-9 w-9
+                      items-center
+                      justify-center
+                      border
+
+                      focus-visible:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-ring
+
+                      ${
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-transparent bg-transparent text-foreground hover:border-border hover:bg-muted"
+                      }
+                    `}
+                  >
+                    {theme.icon}
+                  </motion.button>
+                );
+              }
+            )}
           </motion.div>
         )}
       </AnimatePresence>

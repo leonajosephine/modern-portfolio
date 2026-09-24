@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* -------------------------------------------------------------------------- */
+/* Default / Dark theme                                                       */
+/* -------------------------------------------------------------------------- */
+
 :root {
   --bg-primary: #0b0b0d;
   --bg-secondary: #141417;
@@ -23,6 +27,25 @@
   --alt-text: #e7ddcf;
   --alt-text-muted: #a8a29e;
 
+  /* Typography */
+  --font-body: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-accent: var(--font-dm-serif);
+  --font-code: var(--font-ibm-mono);
+
+  /* Shape language */
+  --radius-button: 999px;
+  --radius-card: 1.5rem;
+  --radius-nav: 999px;
+  --radius-panel: 1.5rem;
+
+  --button-border-width: 1px;
+
+  /* Motion */
+  --motion-fast: 180ms;
+  --motion-base: 300ms;
+  --motion-slow: 600ms;
+
   /* Custom cursor */
   --cursor-main: rgba(255, 255, 255, 0.18);
   --cursor-border: rgba(255, 255, 255, 0.3);
@@ -35,6 +58,10 @@
   --cursor-nav-inner: rgba(255, 255, 255, 0.62);
   --cursor-nav-middle: rgba(168, 85, 247, 0.42);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Light / Swiss                                                              */
+/* -------------------------------------------------------------------------- */
 
 [data-theme="light"] {
   --bg-primary: #f7f4ef;
@@ -54,7 +81,21 @@
   --alt-text: #2d2925;
   --alt-text-muted: rgba(45, 41, 37, 0.6);
 
-  /* Dark glass cursor for bright backgrounds */
+  /* Typography */
+  --font-body: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-accent: var(--font-dm-serif);
+  --font-code: var(--font-ibm-mono);
+
+  /* Shape language */
+  --radius-button: 0.15rem;
+  --radius-card: 0.35rem;
+  --radius-nav: 0.25rem;
+  --radius-panel: 0.35rem;
+
+  --button-border-width: 1px;
+
+  /* Dark cursor for bright backgrounds */
   --cursor-main: rgba(23, 21, 19, 0.16);
   --cursor-border: rgba(23, 21, 19, 0.42);
   --cursor-shadow: rgba(23, 21, 19, 0.24);
@@ -66,6 +107,10 @@
   --cursor-nav-inner: rgba(45, 41, 37, 0.58);
   --cursor-nav-middle: rgba(168, 85, 247, 0.28);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Martini / Editorial                                                        */
+/* -------------------------------------------------------------------------- */
 
 [data-theme="sunset"] {
   --bg-primary: #1f0507;
@@ -85,6 +130,20 @@
   --alt-text: #3e1113;
   --alt-text-muted: rgba(62, 17, 19, 0.62);
 
+  /* Typography */
+  --font-body: var(--font-inter);
+  --font-display: var(--font-dm-serif);
+  --font-accent: var(--font-dm-serif);
+  --font-code: var(--font-ibm-mono);
+
+  /* Shape language */
+  --radius-button: 0.6rem;
+  --radius-card: 0.85rem;
+  --radius-nav: 0.75rem;
+  --radius-panel: 1rem;
+
+  --button-border-width: 1px;
+
   /* Rosé glass cursor */
   --cursor-main: rgba(244, 201, 214, 0.2);
   --cursor-border: rgba(244, 201, 214, 0.36);
@@ -98,36 +157,96 @@
   --cursor-nav-middle: rgba(232, 184, 194, 0.34);
 }
 
+/* -------------------------------------------------------------------------- */
+/* Ocean / Fluid Playground                                                   */
+/* -------------------------------------------------------------------------- */
+
 [data-theme="ocean"] {
-  --bg-primary: #001f27;
-  --bg-secondary: #003a35;
-  --bg-tertiary: #719a73;
+  --bg-primary: #f4f1ff;
+  --bg-secondary: #e9e3ff;
+  --bg-tertiary: #d9d0ff;
 
-  --text-primary: #f0e7d5;
-  --text-secondary: #a8c3a8;
+  --text-primary: #18164f;
+  --text-secondary: #6d688f;
 
-  --accent: #1f73c2;
-  --accent-strong: #8fc7ff;
+  --accent: #29258f;
+  --accent-strong: #19166f;
 
-  --border: rgba(240, 231, 213, 0.12);
-  --shadow: rgba(0, 31, 39, 0.42);
+  --border: rgba(24, 22, 79, 0.1);
+  --shadow: rgba(56, 46, 125, 0.14);
 
-  --alt-bg: #003a35;
-  --alt-text: #f0e7d5;
-  --alt-text-muted: #a8c3a8;
+  /* ------------------------------------------------------------------------ */
+  /* Alternate section                                                        */
+  /* ------------------------------------------------------------------------ */
 
-  /* Cool blue glass cursor */
-  --cursor-main: rgba(143, 199, 255, 0.18);
-  --cursor-border: rgba(143, 199, 255, 0.38);
-  --cursor-shadow: rgba(31, 115, 194, 0.34);
-  --cursor-dot: rgba(240, 231, 213, 0.95);
+  --alt-bg: #29258f;
+  --alt-text: #f7f4ff;
+  --alt-text-muted: rgba(247, 244, 255, 0.68);
 
-  --cursor-glow-inner: rgba(143, 199, 255, 0.7);
-  --cursor-glow-middle: rgba(31, 115, 194, 0.22);
+  /* ------------------------------------------------------------------------ */
+  /* Theme-specific accent palette                                            */
+  /* ------------------------------------------------------------------------ */
 
-  --cursor-nav-inner: rgba(143, 199, 255, 0.68);
-  --cursor-nav-middle: rgba(113, 154, 115, 0.4);
+  --ocean-indigo: #29258f;
+  --ocean-indigo-deep: #18164f;
+
+  --ocean-lavender: #9b8cff;
+  --ocean-periwinkle: #b9b4ff;
+  --ocean-blue: #a9d4ff;
+
+  --ocean-pink: #e9a4c6;
+  --ocean-peach: #f6b28b;
+  --ocean-orange: #ff9e5c;
+
+  --ocean-lime: #d8ff72;
+
+  /* ------------------------------------------------------------------------ */
+  /* Typography                                                               */
+  /* ------------------------------------------------------------------------ */
+
+  --font-body: var(--font-space-grotesk);
+  --font-display: var(--font-space-grotesk);
+  --font-accent: var(--font-dm-serif);
+  --font-code: var(--font-ibm-mono);
+
+  /* ------------------------------------------------------------------------ */
+  /* Shape language                                                           */
+  /* ------------------------------------------------------------------------ */
+
+  --radius-button: 999px;
+  --radius-card: 2rem;
+  --radius-nav: 999px;
+  --radius-panel: 2rem;
+
+  --button-border-width: 1px;
+
+  /* ------------------------------------------------------------------------ */
+  /* Motion                                                                   */
+  /* ------------------------------------------------------------------------ */
+
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-slow: 700ms;
+
+  /* ------------------------------------------------------------------------ */
+  /* Cursor                                                                   */
+  /* ------------------------------------------------------------------------ */
+
+  --cursor-main: rgba(41, 37, 143, 0.12);
+  --cursor-border: rgba(41, 37, 143, 0.34);
+  --cursor-shadow: rgba(90, 75, 190, 0.24);
+  --cursor-dot: rgba(24, 22, 79, 0.95);
+
+  --cursor-glow-inner: rgba(155, 140, 255, 0.54);
+  --cursor-glow-middle: rgba(169, 212, 255, 0.22);
+
+  --cursor-nav-inner: rgba(155, 140, 255, 0.56);
+  --cursor-nav-middle: rgba(233, 164, 198, 0.28);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Document                                                                   */
+/* -------------------------------------------------------------------------- */
 
 html {
   scroll-behavior: smooth;
@@ -135,10 +254,16 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: var(--font-sans), sans-serif;
+
+  font-family: var(--font-body), sans-serif;
+
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
+  transition:
+    background-color var(--motion-base) ease,
+    color var(--motion-base) ease;
 }
 
 img,
@@ -167,10 +292,15 @@ a:not([class]) {
   color: var(--bg-primary);
 }
 
+/* -------------------------------------------------------------------------- */
+/* Tailwind theme mapping                                                     */
+/* -------------------------------------------------------------------------- */
+
 @theme inline {
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-accent);
+  --font-mono: var(--font-code);
+  --font-display: var(--font-display);
 
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
@@ -197,6 +327,10 @@ a:not([class]) {
   --color-input: var(--border);
   --color-ring: var(--accent);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Base                                                                       */
+/* -------------------------------------------------------------------------- */
 
 @layer base {
   *,
@@ -228,11 +362,19 @@ a:not([class]) {
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/* Layout                                                                     */
+/* -------------------------------------------------------------------------- */
+
 .container {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Typography                                                                 */
+/* -------------------------------------------------------------------------- */
 
 h1,
 h2,
@@ -243,17 +385,21 @@ h6 {
   letter-spacing: -0.03em;
 }
 
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
 .font-serif {
-  font-family: var(--font-serif), serif;
+  font-family: var(--font-accent), serif;
 }
 
 .italic-serif {
-  font-family: var(--font-serif), serif;
+  font-family: var(--font-accent), serif;
   font-style: italic;
 }
 
 .font-mono {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-code), monospace;
 }
 
 .text-outline {
@@ -262,4 +408,66 @@ h6 {
   text-stroke: 1px var(--text-primary);
   opacity: 0.7;
   transition: opacity 0.2s ease;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Theme-aware shared UI                                                      */
+/* -------------------------------------------------------------------------- */
+
+.portfolio-nav {
+  border-radius: var(--radius-nav);
+
+  transition:
+    border-radius var(--motion-base)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--motion-base) ease,
+    border-color var(--motion-base) ease;
+}
+
+.portfolio-icon-button,
+.portfolio-theme-button {
+  border-radius: var(--radius-button);
+
+  transition:
+    transform var(--motion-fast)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius var(--motion-base)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.portfolio-theme-panel,
+.portfolio-mobile-nav {
+  border-radius: var(--radius-panel);
+
+  transition:
+    border-radius var(--motion-base)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--motion-base) ease,
+    border-color var(--motion-base) ease;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.portfolio-button {
+  border-radius: var(--radius-button);
+  border-width: var(--button-border-width);
+
+  transition:
+    transform var(--motion-base)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius var(--motion-base)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--motion-base) ease,
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    opacity var(--motion-base) ease;
+}
+
+.portfolio-button:hover {
+  transform: translateY(-2px);
 }

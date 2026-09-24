@@ -1,36 +1,53 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond, DM_Serif_Display, IBM_Plex_Mono } from "next/font/google";
+import {
+  Inter,
+  DM_Serif_Display,
+  IBM_Plex_Mono,
+  Space_Grotesk,
+} from "next/font/google";
+
 import "./globals.css";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GradientCursor from "@/components/GradientCursor";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const cormorant = DM_Serif_Display({
+const serif = DM_Serif_Display({
   subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400"],
+  variable: "--font-dm-serif",
+  weight: "400",
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-ibm-mono",
   weight: ["400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://leona-redmann-portfolio.com"),
+  metadataBase: new URL(
+    "https://leona-redmann-portfolio.com"
+  ),
 
   title: {
-    default: "Leona Josephine Redmann | Frontend Developer & UI Designer",
+    default:
+      "Leona Josephine Redmann | Frontend Developer & UI Designer",
     template: "%s | Leona Redmann",
   },
 
@@ -46,7 +63,6 @@ export const metadata: Metadata = {
   ],
 
   creator: "Leona Redmann",
-
   publisher: "Leona Redmann",
 
   keywords: [
@@ -80,41 +96,16 @@ export const metadata: Metadata = {
     },
   },
 
-  /*openGraph: {
-    title: "Leona Redmann | Frontend Developer & UI Designer",
-
-    description:
-      "Portfolio of Leona Redmann – Frontend Developer specializing in React, Next.js, TypeScript and modern UI design.",
-
-    url: "https://leona-redmann-portfolio.com",
-
-    siteName: "Leona Redmann Portfolio",
-
-    locale: "en_US",
-
-    type: "website",
-
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Leona Redmann Portfolio",
-      },
-    ],
-  },*/
-
   twitter: {
     card: "summary_large_image",
 
-    title: "Leona Redmann | Frontend Developer & UI Designer",
+    title:
+      "Leona Redmann | Frontend Developer & UI Designer",
 
     description:
       "Portfolio of Leona Redmann – Frontend Developer specializing in React, Next.js, TypeScript and modern UI design.",
 
     images: ["/og-image.png"],
-
-    //creator: "@yourusername", // später ersetzen oder entfernen
   },
 
   category: "technology",
@@ -128,11 +119,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${cormorant.variable} ${mono.variable}`}
+        className={`
+          ${inter.variable}
+          ${serif.variable}
+          ${grotesk.variable}
+          ${mono.variable}
+        `}
       >
         <Header />
         <GradientCursor />
+
         {children}
+
         <Footer />
       </body>
     </html>
