@@ -223,7 +223,7 @@ export const projects: Project[] = [
     short:
       "Building Atlumen meant shaping the brand from the ground up — from visual identity and art direction to a responsive digital experience for an AI tool built for expert workflows.",
   
-    cover: "/images/atlumen/frame.png",
+    cover: "/images/atlumen/cover.png",
   
     hero: {
       type: "image",
