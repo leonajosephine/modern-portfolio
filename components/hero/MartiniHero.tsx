@@ -395,45 +395,7 @@ export default function MartiniHero() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Small serif accent */}
 
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.95,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: 0.55,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="
-                hidden
-
-                md:col-span-3
-                md:col-start-9
-                md:block
-              "
-            >
-              <p
-                className="
-                  font-serif
-                  text-[clamp(1.6rem,2.5vw,2.8rem)]
-                  italic
-                  leading-[0.95]
-                  tracking-[-0.035em]
-                  text-muted-foreground
-                "
-              >
-                Form meets
-                <br />
-                function.
-              </p>
-            </motion.div>
           </div>
 
           {/* EXPERIENCES */}
@@ -517,11 +479,7 @@ export default function MartiniHero() {
                 sm:text-[0.54rem]
               "
             >
-              <p>Leona Josephine Redmann</p>
 
-              <p className="hidden sm:block">
-                Selected Work · 24—26
-              </p>
             </div>
 
             <a

@@ -204,33 +204,23 @@ export default function MartiniAbout() {
                 lg:self-start
               "
             >
-              <p
+                <p
                 className="
-                  max-w-[580px]
+                  max-w-[480px]
 
-                  font-serif
-                  text-[clamp(3.6rem,7vw,7.4rem)]
-                  leading-[0.84]
-                  tracking-[-0.055em]
+                  font-sans
+                  text-[clamp(2.4rem,5vw,5.4rem)]
+                  leading-[0.9]
+                  tracking-[-0.045em]
                   text-foreground
                 "
-              >
+                >
                 Ideas,
-                <br />
-
-                <span className="italic">
-                  shaped
-                </span>
-
-                <br />
-
+                shaped
                 into digital
                 <br />
-
-                <span className="italic">
                   experiences.
-                </span>
-              </p>
+                </p>
 
               <div
                 className="
@@ -375,25 +365,25 @@ export default function MartiniAbout() {
                             {item.number}
                           </span>
 
-                          <h3
+                            <h3
                             className={`
                               font-serif
-                              text-[clamp(1.8rem,4vw,3.8rem)]
-                              leading-[0.95]
-                              tracking-[-0.045em]
+                              text-[clamp(1.6rem,3.5vw,3.4rem)]
+                              leading-[1]
+                              tracking-[-0.04em]
 
                               transition-all
                               duration-500
 
                               ${
-                                isActive
-                                  ? "translate-x-2 italic text-foreground"
-                                  : "text-foreground/60 group-hover:text-foreground"
+                              isActive
+                                ? "translate-x-2 italic text-foreground"
+                                : "text-foreground/60 group-hover:text-foreground"
                               }
                             `}
-                          >
+                            >
                             {item.title}
-                          </h3>
+                            </h3>
 
                           <span
                             className={`
