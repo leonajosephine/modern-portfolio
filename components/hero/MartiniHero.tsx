@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 
 const statements = [
@@ -20,26 +14,15 @@ const TYPE_SPEED = 38;
 const HOLD_TIME = 2200;
 
 export default function MartiniHero() {
-  const [statementIndex, setStatementIndex] =
-    useState(0);
-
-  const [displayedText, setDisplayedText] =
-    useState("");
-
-  const [isHolding, setIsHolding] =
-    useState(false);
+  const [statementIndex, setStatementIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isHolding, setIsHolding] = useState(false);
 
   useEffect(() => {
-    const currentStatement =
-      statements[statementIndex];
+    const currentStatement = statements[statementIndex];
 
-    let timeout: ReturnType<
-      typeof setTimeout
-    >;
+    let timeout: ReturnType<typeof setTimeout>;
 
-    /*
-     * Statement has been completely typed.
-     */
     if (
       displayedText === currentStatement &&
       !isHolding
@@ -52,18 +35,13 @@ export default function MartiniHero() {
 
         setStatementIndex(
           (current) =>
-            (current + 1) %
-            statements.length
+            (current + 1) % statements.length
         );
       }, HOLD_TIME);
 
-      return () =>
-        clearTimeout(timeout);
+      return () => clearTimeout(timeout);
     }
 
-    /*
-     * Type the current statement.
-     */
     if (!isHolding) {
       timeout = setTimeout(() => {
         setDisplayedText(
@@ -75,8 +53,7 @@ export default function MartiniHero() {
       }, TYPE_SPEED);
     }
 
-    return () =>
-      clearTimeout(timeout);
+    return () => clearTimeout(timeout);
   }, [
     displayedText,
     isHolding,
@@ -96,11 +73,11 @@ export default function MartiniHero() {
       "
     >
       {/* ================================================================ */}
-      {/* DECORATIVE RULES                                                 */}
+      {/* EDITORIAL GRID                                                   */}
       {/* ================================================================ */}
 
       <div
-        aria-hidden
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute inset-0
@@ -113,7 +90,7 @@ export default function MartiniHero() {
             absolute
             bottom-0 left-[18%] top-0
             w-px
-            bg-foreground/10
+            bg-foreground/[0.07]
           "
         />
 
@@ -122,7 +99,7 @@ export default function MartiniHero() {
             absolute
             bottom-0 right-[18%] top-0
             w-px
-            bg-foreground/10
+            bg-foreground/[0.07]
           "
         />
       </div>
@@ -169,19 +146,17 @@ export default function MartiniHero() {
         <div
           className="
             font-mono
-            text-[0.55rem]
+            text-[0.52rem]
             uppercase
             leading-relaxed
-            tracking-[0.16em]
+            tracking-[0.18em]
             text-muted-foreground
           "
         >
-          <p>
-            Independent Portfolio
-          </p>
+          <p>Leona Redmann</p>
 
           <p className="hidden sm:block">
-            Design / Development
+            Web & App Developer · UI / UX
           </p>
         </div>
 
@@ -189,379 +164,402 @@ export default function MartiniHero() {
           className="
             text-right
             font-mono
-            text-[0.55rem]
+            text-[0.52rem]
             uppercase
             leading-relaxed
-            tracking-[0.16em]
+            tracking-[0.18em]
             text-muted-foreground
           "
         >
           <p>Hamburg · DE</p>
-          <p>MMXXVI</p>
+          <p>Portfolio · 2026</p>
         </div>
       </motion.div>
 
       {/* ================================================================ */}
-      {/* EDITORIAL NUMBER                                                 */}
-      {/* ================================================================ */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 1,
-          delay: 0.6,
-        }}
-        className="
-          absolute
-          right-5
-          top-[29%]
-          z-10
-
-          hidden
-
-          font-mono
-          text-[0.55rem]
-          uppercase
-          tracking-[0.18em]
-          text-muted-foreground
-
-          md:block
-          md:right-8
-        "
-      >
-        No. 03
-      </motion.div>
-
-      {/* ================================================================ */}
-      {/* MAIN COMPOSITION                                                 */}
+      {/* MAIN                                                             */}
       {/* ================================================================ */}
 
       <div
         className="
           relative z-10
-          flex min-h-[100svh]
+
+          flex
+          min-h-[100svh]
           flex-col
           justify-center
 
           px-5
           pb-24
-          pt-40
+          pt-44
 
           sm:px-6
 
           md:px-8
           md:pb-20
-          md:pt-44
+          md:pt-48
         "
       >
-        {/* Small intro */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: -20,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.15,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+        <div
           className="
-            mb-4
-            ml-[3%]
-
-            font-mono
-            text-[0.55rem]
-            uppercase
-            tracking-[0.18em]
-            text-muted-foreground
-
-            sm:mb-5
-
-            md:ml-[12%]
+            mx-auto
+            w-full
+            max-w-[1500px]
           "
         >
-          Web & App Developer
+          {/* Small identity */}
 
-          <span className="mx-2 opacity-40">
-            /
-          </span>
-
-          UI · UX
-        </motion.div>
-
-        {/* LEONA */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: -50,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-          transition={{
-            duration: 1,
-            delay: 0.1,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            relative z-10
-            ml-[-0.04em]
-          "
-        >
-          <h1
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -16,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.75,
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
-              font-serif
-              text-[clamp(5.5rem,19vw,18rem)]
-              font-normal
-              leading-[0.7]
-              tracking-[-0.075em]
-              text-foreground
+              mb-6
+              flex
+              items-center
+              gap-3
+
+              sm:mb-8
+
+              md:ml-[10%]
             "
           >
-            Leona
-          </h1>
-        </motion.div>
+            <span
+              className="
+                h-px
+                w-8
+                bg-foreground/40
+              "
+            />
 
-        {/* ============================================================ */}
-        {/* ROTATING TYPEWRITER STATEMENT                               */}
-        {/* ============================================================ */}
+            <p
+              className="
+                font-mono
+                text-[0.52rem]
+                uppercase
+                tracking-[0.18em]
+                text-muted-foreground
+              "
+            >
+              Design · Development · Creative Tech
+            </p>
+          </motion.div>
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 18,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.35,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            relative z-20
+          {/* DIGITAL */}
 
-            my-5
-            ml-auto
-            mr-[4%]
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -45,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="
+              relative
+              z-10
+            "
+          >
+            <h1
+              className="
+                font-display
+                text-[clamp(4.7rem,15.2vw,14.5rem)]
+                font-medium
+                uppercase
+                leading-[0.72]
+                tracking-[-0.075em]
+                text-foreground
+              "
+            >
+              Digital
+            </h1>
+          </motion.div>
 
-            min-h-[4.8rem]
-            w-[68%]
-            max-w-[19rem]
+          {/* Middle row */}
 
-            sm:my-4
-            sm:min-h-[5.5rem]
-            sm:w-[45%]
-            sm:max-w-[23rem]
+          <div
+            className="
+              relative
+              z-20
 
-            md:mr-[15%]
-          "
-        >
-          <AnimatePresence mode="wait">
+              my-5
+
+              grid
+              gap-6
+
+              sm:my-4
+              sm:grid-cols-2
+              sm:items-center
+
+              md:grid-cols-12
+            "
+          >
+            {/* Typewriter */}
+
             <motion.div
-              key={statementIndex}
               initial={{
                 opacity: 0,
-                y: 8,
+                y: 15,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
               }}
-              exit={{
+              transition={{
+                duration: 0.8,
+                delay: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="
+                min-h-[4.8rem]
+                max-w-[22rem]
+
+                sm:min-h-[5.5rem]
+
+                md:col-span-4
+                md:col-start-2
+              "
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={statementIndex}
+                  initial={{
+                    opacity: 0,
+                    y: 8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -8,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <p
+                    className="
+                      font-display
+                      text-[0.8rem]
+                      font-medium
+                      uppercase
+                      leading-[1.2]
+                      tracking-[-0.015em]
+                      text-foreground
+
+                      sm:text-[0.9rem]
+                      md:text-base
+                    "
+                  >
+                    {displayedText}
+
+                    <motion.span
+                      animate={{
+                        opacity: [1, 1, 0, 0],
+                      }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        times: [0, 0.45, 0.5, 1],
+                      }}
+                      className="
+                        ml-[0.15em]
+                        inline-block
+                        h-[0.8em]
+                        w-[0.08em]
+                        bg-foreground
+                        align-baseline
+                      "
+                    />
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Small serif accent */}
+
+            <motion.div
+              initial={{
                 opacity: 0,
-                y: -8,
+                scale: 0.95,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
               }}
               transition={{
-                duration: 0.25,
-                ease: [
-                  0.22,
-                  1,
-                  0.36,
-                  1,
-                ],
+                duration: 0.8,
+                delay: 0.55,
+                ease: [0.22, 1, 0.36, 1],
               }}
+              className="
+                hidden
+
+                md:col-span-3
+                md:col-start-9
+                md:block
+              "
             >
               <p
                 className="
-                  font-display
-                  text-[0.85rem]
-                  font-medium
-                  uppercase
-                  leading-[1.15]
-                  tracking-[-0.025em]
-                  text-foreground
-
-                  sm:text-base
-                  md:text-lg
+                  font-serif
+                  text-[clamp(1.6rem,2.5vw,2.8rem)]
+                  italic
+                  leading-[0.95]
+                  tracking-[-0.035em]
+                  text-muted-foreground
                 "
               >
-                {displayedText}
-
-                <motion.span
-                  animate={{
-                    opacity: [
-                      1,
-                      1,
-                      0,
-                      0,
-                    ],
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                    times: [
-                      0,
-                      0.45,
-                      0.5,
-                      1,
-                    ],
-                  }}
-                  className="
-                    ml-[0.15em]
-                    inline-block
-                    h-[0.8em]
-                    w-[0.08em]
-                    bg-foreground
-                    align-baseline
-                  "
-                />
+                Form meets
+                <br />
+                function.
               </p>
             </motion.div>
-          </AnimatePresence>
-        </motion.div>
-
-        {/* REDMANN */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: 50,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-          transition={{
-            duration: 1,
-            delay: 0.2,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            relative z-10
-
-            ml-auto
-            mr-[-0.035em]
-          "
-        >
-          <h2
-            className="
-              font-serif
-              text-[clamp(4.6rem,17vw,16rem)]
-              font-normal
-              italic
-              leading-[0.7]
-              tracking-[-0.075em]
-              text-foreground
-            "
-          >
-            Redmann
-          </h2>
-        </motion.div>
-
-        {/* ============================================================ */}
-        {/* FOOTER LINE                                                  */}
-        {/* ============================================================ */}
-
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.65,
-          }}
-          className="
-            mt-10
-            flex
-            items-end
-            justify-between
-
-            border-t
-            border-foreground/20
-            pt-3
-
-            md:mt-12
-          "
-        >
-          <div
-            className="
-              font-mono
-              text-[0.52rem]
-              uppercase
-              leading-relaxed
-              tracking-[0.16em]
-              text-muted-foreground
-
-              sm:text-[0.56rem]
-            "
-          >
-            <p>Creative Tech</p>
-
-            <p className="hidden sm:block">
-              Selected Work · 24—26
-            </p>
           </div>
 
-          <a
-            href="#portfolio"
-            data-cursor="martini-explore"
-            className="
-              group
-              flex items-center
-              gap-2
+          {/* EXPERIENCES */}
 
-              font-mono
-              text-[0.55rem]
-              uppercase
-              tracking-[0.16em]
-              text-foreground
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 45,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="
+              relative
+              z-10
+
+              flex
+              justify-end
             "
           >
-            Explore Work
-
-            <ArrowDownRight
-              size={14}
-              strokeWidth={1.4}
+            <h2
               className="
-                transition-transform
-                duration-300
-
-                group-hover:translate-x-1
-                group-hover:translate-y-1
+                font-display
+                text-[clamp(3.9rem,13.2vw,12.6rem)]
+                font-medium
+                uppercase
+                leading-[0.72]
+                tracking-[-0.075em]
+                text-foreground
               "
-            />
-          </a>
-        </motion.div>
+            >
+              Experiences
+            </h2>
+          </motion.div>
+
+          {/* ============================================================ */}
+          {/* FOOTER                                                       */}
+          {/* ============================================================ */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.7,
+            }}
+            className="
+              mt-12
+
+              flex
+              items-end
+              justify-between
+              gap-8
+
+              border-t
+              border-foreground/20
+              pt-3
+
+              md:mt-14
+            "
+          >
+            <div
+              className="
+                font-mono
+                text-[0.5rem]
+                uppercase
+                leading-relaxed
+                tracking-[0.16em]
+                text-muted-foreground
+
+                sm:text-[0.54rem]
+              "
+            >
+              <p>Leona Josephine Redmann</p>
+
+              <p className="hidden sm:block">
+                Selected Work · 24—26
+              </p>
+            </div>
+
+            <a
+              href="#portfolio"
+              data-cursor="martini-explore"
+              className="
+                group
+
+                flex
+                items-center
+                gap-2
+
+                font-mono
+                text-[0.53rem]
+                uppercase
+                tracking-[0.16em]
+                text-foreground
+              "
+            >
+              Explore Work
+
+              <ArrowDownRight
+                size={14}
+                strokeWidth={1.4}
+                className="
+                  transition-transform
+                  duration-300
+
+                  group-hover:translate-x-1
+                  group-hover:translate-y-1
+                "
+              />
+            </a>
+          </motion.div>
+        </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* SIDE LABEL                                                       */}
-      {/* ================================================================ */}
+      {/* Side edition label */}
 
       <motion.p
         initial={{
@@ -572,7 +570,7 @@ export default function MartiniHero() {
         }}
         transition={{
           duration: 0.8,
-          delay: 0.8,
+          delay: 0.9,
         }}
         className="
           absolute
@@ -585,7 +583,7 @@ export default function MartiniHero() {
           -rotate-90
 
           font-mono
-          text-[0.5rem]
+          text-[0.48rem]
           uppercase
           tracking-[0.2em]
           text-muted-foreground

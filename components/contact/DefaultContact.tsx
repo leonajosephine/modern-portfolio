@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import {
+  FaGithub,
+  FaLinkedinIn,
+} from "react-icons/fa6";
 
 const contactLinks = [
   {
@@ -22,7 +25,7 @@ const contactLinks = [
   },
 ];
 
-export default function Contact() {
+export default function DefaultContact() {
   return (
     <section
       id="contact"
@@ -42,7 +45,10 @@ export default function Contact() {
 
           <h2 className="mx-auto mt-4 text-[clamp(2.6rem,5.6vw,5.8rem)] font-medium leading-[0.92] tracking-[-0.06em] text-foreground">
             Let’s create something
-            <span className="font-serif italic"> together</span>
+            <span className="font-serif italic">
+              {" "}
+              together
+            </span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-[520px] text-[1rem] leading-8 text-muted-foreground sm:text-[1.05rem]">
@@ -51,26 +57,39 @@ export default function Contact() {
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            {contactLinks.map(({ label, href, icon: Icon }, index) => (
-              <motion.a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noreferrer" : undefined}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.12 + index * 0.08, duration: 0.45 }}
-                className={`group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full border px-6 text-sm font-medium transition-all duration-300 sm:w-auto ${
-                  index === 0
-                    ? "border-foreground bg-foreground text-primary-foreground hover:bg-transparent hover:text-foreground"
-                    : "border-border bg-transparent text-foreground hover:border-foreground hover:bg-foreground/10"
-                }`}
-              >
-                <Icon size={18} />
-                <span>{label}</span>
-              </motion.a>
-            ))}
+            {contactLinks.map(
+              ({ label, href, icon: Icon }, index) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target={
+                    href.startsWith("http")
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    href.startsWith("http")
+                      ? "noreferrer"
+                      : undefined
+                  }
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: 0.12 + index * 0.08,
+                    duration: 0.45,
+                  }}
+                  className={`group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full border px-6 text-sm font-medium transition-all duration-300 sm:w-auto ${
+                    index === 0
+                      ? "border-foreground bg-foreground text-primary-foreground hover:bg-transparent hover:text-foreground"
+                      : "border-border bg-transparent text-foreground hover:border-foreground hover:bg-foreground/10"
+                  }`}
+                >
+                  <Icon size={18} />
+                  <span>{label}</span>
+                </motion.a>
+              )
+            )}
           </div>
         </motion.div>
       </div>
@@ -80,11 +99,16 @@ export default function Contact() {
         initial={{ opacity: 0, y: 70 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{
+          duration: 0.8,
+          ease: "easeOut",
+        }}
         className="mt-20 h-[clamp(4rem,9vw,8rem)] overflow-hidden select-none text-center sm:mt-24 lg:mt-28"
-        style={{ //fade maske "schrift verschwindet nach unten hin"
-          WebkitMaskImage: "linear-gradient(to bottom, black 45%, transparent 100%)",
-          maskImage: "linear-gradient(to bottom, black 45%, transparent 100%)",
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 45%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to bottom, black 45%, transparent 100%)",
         }}
       >
         <p className="whitespace-nowrap text-[clamp(4.8rem,18vw,18rem)] font-semibold uppercase leading-[0.75] tracking-[-0.09em] text-foreground/10">

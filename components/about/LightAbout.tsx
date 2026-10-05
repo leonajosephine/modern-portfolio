@@ -182,13 +182,13 @@ export default function LightAbout() {
               gap-10
               border-b
               border-border
-              py-12
+              py-10
 
-              sm:py-16
+              sm:py-12
 
               lg:grid-cols-12
               lg:gap-8
-              lg:py-20
+              lg:py-14
             "
           >
             <motion.div
@@ -210,15 +210,9 @@ export default function LightAbout() {
                   text-foreground
                 "
               >
-                I&apos;m Leona,
+                Developer &
                 <br />
-                a developer
-                <br />
-                working across
-                <br />
-                digital
-                <br />
-                disciplines.
+                Designer.
               </h2>
             </motion.div>
 
@@ -272,11 +266,14 @@ export default function LightAbout() {
                 variants={itemVariants}
                 className="
                   group
+                  relative
                   grid
                   gap-5
+                  overflow-hidden
                   border-b
                   border-border
                   py-7
+                  px-4
 
                   sm:py-9
 
@@ -285,10 +282,35 @@ export default function LightAbout() {
                   lg:py-10
                 "
               >
+                {/* Hover background */}
+
+                <div
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+
+                    origin-left
+                    scale-x-0
+
+                    bg-foreground
+
+                    transition-transform
+                    duration-[550ms]
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+
+                    group-hover:scale-x-100
+                  "
+                />
+
                 {/* Number */}
 
                 <div
                   className="
+                    relative
+                    z-10
+
                     lg:col-span-1
                   "
                 >
@@ -299,6 +321,11 @@ export default function LightAbout() {
                       uppercase
                       tracking-[0.18em]
                       text-muted-foreground
+
+                      transition-colors
+                      duration-300
+
+                      group-hover:text-background/55
                     "
                   >
                     {item.number}
@@ -309,6 +336,9 @@ export default function LightAbout() {
 
                 <div
                   className="
+                    relative
+                    z-10
+
                     lg:col-span-4
                   "
                 >
@@ -323,10 +353,12 @@ export default function LightAbout() {
                       tracking-[-0.055em]
                       text-foreground
 
-                      transition-transform
-                      duration-300
+                      transition-[color,transform]
+                      duration-500
+                      ease-[cubic-bezier(0.22,1,0.36,1)]
 
-                      group-hover:translate-x-1
+                      group-hover:translate-x-2
+                      group-hover:text-background
 
                       sm:text-[2rem]
                     "
@@ -339,15 +371,24 @@ export default function LightAbout() {
 
                 <div
                   className="
+                    relative
+                    z-10
+
                     lg:col-span-3
                   "
                 >
                   <p
                     className="
                       max-w-[300px]
+
                       text-[0.82rem]
                       leading-6
                       text-muted-foreground
+
+                      transition-colors
+                      duration-300
+
+                      group-hover:text-background/65
 
                       sm:text-sm
                     "
@@ -360,6 +401,9 @@ export default function LightAbout() {
 
                 <div
                   className="
+                    relative
+                    z-10
+
                     lg:col-span-4
                   "
                 >
@@ -391,24 +435,29 @@ export default function LightAbout() {
                               text-muted-foreground
 
                               transition-colors
-                              duration-200
+                              duration-300
 
-                              group-hover:text-foreground/70
+                              group-hover:text-background/70
                             "
                           >
                             {tool}
                           </span>
 
                           {index <
-                            item.tools.length -
-                              1 && (
+                            item.tools.length - 1 && (
                             <span
                               aria-hidden="true"
                               className="
                                 h-[2px]
                                 w-[2px]
                                 rounded-full
+
                                 bg-muted-foreground/40
+
+                                transition-colors
+                                duration-300
+
+                                group-hover:bg-background/35
                               "
                             />
                           )}
