@@ -116,7 +116,7 @@ export default function DarkHero() {
             sm:text-xs
           "
         >
-          ⎯ Web & App Developer · UI / UX · Creative Tech
+          Web & App Developer · UI / UX · Creative Tech
         </motion.p>
 
         <motion.div
