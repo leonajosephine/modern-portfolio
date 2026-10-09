@@ -70,7 +70,7 @@ export default function LightHero() {
         >
           <div>
             <p>
-              Web & App Developer
+             Web & App Developer
             </p>
 
             <p className="hidden sm:block">

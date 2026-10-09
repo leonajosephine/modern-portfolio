@@ -1,556 +1,422 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
 const statements = [
-  "Building digital experiences at the intersection of design and technology.",
-  "Turning ideas into thoughtful digital experiences.",
-  "Where visual thinking meets functional code.",
+  "I build thoughtful digital experiences.",
+  "I design interfaces with personality.",
+  "I turn creative ideas into code.",
 ];
 
-const TYPE_SPEED = 38;
+const TYPE_SPEED = 48;
+const DELETE_SPEED = 25;
 const HOLD_TIME = 2200;
 
-export default function MartiniHero() {
+const ease = [0.22, 1, 0.36, 1] as const;
+
+function Typewriter() {
   const [statementIndex, setStatementIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isHolding, setIsHolding] = useState(false);
+  const [characterIndex, setCharacterIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentStatement = statements[statementIndex];
+    const statement = statements[statementIndex];
 
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (
-      displayedText === currentStatement &&
-      !isHolding
-    ) {
-      setIsHolding(true);
-
+    if (!isDeleting && characterIndex === statement.length) {
       timeout = setTimeout(() => {
-        setDisplayedText("");
-        setIsHolding(false);
-
-        setStatementIndex(
-          (current) =>
-            (current + 1) % statements.length
-        );
+        setIsDeleting(true);
       }, HOLD_TIME);
-
-      return () => clearTimeout(timeout);
-    }
-
-    if (!isHolding) {
+    } else if (isDeleting && characterIndex === 0) {
       timeout = setTimeout(() => {
-        setDisplayedText(
-          currentStatement.slice(
-            0,
-            displayedText.length + 1
-          )
-        );
-      }, TYPE_SPEED);
+        setStatementIndex((current) => (current + 1) % statements.length);
+        setIsDeleting(false);
+      }, 350);
+    } else {
+      timeout = setTimeout(
+        () => {
+          setCharacterIndex((current) =>
+            isDeleting ? current - 1 : current + 1
+          );
+        },
+        isDeleting ? DELETE_SPEED : TYPE_SPEED
+      );
     }
 
     return () => clearTimeout(timeout);
-  }, [
-    displayedText,
-    isHolding,
-    statementIndex,
-  ]);
+  }, [statementIndex, characterIndex, isDeleting]);
 
+  const displayedText = statements[statementIndex].slice(
+    0,
+    characterIndex
+  );
+
+  return (
+    <div className="min-h-[3.5rem] sm:min-h-[4rem]">
+      <p
+        className="
+          max-w-[480px]
+          font-sans
+          text-[clamp(1.15rem,2vw,1.8rem)]
+          font-medium
+          leading-[1.3]
+          tracking-[-0.035em]
+          text-[#790719]
+        "
+      >
+        {displayedText}
+
+        <motion.span
+          aria-hidden="true"
+          animate={{ opacity: [1, 1, 0, 0] }}
+          transition={{
+            duration: 0.9,
+            repeat: Infinity,
+            times: [0, 0.45, 0.5, 1],
+          }}
+          className="
+            ml-1
+            inline-block
+            h-[0.85em]
+            w-[2px]
+            translate-y-[0.08em]
+            bg-[#790719]
+          "
+        />
+      </p>
+    </div>
+  );
+}
+
+export default function MartiniHero() {
   return (
     <section
       id="top"
       data-cursor="martini"
       className="
         relative
+        flex
         min-h-[100svh]
+        flex-col
         overflow-hidden
-        bg-background
-        text-foreground
+        bg-[#F3E7BF]
+        text-[#790719]
       "
     >
-      {/* ================================================================ */}
-      {/* EDITORIAL GRID                                                   */}
-      {/* ================================================================ */}
-
+      {/* Subtle paper-like color variation */}
       <div
         aria-hidden="true"
         className="
           pointer-events-none
-          absolute inset-0
-          hidden
-          md:block
+          absolute
+          inset-0
+          bg-[radial-gradient(ellipse_at_50%_45%,rgba(255,255,255,0.17),transparent_70%)]
         "
-      >
-        <div
-          className="
-            absolute
-            bottom-0 left-[18%] top-0
-            w-px
-            bg-foreground/[0.07]
-          "
-        />
-
-        <div
-          className="
-            absolute
-            bottom-0 right-[18%] top-0
-            w-px
-            bg-foreground/[0.07]
-          "
-        />
-      </div>
+      />
 
       {/* ================================================================ */}
       {/* TOP META                                                         */}
       {/* ================================================================ */}
 
       <motion.div
-        initial={{
-          opacity: 0,
-          y: -10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.8,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease }}
         className="
-          absolute
-          left-5 right-5
-          top-28
+          relative
           z-20
-
+          mx-auto
           flex
+          w-full
+          max-w-[1600px]
           items-start
           justify-between
-
-          border-t
-          border-foreground/20
-          pt-3
-
-          sm:left-6
-          sm:right-6
-
-          md:left-8
-          md:right-8
-          md:top-32
+          gap-6
+          px-5
+          pt-28
+          sm:px-6
+          md:px-8
+          md:pt-32
         "
       >
-        <div
-          className="
-            font-mono
-            text-[0.52rem]
-            uppercase
-            leading-relaxed
-            tracking-[0.18em]
-            text-muted-foreground
-          "
-        >
-          <p>Leona Redmann</p>
+        <div className="flex flex-col gap-1">
+          <span className="text-[0.72rem] font-semibold uppercase tracking-[0.12em]">
+            Leona Redmann
+          </span>
 
-          <p className="hidden sm:block">
-            Web & App Developer · UI / UX
-          </p>
+          <span className="font-mono text-[0.52rem] uppercase tracking-[0.16em] text-[#790719]/65">
+            Developer & Designer
+          </span>
         </div>
 
-        <div
-          className="
-            text-right
-            font-mono
-            text-[0.52rem]
-            uppercase
-            leading-relaxed
-            tracking-[0.18em]
-            text-muted-foreground
-          "
-        >
-          <p>Hamburg · DE</p>
-          <p>Portfolio · 2026</p>
-        </div>
+        <span className="font-mono text-[0.52rem] uppercase tracking-[0.16em] text-[#790719]/65">
+          Portfolio / 2026
+        </span>
       </motion.div>
 
       {/* ================================================================ */}
-      {/* MAIN                                                             */}
+      {/* MAIN MONOGRAM                                                   */}
       {/* ================================================================ */}
 
       <div
         className="
-          relative z-10
-
+          relative
+          z-10
           flex
-          min-h-[100svh]
-          flex-col
+          flex-1
+          items-center
           justify-center
-
-          px-5
-          pb-24
-          pt-44
-
+          px-4
+          py-10
           sm:px-6
-
           md:px-8
-          md:pb-20
-          md:pt-48
         "
       >
         <div
           className="
+            relative
             mx-auto
+            flex
             w-full
-            max-w-[1500px]
+            max-w-[1600px]
+            items-center
+            justify-center
           "
         >
-          {/* Small identity */}
-
+          {/* Giant typographic centerpiece */}
           <motion.div
             initial={{
               opacity: 0,
-              x: -16,
+              scale: 0.94,
+              y: 30,
             }}
             animate={{
               opacity: 1,
-              x: 0,
+              scale: 1,
+              y: 0,
             }}
             transition={{
-              duration: 0.75,
-              delay: 0.1,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 1.3,
+              delay: 0.15,
+              ease,
             }}
             className="
-              mb-6
-              flex
-              items-center
-              gap-3
+              relative
+              select-none
+              font-serif
+              text-[clamp(15rem,45vw,48rem)]
+              leading-[0.7]
+              tracking-[-0.13em]
+              text-[#790719]
+            "
+            aria-hidden="true"
+          >
+            lr<span className="tracking-normal">.</span>
+          </motion.div>
 
-              sm:mb-8
-
-              md:ml-[10%]
+          {/* Small vertical editorial label */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              delay: 0.85,
+              duration: 0.8,
+            }}
+            className="
+              absolute
+              right-0
+              top-1/2
+              hidden
+              -translate-y-1/2
+              lg:block
             "
           >
-            <span
-              className="
-                h-px
-                w-8
-                bg-foreground/40
-              "
-            />
-
             <p
               className="
-                font-mono
-                text-[0.52rem]
-                uppercase
-                tracking-[0.18em]
-                text-muted-foreground
-              "
-            >
-              Design · Development · Creative Tech
-            </p>
-          </motion.div>
-
-          {/* DIGITAL */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -45,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 1,
-              delay: 0.12,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-              relative
-              z-10
-            "
-          >
-            <h1
-              className="
-                font-display
-                text-[clamp(4.7rem,15.2vw,14.5rem)]
-                font-medium
-                uppercase
-                leading-[0.72]
-                tracking-[-0.075em]
-                text-foreground
-              "
-            >
-              Digital
-            </h1>
-          </motion.div>
-
-          {/* Middle row */}
-
-          <div
-            className="
-              relative
-              z-20
-
-              my-5
-
-              grid
-              gap-6
-
-              sm:my-4
-              sm:grid-cols-2
-              sm:items-center
-
-              md:grid-cols-12
-            "
-          >
-            {/* Typewriter */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: 0.4,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="
-                min-h-[4.8rem]
-                max-w-[22rem]
-
-                sm:min-h-[5.5rem]
-
-                md:col-span-4
-                md:col-start-2
-              "
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={statementIndex}
-                  initial={{
-                    opacity: 0,
-                    y: 8,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: -8,
-                  }}
-                  transition={{
-                    duration: 0.25,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <p
-                    className="
-                      font-display
-                      text-[0.8rem]
-                      font-medium
-                      uppercase
-                      leading-[1.2]
-                      tracking-[-0.015em]
-                      text-foreground
-
-                      sm:text-[0.9rem]
-                      md:text-base
-                    "
-                  >
-                    {displayedText}
-
-                    <motion.span
-                      animate={{
-                        opacity: [1, 1, 0, 0],
-                      }}
-                      transition={{
-                        duration: 0.8,
-                        repeat: Infinity,
-                        times: [0, 0.45, 0.5, 1],
-                      }}
-                      className="
-                        ml-[0.15em]
-                        inline-block
-                        h-[0.8em]
-                        w-[0.08em]
-                        bg-foreground
-                        align-baseline
-                      "
-                    />
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
-
-
-          </div>
-
-          {/* EXPERIENCES */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 45,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 1,
-              delay: 0.2,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-              relative
-              z-10
-
-              flex
-              justify-end
-            "
-          >
-            <h2
-              className="
-                font-display
-                text-[clamp(3.9rem,13.2vw,12.6rem)]
-                font-medium
-                uppercase
-                leading-[0.72]
-                tracking-[-0.075em]
-                text-foreground
-              "
-            >
-              Experiences
-            </h2>
-          </motion.div>
-
-          {/* ============================================================ */}
-          {/* FOOTER                                                       */}
-          {/* ============================================================ */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.7,
-            }}
-            className="
-              mt-12
-
-              flex
-              items-end
-              justify-between
-              gap-8
-
-              border-t
-              border-foreground/20
-              pt-3
-
-              md:mt-14
-            "
-          >
-            <div
-              className="
+                origin-center
+                rotate-90
                 font-mono
                 text-[0.5rem]
                 uppercase
-                leading-relaxed
-                tracking-[0.16em]
-                text-muted-foreground
-
-                sm:text-[0.54rem]
+                tracking-[0.22em]
+                text-[#790719]/55
               "
             >
+              Creative portfolio
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-            </div>
+      {/* ================================================================ */}
+      {/* BOTTOM EDITORIAL INFORMATION                                     */}
+      {/* ================================================================ */}
 
+      <div
+        className="
+          relative
+          z-20
+          mx-auto
+          w-full
+          max-w-[1600px]
+          px-5
+          pb-7
+          sm:px-6
+          md:px-8
+          md:pb-9
+        "
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.9,
+            delay: 0.55,
+            ease,
+          }}
+          className="
+            grid
+            gap-9
+            border-t
+            border-[#790719]/35
+            pt-5
+            sm:grid-cols-12
+            sm:gap-6
+            md:pt-6
+          "
+        >
+          {/* Description */}
+          <div className="sm:col-span-4 lg:col-span-3">
+            <p
+              className="
+                max-w-[280px]
+                text-[0.9rem]
+                leading-6
+                text-[#790719]/80
+              "
+            >
+              Designing and developing websites,
+              apps and digital experiences with
+              personality.
+            </p>
+          </div>
+
+          {/* Typewriter */}
+          <div className="sm:col-span-5 lg:col-span-6">
+            <p
+              className="
+                mb-3
+                font-mono
+                text-[0.48rem]
+                uppercase
+                tracking-[0.2em]
+                text-[#790719]/55
+              "
+            >
+              A little about what I do
+            </p>
+
+            <Typewriter />
+          </div>
+
+          {/* CTA */}
+          <div
+            className="
+              flex
+              items-start
+              sm:col-span-3
+              sm:justify-end
+            "
+          >
             <a
               href="#portfolio"
               data-cursor="martini-explore"
               className="
                 group
-
-                flex
+                inline-flex
                 items-center
-                gap-2
-
-                font-mono
-                text-[0.53rem]
+                gap-3
+                border-b
+                border-[#790719]
+                pb-2
+                text-[0.72rem]
+                font-semibold
                 uppercase
-                tracking-[0.16em]
-                text-foreground
+                tracking-[0.1em]
+                transition-opacity
+                hover:opacity-60
               "
             >
               Explore Work
 
-              <ArrowDownRight
-                size={14}
-                strokeWidth={1.4}
+              <ArrowUpRight
+                size={17}
+                strokeWidth={1.5}
                 className="
                   transition-transform
                   duration-300
-
-                  group-hover:translate-x-1
-                  group-hover:translate-y-1
+                  group-hover:-translate-y-0.5
+                  group-hover:translate-x-0.5
                 "
               />
             </a>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+
+        {/* Footer meta */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            delay: 0.9,
+            duration: 0.7,
+          }}
+          className="
+            mt-10
+            flex
+            items-center
+            justify-between
+            gap-5
+            font-mono
+            text-[0.48rem]
+            uppercase
+            tracking-[0.16em]
+            text-[#790719]/55
+            sm:mt-12
+          "
+        >
+          <span>Hamburg · Germany</span>
+
+          <a
+            href="#about"
+            className="
+              group
+              flex
+              items-center
+              gap-2
+              transition-colors
+              hover:text-[#790719]
+            "
+          >
+            Scroll to explore
+
+            <ArrowDownRight
+              size={13}
+              strokeWidth={1.5}
+              className="
+                transition-transform
+                duration-300
+                group-hover:translate-x-0.5
+                group-hover:translate-y-0.5
+              "
+            />
+          </a>
+        </motion.div>
       </div>
-
-      {/* Side edition label */}
-
-      <motion.p
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.8,
-          delay: 0.9,
-        }}
-        className="
-          absolute
-          bottom-8
-          left-5
-
-          hidden
-
-          origin-bottom-left
-          -rotate-90
-
-          font-mono
-          text-[0.48rem]
-          uppercase
-          tracking-[0.2em]
-          text-muted-foreground
-
-          lg:block
-        "
-      >
-        Portfolio / Edition 03
-      </motion.p>
     </section>
   );
 }
