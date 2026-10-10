@@ -3,6 +3,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowDown, ArrowUp } from "lucide-react";
 
 import { projects } from "@/lib/projects";
 import ProjectModal from "@/components/project/ProjectModal";
@@ -12,6 +13,8 @@ import BentoGallery from "./BentoGallery";
 import EditorialGallery from "./EditorialGallery";
 
 type Filter = "all" | "coding" | "design" | "3d";
+
+const INITIAL_PROJECT_COUNT = 9;
 
 const filters: {
   id: Filter;
@@ -42,6 +45,7 @@ export default function Portfolio() {
 
   const [activeFilter, setActiveFilter] = useState<Filter>("all");
   const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "all") {
@@ -52,6 +56,18 @@ export default function Portfolio() {
       (project) => project.category === activeFilter
     );
   }, [activeFilter]);
+
+  const shouldLimitProjects =
+    activeFilter === "all" &&
+    filteredProjects.length > INITIAL_PROJECT_COUNT;
+
+  const visibleProjects = useMemo(() => {
+    if (!shouldLimitProjects || showAllProjects) {
+      return filteredProjects;
+    }
+
+    return filteredProjects.slice(0, INITIAL_PROJECT_COUNT);
+  }, [filteredProjects, shouldLimitProjects, showAllProjects]);
 
   const openIndex =
     openSlug === null
@@ -68,6 +84,7 @@ export default function Portfolio() {
     const previousScrollPosition = window.scrollY;
 
     setActiveFilter(filter);
+    setShowAllProjects(false);
 
     requestAnimationFrame(() => {
       window.scrollTo({
@@ -75,6 +92,38 @@ export default function Portfolio() {
         behavior: "instant",
       });
     });
+  };
+
+  const handleShowMore = () => {
+    setShowAllProjects(true);
+  };
+
+  const handleShowLess = () => {
+    const portfolioSection =
+      document.getElementById("portfolio");
+
+    if (portfolioSection) {
+      const sectionTop =
+        portfolioSection.getBoundingClientRect().top +
+        window.scrollY;
+
+      const targetPosition = sectionTop + 120;
+
+      if (window.scrollY > targetPosition) {
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+
+        window.setTimeout(() => {
+          setShowAllProjects(false);
+        }, 450);
+
+        return;
+      }
+    }
+
+    setShowAllProjects(false);
   };
 
   return (
@@ -255,14 +304,70 @@ export default function Portfolio() {
 
         {galleryLayout === "editorial" ? (
           <EditorialGallery
-            projects={filteredProjects}
+            projects={visibleProjects}
             onOpen={setOpenSlug}
           />
         ) : (
           <BentoGallery
-            projects={filteredProjects}
+            projects={visibleProjects}
             onOpen={setOpenSlug}
           />
+        )}
+
+        {shouldLimitProjects && (
+          <div className="mt-12 flex justify-center sm:mt-16">
+            <button
+              type="button"
+              onClick={
+                showAllProjects
+                  ? handleShowLess
+                  : handleShowMore
+              }
+              aria-expanded={showAllProjects}
+              className="
+                group inline-flex items-center gap-3
+                rounded-full
+                border border-[var(--alt-text)]/20
+                px-6 py-3
+                text-[0.72rem] font-medium
+                uppercase tracking-[0.12em]
+                text-[var(--alt-text)]
+                transition-all duration-300
+                hover:border-[var(--accent)]
+                hover:text-[var(--accent)]
+                focus-visible:outline-2
+                focus-visible:outline-offset-4
+                focus-visible:outline-[var(--accent)]
+                sm:px-8 sm:py-3.5
+              "
+            >
+              <span>
+                {showAllProjects
+                  ? "Show less"
+                  : "Show more"}
+              </span>
+
+              {showAllProjects ? (
+                <ArrowUp
+                  size={15}
+                  strokeWidth={1.5}
+                  className="
+                    transition-transform duration-300
+                    group-hover:-translate-y-0.5
+                  "
+                />
+              ) : (
+                <ArrowDown
+                  size={15}
+                  strokeWidth={1.5}
+                  className="
+                    transition-transform duration-300
+                    group-hover:translate-y-0.5
+                  "
+                />
+              )}
+            </button>
+          </div>
         )}
 
         <ProjectModal

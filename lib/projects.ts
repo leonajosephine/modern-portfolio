@@ -345,6 +345,150 @@ export const projects: Project[] = [
   
     size: "wide",
   },
+
+  {
+    slug: "tabak-depot",
+    title: "Tabak Depot",
+    short:
+      "Transforming a decades-old tobacco retailer website into a modern editorial experience — combining premium visual storytelling, responsive development and a custom server-side contact flow.",
+    cover: "/images/tabakDepot/hero.png",
+    hero: {
+      type: "image",
+      src: "/images/tabakDepot/hero.png",
+      alt: "Tabak Depot website redesign",
+    },
+    category: "coding",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "UI / UX Design",
+      "Art Direction",
+      "API Routes",
+      "Email Integration",
+      "Responsive Design",
+    ],
+    meta: {
+      role: "UI Designer & Full-Stack Web Developer",
+      year: "2026",
+      team: "Client Project",
+    },
+    links: [
+      {
+        label: "Live Website",
+        href: "https://tabak-depot-minden.de",
+        kind: "live",
+      },
+    ],
+    blocks: [
+      {
+        type: "text",
+        title: "A New Chapter for an Established Business",
+        body:
+          "Tabak Depot is a family-run retailer with three locations in Minden, Germany, and a history dating back to 1978. Its previous website had been around for roughly two decades and no longer reflected the character of the business. The goal was to create a contemporary digital presence that felt more refined, welcoming and relevant to its customers.",
+      },
+      {
+        type: "text",
+        title: "An Editorial Approach to Retail",
+        body:
+          "Instead of building a conventional product-focused retail website, I developed a visual direction inspired by premium spirits, craftsmanship and editorial storytelling. Warm tones, atmospheric imagery, expressive typography and subtle motion create an experience that reflects the business's focus on selected whiskies, cigars and personal service.",
+      },
+      {
+        type: "text",
+        title: "More Than a Visual Redesign",
+        body:
+          "Beyond the frontend, the project also involved implementing a server-side contact flow with email delivery. I worked with API-based functionality and environment variables to separate sensitive configuration from the public-facing application. This made the project an opportunity to combine visual design with practical application development.",
+      },
+      {
+        type: "metrics",
+        title: "My Contribution",
+        items: [
+          {
+            label: "Art Direction & UI Design",
+            value:
+              "Developed the visual concept, editorial layouts, typography, color direction and responsive interface.",
+          },
+          {
+            label: "Frontend Development",
+            value:
+              "Built the responsive website using Next.js, React, TypeScript and Tailwind CSS, with reusable components and subtle scroll-based interactions.",
+          },
+          {
+            label: "Server-Side Integration",
+            value:
+              "Implemented API-based form handling and email delivery using server-side configuration and environment variables.",
+          },
+          {
+            label: "Content & User Experience",
+            value:
+              "Structured the experience around the brand story, product selection, services and three retail locations.",
+          },
+        ],
+      },
+      {
+        type: "bullets",
+        title: "Project Highlights",
+        items: [
+          "Redesigned a website that had remained largely unchanged for approximately 20 years.",
+          "Created a premium editorial visual direction inspired by whisky, cigars and craftsmanship.",
+          "Developed responsive layouts for desktop, tablet and mobile.",
+          "Introduced subtle animations and scroll-based interactions.",
+          "Presented three store locations with practical visitor information.",
+          "Designed dedicated sections for curated products, experiences and premium services.",
+          "Integrated a custom server-side contact and email workflow.",
+          "Used environment variables for sensitive server-side configuration.",
+        ],
+      },
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "API Routes",
+          "Email Integration",
+          "Environment Variables",
+          "GitHub",
+          "Vercel",
+        ],
+      },
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/tabakDepot/whiskey.png",
+            alt: "Tabak Depot homepage and hero design",
+          },
+          {
+            type: "image",
+            src: "/images/tabakDepot/break.png",
+            alt: "Editorial introduction and brand storytelling",
+          },
+          {
+            type: "image",
+            src: "/images/tabakDepot/erlebnis.png",
+            alt: "Premium cigar experience section",
+          },
+          {
+            type: "image",
+            src: "/images/tabakDepot/premium.png",
+            alt: "Private premium service presentation",
+          },
+          {
+            type: "image",
+            src: "/images/tabakDepot/sortiment.png",
+            alt: "Store locations and visitor information",
+          },
+        ],
+      },
+    ],
+    size: "normal",
+  },
   {
     slug: "eightsquared",
     title: "Eightsquared",
