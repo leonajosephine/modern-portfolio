@@ -1,7 +1,7 @@
 import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
-import Portfolio from "@/components/sections/Portfolio";
-import DesignHighlights from "@/components/sections/DesignHighlights";
+import Portfolio from "@/components/portfolio/Portfolio";
+import DesignPrinciples from "@/components/designPrinciples/DesignPrinciples";
 import Contact from "@/components/contact/Contact";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <About />
       <Portfolio />
-      <DesignHighlights />
+      <DesignPrinciples />
       <Contact />
     </main>
   );

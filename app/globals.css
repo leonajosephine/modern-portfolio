@@ -169,6 +169,11 @@
 }
 
 
+[data-theme="sunset"] .portfolio-filter-active {
+  background-color: var(--martini-buttermilk);
+  color: var(--martini-oxblood);
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* Ocean / Fluid Playground                                                   */

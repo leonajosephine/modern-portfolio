@@ -208,10 +208,11 @@ export default function MartiniHero() {
               relative
               select-none
               font-serif
-              text-[clamp(15rem,45vw,48rem)]
+              text-[clamp(20rem,50vw,55rem)]
               leading-[0.7]
               tracking-[-0.13em]
               text-[#790719]
+              sm:text-[clamp(15rem,45vw,48rem)]
             "
             aria-hidden="true"
           >
@@ -290,7 +291,7 @@ export default function MartiniHero() {
           "
         >
           {/* Description */}
-          <div className="sm:col-span-4 lg:col-span-3">
+          <div className="hidden sm:block sm:col-span-4 lg:col-span-3">
             <p
               className="
                 max-w-[280px]

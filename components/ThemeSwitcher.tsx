@@ -15,7 +15,9 @@ import {
 
 import {
   Flower2,
-  Martini,
+  Asterisk,
+  Cherry,
+  Star,
   Moon,
   Sun,
   Droplets
@@ -51,7 +53,7 @@ const themes: Theme[] = [
   },
   {
     id: "sunset",
-    icon: <Martini size={16} />,
+    icon: <Cherry size={16} />,
     label: "Use espresso martini theme",
     shortLabel: "Martini",
   },
