@@ -473,6 +473,13 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
+            src: "/images/tabakDepot/laptop-live.webp",
+            alt: "Tabak Depot homepage displayed on a laptop in a design studio",
+            span: "full",
+            aspectRatio: "4 / 3",
+          },
+          {
+            type: "image",
             src: "/images/tabakDepot/whiskey.png",
             alt: "Tabak Depot homepage and hero design",
           },
@@ -495,6 +502,20 @@ export const projects: Project[] = [
             type: "image",
             src: "/images/tabakDepot/sortiment.png",
             alt: "Store locations and visitor information",
+          },
+          {
+            type: "image",
+            src: "/images/tabakDepot/responsive-live.webp",
+            alt: "Tabak Depot's live website presented on laptop and mobile",
+            span: "full",
+            aspectRatio: "4 / 3",
+          },
+          {
+            type: "image",
+            src: "/images/tabakDepot/overview-live.webp",
+            alt: "Angled overview of Tabak Depot's homepage, story, assortment and location sections",
+            span: "full",
+            aspectRatio: "4 / 3",
           },
         ],
       },
