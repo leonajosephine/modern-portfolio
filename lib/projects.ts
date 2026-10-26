@@ -16,6 +16,8 @@ export type MediaSpan = "single" | "full";
 
 type MediaLayout = {
   span?: MediaSpan;
+  aspectRatio?: string;
+  fit?: "cover" | "contain";
 };
 
 export type Media =
@@ -227,8 +229,9 @@ export const projects: Project[] = [
   
     hero: {
       type: "image",
-      src: "/images/atlumen/responsive.png",
-      alt: "Atlumen brand and website",
+      src: "/images/atlumen/responsive-live.webp",
+      alt: "Atlumen's live website on desktop, laptop and mobile, showing frames from the video hero",
+      fit: "contain",
     },
   
     category: "design",
@@ -249,7 +252,9 @@ export const projects: Project[] = [
       team: "Client Project",
     },
   
-    links: [],
+    links: [
+      { label: "Live Website", href: "https://atlumen.ai", kind: "live" },
+    ],
   
     blocks: [
       {
@@ -319,25 +324,32 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
-            src: "/images/atlumen/mockup.png",
-            alt: "Atlumen brand and website",
+            src: "/images/atlumen/laptop-live.webp",
+            alt: "Atlumen on a laptop with a frame from the live video hero",
             span: "full",
+            aspectRatio: "4 / 3",
           },
           {
             type: "image",
-            src: "/images/atlumen/collage.png",
-            alt: "Atlumen visual identity",
+            src: "/images/atlumen/overview-live.webp",
+            alt: "Angled overview of Atlumen's live hero, functions, security and use-case sections",
+            span: "full",
+            aspectRatio: "4 / 3",
           },
           {
             type: "image",
-            src: "/images/atlumen/mockup2.png",
-            alt: "Atlumen website design",
+            src: "/images/atlumen/working-live.webp",
+            alt: "Working at a laptop displaying Atlumen's live website",
+            span: "full",
+            aspectRatio: "4 / 3",
           },
           {
             type: "image",
             src: "/images/atlumen/atlumenBrand.png",
-            alt: "Atlumen responsive website",
+            alt: "Atlumen brand board with logo system, colors, typography and UI elements",
             span: "full",
+            aspectRatio: "1129 / 1849",
+            fit: "contain",
           },
         ],
       },

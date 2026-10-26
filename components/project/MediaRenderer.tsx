@@ -104,6 +104,7 @@ export default function MediaRenderer({
   return (
     <div
       className={`relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-border bg-card ${className}`}
+      style={media.aspectRatio ? { aspectRatio: media.aspectRatio } : undefined}
     >
       <Image
         src={media.src}
@@ -111,7 +112,7 @@ export default function MediaRenderer({
         fill
         priority={priority}
         sizes="(min-width: 1024px) 60vw, 90vw"
-        className="object-cover"
+        className={media.fit === "contain" ? "object-contain" : "object-cover"}
       />
     </div>
   );
