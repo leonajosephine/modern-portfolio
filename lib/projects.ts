@@ -18,6 +18,7 @@ type MediaLayout = {
   span?: MediaSpan;
   aspectRatio?: string;
   fit?: "cover" | "contain";
+  unoptimized?: boolean;
 };
 
 export type Media =
@@ -44,6 +45,7 @@ export type Project = {
   title: string;
   short: string;
   cover: string;
+  coverUnoptimized?: boolean;
   hero: Media;
   category: ProjectCategory;
   gradient?: "sunset" | "aurora" | "forest" | "ice";
@@ -636,11 +638,15 @@ export const projects: Project[] = [
     title: "Reading App",
     short:
       "Inspired by my love for fantasy books - I designed the reading app I would love to have myself: Part digital bookshelf, part reading journal and themes to choose from.",
-    cover: "/images/readingList/hero.png",
+    cover: "/images/readingList/dark-candlelight.png",
+    coverUnoptimized: true,
     hero: {
       type: "image",
-      src: "/images/readingList/read_dark.png",
-      alt: "Reading app in dark mode",
+      src: "/images/readingList/cover-live.png",
+      alt: "Lunara dark mode on iPhone beside books and a candle",
+      aspectRatio: "4 / 3",
+      fit: "contain",
+      unoptimized: true,
     },
     category: "coding",
     tags: [
@@ -675,18 +681,40 @@ export const projects: Project[] = [
         type: "text",
         title: "Overview",
         body:
-          "The app allows users to manage a personal library, track reading progress, create custom lists and discover books in one mobile experience.",
+          "A personal bookshelf, reading journal and space to connect — with detailed tracking and sharing features organised around a calm, customisable reading experience.",
       },
       {
         type: "bullets",
-        title: "Main Features",
+        title: "Make It Yours",
         items: [
-          "Save and organize books in a personal library",
-          "Track reading status and progress",
-          "Create personalized reading lists",
-          "Switch between six visual themes",
-          "Discover books through the Google Books API",
-          "Connect with friends and share reading inspiration",
+          "Nine visual themes, each with an optional illustrated header",
+          "A welcome message and guided introduction to help you settle in",
+        ],
+      },
+      {
+        type: "bullets",
+        title: "Follow Your Reading Journey",
+        items: [
+          "Reading rings, a yearly reading goal and progress for every book you’re currently reading",
+          "A reading-year recap with your finished books, longest read and most-read genre",
+        ],
+      },
+      {
+        type: "bullets",
+        title: "Build Your Bookshelf",
+        items: [
+          "Your whole library at a glance, with TBR, Reading and Done statuses",
+          "Custom lists with cover previews, list or grid views, sorting and search — easy to rename or delete",
+          "Find books in your own library or discover new titles through book search",
+        ],
+      },
+      {
+        type: "bullets",
+        title: "Reflect, Share & Connect",
+        items: [
+          "Book detail pages with quotes, personal notes, star ratings and ratings for qualities such as romance and humour",
+          "Share lists as text or Pinterest-style cover collages; share individual books with your quotes, notes and ratings",
+          "Add friends, discover books you have in common and see who is reading or has finished a book",
         ],
       },
       {
@@ -708,29 +736,72 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
-            src: "/images/readingList/read_themes.png",
-            alt: "Theme overview",
+            src: "/images/readingList/light-dark-reading.png",
+            alt: "Lunara light and dark modes side by side in a candlelit reading nook",
+            span: "single",
+            aspectRatio: "3 / 2",
+            fit: "contain",
+            unoptimized: true,
+          },
+          {
+            type: "image",
+            src: "/images/readingList/home-quiet.png",
+            alt: "Dragon’s Keep home screen with reading goal and current book",
+            span: "single",
+            aspectRatio: "4 / 3",
+            fit: "contain",
+            unoptimized: true,
+          },
+          {
+            type: "image",
+            src: "/images/readingList/features-live.png",
+            alt: "Reading lists on iPad and iPhone alongside the book detail screen",
             span: "full",
+            aspectRatio: "4 / 3",
+            fit: "contain",
+            unoptimized: true,
           },
           {
             type: "image",
-            src: "/images/readingList/read_home.png",
-            alt: "Home screen",
+            src: "/images/readingList/court-quiet.png",
+            alt: "Book Court home screen in a moonlit reading setting",
+            span: "single",
+            aspectRatio: "4 / 3",
+            fit: "contain",
+            unoptimized: true,
+          },
+        ],
+      },
+      {
+        type: "gallery",
+        title: "Themes & Collections",
+        items: [
+          {
+            type: "image",
+            src: "/images/readingList/themes-five-overview.png",
+            alt: "Light, Dark, Dragon’s Keep, Rose Petals and Midnight Archives themes",
+            span: "full",
+            aspectRatio: "2067 / 761",
+            fit: "contain",
+            unoptimized: true,
           },
           {
             type: "image",
-            src: "/images/readingList/read_features.png",
-            alt: "Feature overview",
+            src: "/images/readingList/themes-four-overview.png",
+            alt: "Book Court, Frosted Reverie, Calming Matcha and Earthy Terracotta themes",
+            span: "full",
+            aspectRatio: "2 / 1",
+            fit: "contain",
+            unoptimized: true,
           },
           {
             type: "image",
-            src: "/images/readingList/read_themes2.png",
-            alt: "Theme variations",
-          },
-          {
-            type: "image",
-            src: "/images/readingList/read_dark2.png",
-            alt: "Dark theme",
+            src: "/images/readingList/collections-share-overview.png",
+            alt: "Reading lists, Fantasy Fav‘s details and its shareable book-cover image",
+            span: "full",
+            aspectRatio: "3 / 2",
+            fit: "contain",
+            unoptimized: true,
           },
         ],
       },

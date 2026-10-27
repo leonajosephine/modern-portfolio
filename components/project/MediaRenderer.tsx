@@ -109,6 +109,7 @@ export default function MediaRenderer({
       <Image
         src={media.src}
         alt={media.alt ?? ""}
+        unoptimized={media.unoptimized}
         fill
         priority={priority}
         sizes="(min-width: 1024px) 60vw, 90vw"

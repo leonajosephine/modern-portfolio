@@ -328,6 +328,7 @@ export default function Portfolio() {
                     <div className="absolute inset-0">
                       <Image
                         src={project.cover}
+                        unoptimized={project.coverUnoptimized}
                         alt={project.title}
                         fill
                         quality={78}

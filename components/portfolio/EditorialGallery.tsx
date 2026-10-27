@@ -72,6 +72,7 @@ export default function EditorialGallery({
                 ) : (
                   <Image
                     src={project.cover}
+                    unoptimized={project.coverUnoptimized}
                     alt={project.title}
                     fill
                     quality={80}

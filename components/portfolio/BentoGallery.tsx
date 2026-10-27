@@ -110,6 +110,7 @@ export default function BentoGallery({ projects, onOpen }: Props) {
                 <div className="absolute inset-0">
                   <Image
                     src={project.cover}
+                    unoptimized={project.coverUnoptimized}
                     alt={project.title}
                     fill
                     quality={78}
