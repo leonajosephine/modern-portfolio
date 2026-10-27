@@ -162,7 +162,7 @@ export default function BentoGallery({ projects, onOpen }: Props) {
                       sm:tracking-[0.24em]
                     "
                   >
-                    {project.category} ·{" "}
+                    {project.categories.join(" / ")} ·{" "}
                     {project.meta?.year ?? "Project"}
                   </p>
 

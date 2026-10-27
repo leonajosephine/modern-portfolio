@@ -53,7 +53,7 @@ export default function Portfolio() {
     }
 
     return projects.filter(
-      (project) => project.category === activeFilter
+      (project) => project.categories.includes(activeFilter)
     );
   }, [activeFilter]);
 

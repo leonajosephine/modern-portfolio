@@ -117,7 +117,7 @@ export default function EditorialGallery({
                       text-[var(--text-secondary)]
                     "
                   >
-                    {project.category}
+                    {project.categories.join(" / ")}
                     <span className="mx-1 opacity-50">·</span>
                     {project.meta?.year ?? "Project"}
                   </p>

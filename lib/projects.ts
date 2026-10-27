@@ -47,7 +47,7 @@ export type Project = {
   cover: string;
   coverUnoptimized?: boolean;
   hero: Media;
-  category: ProjectCategory;
+  categories: [ProjectCategory, ...ProjectCategory[]];
   gradient?: "sunset" | "aurora" | "forest" | "ice";
   tags?: string[];
   meta?: {
@@ -76,7 +76,7 @@ export const projects: Project[] = [
       alt: "Aurem jewelry website",
     },
   
-    category: "design",
+    categories: ["design", "coding"],
   
     tags: [
       "Next.js",
@@ -101,14 +101,14 @@ export const projects: Project[] = [
         type: "text",
         title: "Why Aurem?",
         body:
-          "I've always loved jewelry—not just as an accessory, but as something that tells a story and becomes part of someone's identity. I wanted to challenge myself to build an entire luxury brand from nothing more than a blank canvas. Instead of starting with a homepage, I started with a vision: creating a world that felt special, timeless and cohesive in every detail.",
+          "My love of jewelry became a chance to build a luxury brand from scratch, with its own identity, campaign imagery and shopping experience.",
       },
   
       {
         type: "text",
-        title: "Building a Brand, Not Just a Website",
+        title: "From Identity to Experience",
         body:
-          "I started from typography, color palettes and product presentation to campaign concepts and visual storytelling, every creative decision was made with the overall identity in mind. The final website became a natural extension of that brand—designed to feel premium and consistent across every touchpoint.",
+          "Typography, colour and product photography shaped the brand first. The website carries that direction through collections, product pages and editorial stories.",
       },
   
       {
@@ -118,17 +118,17 @@ export const projects: Project[] = [
           {
             label: "Brand Strategy & Art Direction",
             value:
-              "Developed the complete visual identity, creative direction, typography, color palette and campaign concept.",
+              "Visual identity, typography, colour palette and campaign direction.",
           },
           {
             label: "UX/UI Design",
             value:
-              "Designed responsive ecommerce experiences focused on storytelling, product discovery and a premium shopping journey.",
+              "Responsive collection and product pages with an editorial approach.",
           },
           {
             label: "Frontend Development",
             value:
-              "Built the website with reusable components using Next.js, TypeScript and Tailwind CSS with a focus on performance and accessibility.",
+              "Reusable components built with Next.js, TypeScript and Tailwind CSS.",
           },
         ],
       },
@@ -137,12 +137,9 @@ export const projects: Project[] = [
         type: "bullets",
         title: "Project Highlights",
         items: [
-          "Developed an entire luxury jewelry brand from scratch.",
-          "Created the visual identity before designing the website.",
-          "Directed and generated AI campaign imagery based on custom moodboards and art direction.",
-          "Designed responsive collection and product detail experiences.",
-          "Built reusable frontend components with Next.js and Tailwind CSS.",
-          "Focused on storytelling to create a premium ecommerce experience rather than a traditional online shop.",
+          "AI campaign imagery directed through custom moodboards",
+          "Consistent storytelling across brand, products and editorial layouts",
+          "Responsive shopping journeys across screen sizes",
         ],
       },
   
@@ -163,14 +160,9 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
-            src: "/images/aurem/hero.png",
-            alt: "Aurem hero",
-            span: "full",
-          },
-          {
-            type: "image",
             src: "/images/aurem/responsive2.png",
             alt: "Responsive mockups",
+            span: "full",
           },
           {
             type: "image",
@@ -236,7 +228,7 @@ export const projects: Project[] = [
       fit: "contain",
     },
   
-    category: "design",
+    categories: ["design", "coding"],
   
     tags: [
       "Next.js",
@@ -263,14 +255,14 @@ export const projects: Project[] = [
         type: "text",
         title: "From Blank Canvas to Brand",
         body:
-          "The project started without an established visual identity, giving me the opportunity to shape Atlumen from the ground up. I developed the visual direction, defined the look and feel of the imagery and translated the brand into a complete responsive website.",
+          "I shaped Atlumen’s visual identity, art direction and responsive website from the ground up, creating a consistent presence for an AI product.",
       },
   
       {
         type: "text",
         title: "Designed Around the Product",
         body:
-          "Atlumen is an AI-powered tool designed to support expert workflows and make complex day-to-day processes more efficient. The website needed to introduce that idea clearly while giving the product a distinct and credible identity of its own.",
+          "The website introduces complex expert workflows through clear messaging, product-focused sections and a distinct visual identity.",
       },
   
       {
@@ -280,17 +272,17 @@ export const projects: Project[] = [
           {
             label: "Branding & Art Direction",
             value:
-              "Developed the visual identity, creative direction and imagery style for the brand.",
+              "Visual identity, creative direction and brand imagery.",
           },
           {
             label: "UX / UI Design",
             value:
-              "Designed the complete responsive website and translated the product into a clear digital experience.",
+              "Responsive layouts that make the product easy to understand.",
           },
           {
             label: "Frontend Development",
             value:
-              "Built the responsive website with reusable components and a focus on performance and accessibility.",
+              "Reusable frontend components for the complete website.",
           },
         ],
       },
@@ -299,12 +291,9 @@ export const projects: Project[] = [
         type: "bullets",
         title: "Highlights",
         items: [
-          "Created the visual identity and digital design direction from the ground up",
-          "Defined the art direction and visual language for brand imagery",
-          "Designed the complete responsive website across desktop, tablet and mobile",
-          "Translated an AI-powered product into a clear and approachable web experience",
-          "Built a reusable frontend component system",
-          "Created a consistent visual system across brand and product communication",
+          "Video-led hero and coordinated brand imagery",
+          "Clear sections for features, security and use cases",
+          "Consistent experience across desktop, tablet and mobile",
         ],
       },
   
@@ -371,7 +360,7 @@ export const projects: Project[] = [
       src: "/images/tabakDepot/hero.png",
       alt: "Tabak Depot website redesign",
     },
-    category: "coding",
+    categories: ["design", "coding"],
     tags: [
       "Next.js",
       "React",
@@ -400,19 +389,19 @@ export const projects: Project[] = [
         type: "text",
         title: "A New Chapter for an Established Business",
         body:
-          "Tabak Depot is a family-run retailer with three locations in Minden, Germany, and a history dating back to 1978. Its previous website had been around for roughly two decades and no longer reflected the character of the business. The goal was to create a contemporary digital presence that felt more refined, welcoming and relevant to its customers.",
+          "Tabak Depot is a family-run retailer with three locations in Minden, established in 1978. I redesigned its roughly twenty-year-old website to reflect the business and help customers plan a visit.",
       },
       {
         type: "text",
         title: "An Editorial Approach to Retail",
         body:
-          "Instead of building a conventional product-focused retail website, I developed a visual direction inspired by premium spirits, craftsmanship and editorial storytelling. Warm tones, atmospheric imagery, expressive typography and subtle motion create an experience that reflects the business's focus on selected whiskies, cigars and personal service.",
+          "Warm colours, expressive typography and atmospheric photography bring its whiskies, cigars and personal service into focus. Editorial layouts and subtle motion give the site a more considered feel.",
       },
       {
         type: "text",
         title: "More Than a Visual Redesign",
         body:
-          "Beyond the frontend, the project also involved implementing a server-side contact flow with email delivery. I worked with API-based functionality and environment variables to separate sensitive configuration from the public-facing application. This made the project an opportunity to combine visual design with practical application development.",
+          "A custom contact form handles enquiries and email delivery on the server, alongside practical information for all three stores.",
       },
       {
         type: "metrics",
@@ -421,22 +410,22 @@ export const projects: Project[] = [
           {
             label: "Art Direction & UI Design",
             value:
-              "Developed the visual concept, editorial layouts, typography, color direction and responsive interface.",
+              "Visual direction, editorial layouts and responsive interface design.",
           },
           {
             label: "Frontend Development",
             value:
-              "Built the responsive website using Next.js, React, TypeScript and Tailwind CSS, with reusable components and subtle scroll-based interactions.",
+              "Reusable Next.js components and subtle scroll interactions.",
           },
           {
             label: "Server-Side Integration",
             value:
-              "Implemented API-based form handling and email delivery using server-side configuration and environment variables.",
+              "Contact form processing and server-side email delivery.",
           },
           {
             label: "Content & User Experience",
             value:
-              "Structured the experience around the brand story, product selection, services and three retail locations.",
+              "Brand story, curated products, services and store information.",
           },
         ],
       },
@@ -444,14 +433,9 @@ export const projects: Project[] = [
         type: "bullets",
         title: "Project Highlights",
         items: [
-          "Redesigned a website that had remained largely unchanged for approximately 20 years.",
-          "Created a premium editorial visual direction inspired by whisky, cigars and craftsmanship.",
-          "Developed responsive layouts for desktop, tablet and mobile.",
-          "Introduced subtle animations and scroll-based interactions.",
-          "Presented three store locations with practical visitor information.",
-          "Designed dedicated sections for curated products, experiences and premium services.",
-          "Integrated a custom server-side contact and email workflow.",
-          "Used environment variables for sensitive server-side configuration.",
+          "Responsive layouts for desktop, tablet and mobile",
+          "Dedicated sections for products, experiences and premium services",
+          "Visitor information for three stores and a direct enquiry flow",
         ],
       },
       {
@@ -535,7 +519,7 @@ export const projects: Project[] = [
       src: "/images/e2/e2_hero.png",
       alt: "Eightsquared hero",
     },
-    category: "design",
+    categories: ["design", "coding"],
     tags: [
       "Next.js",
       "TypeScript",
@@ -598,8 +582,11 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
-            src: "/images/e2/e2_components.png",
+            src: "/images/e2/e2_components-v2.png",
             alt: "Component overview",
+            aspectRatio: "3 / 2",
+            fit: "contain",
+            unoptimized: true,
           },
           {
             type: "image",
@@ -648,7 +635,7 @@ export const projects: Project[] = [
       fit: "contain",
       unoptimized: true,
     },
-    category: "coding",
+    categories: ["design", "coding"],
     tags: [
       "React Native",
       "Expo",
@@ -819,7 +806,7 @@ export const projects: Project[] = [
       src: "/images/lunara/lunara_hero.png",
       alt: "Lunara skincare hero",
     },
-    category: "design",
+    categories: ["design", "coding"],
     tags: [
       "Brand Design",
       "UI Design",
@@ -932,7 +919,7 @@ export const projects: Project[] = [
   },
   {
     slug: "merle-and-lasse",
-    title: "Merle & Lasse",
+    title: "Wedding Website",
     short:
       "When one of your best friends asks you to do their wedding website - of course the answer is yes! This was the perfect opportunity to create something special for the two of them.",
     cover: "/images/m&l/invitations.jpg",
@@ -941,7 +928,7 @@ export const projects: Project[] = [
       src: "/images/m&l/letterOpening.mov", //vid 
       poster: "/images/m&l/letter1.png",
     },
-    category: "design",
+    categories: ["design", "coding"],
     tags: [
       "Next.js",
       "TypeScript",
@@ -1057,10 +1044,12 @@ export const projects: Project[] = [
     cover: "/images/netflix.jpg",
     hero: {
       type: "image",
-      src: "/images/netflix/Netflix_mockup_responsive.png",
+      src: "/images/netflix/netflix-responsive-v2.png",
       alt: "Netflix-inspired responsive interface",
+      fit: "contain",
+      unoptimized: true,
     },
-    category: "coding",
+    categories: ["coding"],
     tags: [
       "Next.js",
       "React",
@@ -1135,9 +1124,12 @@ export const projects: Project[] = [
           },
           {
             type: "image",
-            src: "/images/netflix/Netflix_mockup_main.png",
+            src: "/images/netflix/netflix-main-v2.png",
             alt: "Responsive website mockup",
             span: "full",
+            aspectRatio: "3 / 2",
+            fit: "contain",
+            unoptimized: true,
           },
           {
             type: "image",
@@ -1171,7 +1163,7 @@ export const projects: Project[] = [
       src: "/images/avp/vision3.png",
       alt: "Apple Vision Pro spatial experience",
     },
-    category: "3d",
+    categories: ["3d", "design", "coding"],
     tags: [
       "visionOS",
       "Swift",
@@ -1269,7 +1261,7 @@ export const projects: Project[] = [
       src: "/images/toDo/overview.png",
       alt: "To-do list app overview",
     },
-    category: "coding",
+    categories: ["coding"],
     tags: ["React", "TypeScript", "Tailwind CSS"],
     meta: {
       role: "Frontend Developer",
@@ -1360,7 +1352,7 @@ export const projects: Project[] = [
       src: "/images/collage.jpg",
       alt: "Mini game project",
     },
-    category: "coding",
+    categories: ["coding"],
     tags: [],
     meta: {
       role: "Developer",
@@ -1408,7 +1400,7 @@ export const projects: Project[] = [
       src: "/images/toDo/overview.png",
       alt: "Design website concept",
     },
-    category: "design",
+    categories: ["design"],
     tags: [],
     meta: {
       role: "Designer & Developer",
@@ -1472,7 +1464,7 @@ export const projects: Project[] = [
       src: "/images/toDo/overview.png",
       alt: "Graphic design website concept",
     },
-    category: "design",
+    categories: ["design"],
     tags: [],
     meta: {
       role: "Designer & Developer",

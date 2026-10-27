@@ -75,7 +75,7 @@ export default function Portfolio() {
     }
 
     return projects.filter(
-      (project) => project.category === activeFilter
+      (project) => project.categories.includes(activeFilter)
     );
   }, [activeFilter]);
 
@@ -386,7 +386,7 @@ export default function Portfolio() {
                           sm:tracking-[0.24em]
                         "
                       >
-                        {project.category} ·{" "}
+                        {project.categories.join(" / ")} ·{" "}
                         {project.meta?.year ?? "Project"}
                       </p>
 
