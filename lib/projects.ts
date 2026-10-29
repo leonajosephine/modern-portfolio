@@ -213,142 +213,117 @@ export const projects: Project[] = [
     size: "big",
   },
   {
-    slug: "atlumen",
-    title: "Atlumen",
-  
+    slug: "eightsquared",
+    title: "Eightsquared",
     short:
-      "Building Atlumen meant shaping the brand from the ground up — from visual identity and art direction to a responsive digital experience for an AI tool built for expert workflows.",
-  
-    cover: "/images/atlumen/cover.png",
-  
+      "A modern responsive website for an AI company with a clean, minimal and technical visual direction.",
+    cover: "/images/e2/e2_hero.png",
     hero: {
       type: "image",
-      src: "/images/atlumen/responsive-live.webp",
-      alt: "Atlumen's live website on desktop, laptop and mobile, showing frames from the video hero",
-      fit: "contain",
+      src: "/images/e2/e2_hero.png",
+      alt: "Eightsquared hero",
     },
-  
     categories: ["design", "coding"],
-  
     tags: [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
-      "Branding",
-      "Art Direction",
-      "UI / UX",
-      "AI",
+      "Responsive Design",
+      "Dark Mode",
+      "UI Design",
     ],
-  
     meta: {
       role: "UI Designer & Frontend Developer",
       year: "2026",
+      duration: "2 weeks",
       team: "Client Project",
     },
-  
     links: [
-      { label: "Live Website", href: "https://atlumen.ai", kind: "live" },
+      {
+        label: "Live Demo",
+        href: "https://eightsquared.vercel.app",
+        kind: "live",
+      },
+      // Add the correct repository link once it is ready.
+      // {
+      //   label: "GitHub Repository",
+      //   href: "https://...",
+      //   kind: "repo",
+      // },
     ],
-  
     blocks: [
       {
         type: "text",
-        title: "From Blank Canvas to Brand",
+        title: "Making AI Feel Clear, Not Cold",
         body:
-          "I shaped Atlumen’s visual identity, art direction and responsive website from the ground up, creating a consistent presence for an AI product.",
+          "The project explores how an AI company can feel innovative and technically credible without relying on an overly cold or generic visual language.",
       },
-  
       {
         type: "text",
-        title: "Designed Around the Product",
+        title: "Goal",
         body:
-          "The website introduces complex expert workflows through clear messaging, product-focused sections and a distinct visual identity.",
+          "Create a responsive company website that presents services, work and brand positioning through a clean, minimal and distinctly technical aesthetic.",
       },
-  
-      {
-        type: "metrics",
-        title: "My Contribution",
-        items: [
-          {
-            label: "Branding & Art Direction",
-            value:
-              "Visual identity, creative direction and brand imagery.",
-          },
-          {
-            label: "UX / UI Design",
-            value:
-              "Responsive layouts that make the product easy to understand.",
-          },
-          {
-            label: "Frontend Development",
-            value:
-              "Reusable frontend components for the complete website.",
-          },
-        ],
-      },
-  
       {
         type: "bullets",
         title: "Highlights",
         items: [
-          "Video-led hero and coordinated brand imagery",
-          "Clear sections for features, security and use cases",
-          "Consistent experience across desktop, tablet and mobile",
+          "Responsive layouts for desktop, tablet and mobile",
+          "Coordinated light and dark themes",
+          "Reusable component system",
+          "Clear visual hierarchy for technical content",
+          "Brand identity and digital design direction",
         ],
       },
-  
       {
         type: "stack",
         title: "Tech & Tools",
-        items: [
-          "Next.js",
-          "TypeScript",
-          "Tailwind CSS",
-          "Figma",
-          "AI",
-        ],
+        items: ["Next.js", "TypeScript", "Tailwind CSS", "Figma"],
       },
-  
       {
         type: "gallery",
         title: "Selected Work",
         items: [
           {
             type: "image",
-            src: "/images/atlumen/laptop-live.webp",
-            alt: "Atlumen on a laptop with a frame from the live video hero",
-            span: "full",
-            aspectRatio: "4 / 3",
-          },
-          {
-            type: "image",
-            src: "/images/atlumen/overview-live.webp",
-            alt: "Angled overview of Atlumen's live hero, functions, security and use-case sections",
-            span: "full",
-            aspectRatio: "4 / 3",
-          },
-          {
-            type: "image",
-            src: "/images/atlumen/working-live.webp",
-            alt: "Working at a laptop displaying Atlumen's live website",
-            span: "full",
-            aspectRatio: "4 / 3",
-          },
-          {
-            type: "image",
-            src: "/images/atlumen/atlumenBrand.png",
-            alt: "Atlumen brand board with logo system, colors, typography and UI elements",
-            span: "full",
-            aspectRatio: "1129 / 1849",
+            src: "/images/e2/e2_components-v2.png",
+            alt: "Component overview",
+            aspectRatio: "3 / 2",
             fit: "contain",
+            unoptimized: true,
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_lightanddark.png",
+            alt: "Light and dark mode",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_desktop_dark.png",
+            alt: "Desktop dark mode",
+            span: "full",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_responsive.png",
+            alt: "Responsive layouts",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_brandIdentity.png",
+            alt: "Brand identity",
+          },
+          {
+            type: "image",
+            src: "/images/e2/e2_showcase.png",
+            alt: "Website showcase",
+            span: "full",
           },
         ],
       },
     ],
-  
-    size: "wide",
+    size: "tall",
   },
-
   {
     slug: "tabak-depot",
     title: "Tabak Depot",
@@ -509,72 +484,141 @@ export const projects: Project[] = [
     size: "normal",
   },
   {
-    slug: "eightsquared",
-    title: "Eightsquared",
+    slug: "offgrid",
+    title: "Offgrid",
     short:
-      "A modern responsive website for an AI company with a clean, minimal and technical visual direction.",
-    cover: "/images/e2/e2_hero.png",
+      "A travel concept for slowing down: immersive landscapes, a curated collection of places and a visual identity built around the feeling of getting away.",
+    cover: "/images/offgrid/macbook-hero.png",
+    coverUnoptimized: true,
     hero: {
       type: "image",
-      src: "/images/e2/e2_hero.png",
-      alt: "Eightsquared hero",
+      src: "/images/offgrid/macbook-hero.png",
+      alt: "Offgrid’s navigation and alpine homepage hero displayed on a MacBook",
+      aspectRatio: "4 / 3",
+      fit: "contain",
+      unoptimized: true,
+    },
+    categories: ["design", "coding"],
+    tags: ["Travel", "Art Direction", "UI / UX", "React", "Vite"],
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      team: "Personal Concept",
+    },
+    blocks: [
+      {
+        type: "text",
+        title: "Less Signal, More Somewhere",
+        body:
+          "Offgrid explores a slower way to discover places. Layered landscape imagery, oversized type and a restrained green palette give this independent travel concept a sense of space and calm.",
+      },
+      {
+        type: "bullets",
+        title: "Design & Experience",
+        items: [
+          "Layered hero with editable typography behind the mountains",
+          "Filter places by region, trip length and landscape",
+          "Destination details, illustrative itineraries and a browser-local saved collection",
+          "Responsive layouts and an editorial travel journal",
+        ],
+      },
+      {
+        type: "text",
+        title: "Project Scope",
+        body:
+          "Designed and built as a portfolio prototype, with illustrative destinations and imagery. It does not offer bookings or live availability.",
+      },
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: ["React", "Vite", "CSS", "Local Storage", "AI Imagery"],
+      },
+      {
+        type: "gallery",
+        title: "Full Website",
+        items: [
+          {
+            type: "image",
+            src: "/images/offgrid/full-page.png",
+            alt: "Full Offgrid website: alpine hero, destination collection, journal and footer",
+            span: "full",
+            aspectRatio: "2772 / 7936",
+            fit: "contain",
+            unoptimized: true,
+          },
+        ],
+      },
+    ],
+    size: "big",
+  },
+  {
+    slug: "merle-and-lasse",
+    title: "Wedding Website",
+    short:
+      "When one of your best friends asks you to do their wedding website - of course the answer is yes! This was the perfect opportunity to create something special for the two of them.",
+    cover: "/images/m&l/invitations.jpg",
+    hero: {
+      type: "video",
+      src: "/images/m&l/letterOpening.mov", //vid
+      poster: "/images/m&l/letter1.png",
     },
     categories: ["design", "coding"],
     tags: [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
+      "next-intl",
       "Responsive Design",
-      "Dark Mode",
       "UI Design",
     ],
     meta: {
       role: "UI Designer & Frontend Developer",
       year: "2026",
-      duration: "2 weeks",
-      team: "Client Project",
+      team: "Solo",
     },
     links: [
-      {
-        label: "Live Demo",
-        href: "https://eightsquared.vercel.app",
-        kind: "live",
-      },
-      // Add the correct repository link once it is ready.
+      // Add the live website or repository when it is ready to be public.
       // {
-      //   label: "GitHub Repository",
+      //   label: "Live Website",
       //   href: "https://...",
-      //   kind: "repo",
+      //   kind: "live",
       // },
     ],
     blocks: [
       {
         type: "text",
-        title: "Making AI Feel Clear, Not Cold",
+        title: "More Personal Than a Printed Invitation",
         body:
-          "The project explores how an AI company can feel innovative and technically credible without relying on an overly cold or generic visual language.",
+          "The goal was to create more than a practical information page. The website should feel like an extension of the wedding itself — warm, elegant and personal, while still helping guests find every important detail quickly.",
       },
       {
         type: "text",
-        title: "Goal",
+        title: "A digital invitation",
         body:
-          "Create a responsive company website that presents services, work and brand positioning through a clean, minimal and distinctly technical aesthetic.",
+          "The multilingual website combines the couple's story, schedule, gallery, location details, accommodation information, FAQs and an RSVP flow in one responsive experience.",
       },
       {
         type: "bullets",
         title: "Highlights",
         items: [
-          "Responsive layouts for desktop, tablet and mobile",
-          "Coordinated light and dark themes",
-          "Reusable component system",
-          "Clear visual hierarchy for technical content",
-          "Brand identity and digital design direction",
+          "Custom visual language based on the wedding stationery",
+          "Responsive guest experience for mobile and desktop",
+          "Multilingual content in German, English and Danish",
+          "Structured schedule, travel and accommodation information",
+          "Digital RSVP experience",
+          "Custom illustrations, ornaments and typography",
         ],
       },
       {
         type: "stack",
         title: "Tech & Tools",
-        items: ["Next.js", "TypeScript", "Tailwind CSS", "Figma"],
+        items: [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "next-intl",
+          "Figma",
+        ],
       },
       {
         type: "gallery",
@@ -582,38 +626,44 @@ export const projects: Project[] = [
         items: [
           {
             type: "image",
-            src: "/images/e2/e2_components-v2.png",
-            alt: "Component overview",
-            aspectRatio: "3 / 2",
-            fit: "contain",
-            unoptimized: true,
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_lightanddark.png",
-            alt: "Light and dark mode",
-          },
-          {
-            type: "image",
-            src: "/images/e2/e2_desktop_dark.png",
-            alt: "Desktop dark mode",
+            src: "/images/m&l/letter2.png",
+            alt: "Wedding website homepage",
             span: "full",
           },
           {
             type: "image",
-            src: "/images/e2/e2_responsive.png",
-            alt: "Responsive layouts",
+            src: "/images/m&l/letterDetail.png",
+            alt: "Wedding invitation and visual identity",
           },
           {
             type: "image",
-            src: "/images/e2/e2_brandIdentity.png",
-            alt: "Brand identity",
+            src: "/images/m&l/stage.png",
+            alt: "Wedding invitation and visual identity",
           },
           {
             type: "image",
-            src: "/images/e2/e2_showcase.png",
-            alt: "Website showcase",
-            span: "full",
+            src: "/images/m&l/timetable.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/rsvp.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/countdown.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/dresscode.png",
+            alt: "Wedding invitation and visual identity",
+          },
+          {
+            type: "image",
+            src: "/images/m&l/footer.png",
+            alt: "Wedding invitation and visual identity",
           },
         ],
       },
@@ -918,125 +968,6 @@ export const projects: Project[] = [
     size: "tall",
   },
   {
-    slug: "merle-and-lasse",
-    title: "Wedding Website",
-    short:
-      "When one of your best friends asks you to do their wedding website - of course the answer is yes! This was the perfect opportunity to create something special for the two of them.",
-    cover: "/images/m&l/invitations.jpg",
-    hero: {
-      type: "video",
-      src: "/images/m&l/letterOpening.mov", //vid 
-      poster: "/images/m&l/letter1.png",
-    },
-    categories: ["design", "coding"],
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "next-intl",
-      "Responsive Design",
-      "UI Design",
-    ],
-    meta: {
-      role: "UI Designer & Frontend Developer",
-      year: "2026",
-      team: "Solo",
-    },
-    links: [
-      // Add the live website or repository when it is ready to be public.
-      // {
-      //   label: "Live Website",
-      //   href: "https://...",
-      //   kind: "live",
-      // },
-    ],
-    blocks: [
-      {
-        type: "text",
-        title: "More Personal Than a Printed Invitation",
-        body:
-          "The goal was to create more than a practical information page. The website should feel like an extension of the wedding itself — warm, elegant and personal, while still helping guests find every important detail quickly.",
-      },
-      {
-        type: "text",
-        title: "A digital invitation",
-        body:
-          "The multilingual website combines the couple's story, schedule, gallery, location details, accommodation information, FAQs and an RSVP flow in one responsive experience.",
-      },
-      {
-        type: "bullets",
-        title: "Highlights",
-        items: [
-          "Custom visual language based on the wedding stationery",
-          "Responsive guest experience for mobile and desktop",
-          "Multilingual content in German, English and Danish",
-          "Structured schedule, travel and accommodation information",
-          "Digital RSVP experience",
-          "Custom illustrations, ornaments and typography",
-        ],
-      },
-      {
-        type: "stack",
-        title: "Tech & Tools",
-        items: [
-          "Next.js",
-          "TypeScript",
-          "Tailwind CSS",
-          "next-intl",
-          "Figma",
-        ],
-      },
-      {
-        type: "gallery",
-        title: "Selected Work",
-        items: [
-          {
-            type: "image",
-            src: "/images/m&l/letter2.png",
-            alt: "Wedding website homepage",
-            span: "full",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/letterDetail.png",
-            alt: "Wedding invitation and visual identity",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/stage.png",
-            alt: "Wedding invitation and visual identity",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/timetable.png",
-            alt: "Wedding invitation and visual identity",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/rsvp.png",
-            alt: "Wedding invitation and visual identity",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/countdown.png",
-            alt: "Wedding invitation and visual identity",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/dresscode.png",
-            alt: "Wedding invitation and visual identity",
-          },
-          {
-            type: "image",
-            src: "/images/m&l/footer.png",
-            alt: "Wedding invitation and visual identity",
-          },
-        ],
-      },
-    ],
-    size: "normal",
-  },
-  {
     slug: "netflix-rebuild",
     title: "Netflix Rebuild",
     short:
@@ -1153,6 +1084,142 @@ export const projects: Project[] = [
     size: "tall",
   },
   {
+    slug: "atlumen",
+    title: "Atlumen",
+
+    short:
+      "Building Atlumen meant shaping the brand from the ground up — from visual identity and art direction to a responsive digital experience for an AI tool built for expert workflows.",
+
+    cover: "/images/atlumen/cover.png",
+
+    hero: {
+      type: "image",
+      src: "/images/atlumen/responsive-live.webp",
+      alt: "Atlumen's live website on desktop, laptop and mobile, showing frames from the video hero",
+      fit: "contain",
+    },
+
+    categories: ["design", "coding"],
+
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Branding",
+      "Art Direction",
+      "UI / UX",
+      "AI",
+    ],
+
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      team: "Client Project",
+    },
+
+    links: [
+      { label: "Live Website", href: "https://atlumen.ai", kind: "live" },
+    ],
+
+    blocks: [
+      {
+        type: "text",
+        title: "From Blank Canvas to Brand",
+        body:
+          "I shaped Atlumen’s visual identity, art direction and responsive website from the ground up, creating a consistent presence for an AI product.",
+      },
+
+      {
+        type: "text",
+        title: "Designed Around the Product",
+        body:
+          "The website introduces complex expert workflows through clear messaging, product-focused sections and a distinct visual identity.",
+      },
+
+      {
+        type: "metrics",
+        title: "My Contribution",
+        items: [
+          {
+            label: "Branding & Art Direction",
+            value:
+              "Visual identity, creative direction and brand imagery.",
+          },
+          {
+            label: "UX / UI Design",
+            value:
+              "Responsive layouts that make the product easy to understand.",
+          },
+          {
+            label: "Frontend Development",
+            value:
+              "Reusable frontend components for the complete website.",
+          },
+        ],
+      },
+
+      {
+        type: "bullets",
+        title: "Highlights",
+        items: [
+          "Video-led hero and coordinated brand imagery",
+          "Clear sections for features, security and use cases",
+          "Consistent experience across desktop, tablet and mobile",
+        ],
+      },
+
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Figma",
+          "AI",
+        ],
+      },
+
+      {
+        type: "gallery",
+        title: "Selected Work",
+        items: [
+          {
+            type: "image",
+            src: "/images/atlumen/laptop-live.webp",
+            alt: "Atlumen on a laptop with a frame from the live video hero",
+            span: "full",
+            aspectRatio: "4 / 3",
+          },
+          {
+            type: "image",
+            src: "/images/atlumen/overview-live.webp",
+            alt: "Angled overview of Atlumen's live hero, functions, security and use-case sections",
+            span: "full",
+            aspectRatio: "4 / 3",
+          },
+          {
+            type: "image",
+            src: "/images/atlumen/working-live.webp",
+            alt: "Working at a laptop displaying Atlumen's live website",
+            span: "full",
+            aspectRatio: "4 / 3",
+          },
+          {
+            type: "image",
+            src: "/images/atlumen/atlumenBrand.png",
+            alt: "Atlumen brand board with logo system, colors, typography and UI elements",
+            span: "full",
+            aspectRatio: "1129 / 1849",
+            fit: "contain",
+          },
+        ],
+      },
+    ],
+
+    size: "wide",
+  },
+  {
     slug: "apple-vision-pro",
     title: "Apple Vision Pro Interior App",
     short:
@@ -1243,6 +1310,70 @@ export const projects: Project[] = [
       },
     ],
     size: "wide",
+  },
+  {
+    slug: "noch-ein-glas",
+    title: "Noch ein Glas",
+    short:
+      "A fictional wine bar brought to life through expressive typography, handwritten details and warm photography — a hospitality concept made to feel like an evening among friends.",
+    cover: "/images/noch-ein-glas/hero.webp",
+    hero: {
+      type: "image",
+      src: "/images/noch-ein-glas/hero.webp",
+      alt: "Wine being poured beside small plates in the Noch ein Glas concept",
+    },
+    categories: ["design", "coding"],
+    tags: ["Hospitality", "Brand Design", "Art Direction", "Next.js", "TypeScript"],
+    meta: {
+      role: "UI Designer & Frontend Developer",
+      year: "2026",
+      team: "Personal Concept",
+    },
+    blocks: [
+      {
+        type: "text",
+        title: "Just One More Glass",
+        body:
+          "A wine bar concept built around the warmth of a shared table. Paper tones, bold serif typography, handwritten notes and cinematic imagery create a relaxed, personal identity.",
+      },
+      {
+        type: "bullets",
+        title: "Design & Experience",
+        items: [
+          "Responsive editorial layouts for desktop, tablet and mobile",
+          "Food and drinks menu with ingredient descriptions and hand-drawn details",
+          "Interactive reservation demo with date validation",
+          "Keyboard-accessible dialogs and locally hosted typography",
+        ],
+      },
+      {
+        type: "text",
+        title: "Project Scope",
+        body:
+          "A fictional venue with sample menus, prices and opening hours. Reservations are simulated locally; no booking is sent or stored. Photography and illustrations were created with AI.",
+      },
+      {
+        type: "stack",
+        title: "Tech & Tools",
+        items: ["Next.js", "React", "TypeScript", "CSS", "AI Imagery"],
+      },
+      {
+        type: "gallery",
+        title: "Full Website",
+        items: [
+          {
+            type: "image",
+            src: "/images/noch-ein-glas/full-page.png",
+            alt: "Full Noch ein Glas website: brand introduction, wine bar atmosphere, small plates and contact details",
+            span: "full",
+            aspectRatio: "2772 / 7342",
+            fit: "contain",
+            unoptimized: true,
+          },
+        ],
+      },
+    ],
+    size: "normal",
   },
 
   // ---------------------------------------------------------------------------

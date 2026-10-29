@@ -14,7 +14,7 @@ import EditorialGallery from "./EditorialGallery";
 
 type Filter = "all" | "coding" | "design" | "3d";
 
-const INITIAL_PROJECT_COUNT = 9;
+const INITIAL_PROJECT_COUNTS = { bento: 10, editorial: 9 } as const;
 
 const filters: {
   id: Filter;
@@ -42,6 +42,7 @@ const filters: {
 
 export default function Portfolio() {
   const galleryLayout = useGalleryLayout();
+  const initialProjectCount = INITIAL_PROJECT_COUNTS[galleryLayout];
 
   const [activeFilter, setActiveFilter] = useState<Filter>("all");
   const [openSlug, setOpenSlug] = useState<string | null>(null);
@@ -59,15 +60,15 @@ export default function Portfolio() {
 
   const shouldLimitProjects =
     activeFilter === "all" &&
-    filteredProjects.length > INITIAL_PROJECT_COUNT;
+    filteredProjects.length > initialProjectCount;
 
   const visibleProjects = useMemo(() => {
     if (!shouldLimitProjects || showAllProjects) {
       return filteredProjects;
     }
 
-    return filteredProjects.slice(0, INITIAL_PROJECT_COUNT);
-  }, [filteredProjects, shouldLimitProjects, showAllProjects]);
+    return filteredProjects.slice(0, initialProjectCount);
+  }, [filteredProjects, shouldLimitProjects, showAllProjects, initialProjectCount]);
 
   const openIndex =
     openSlug === null
